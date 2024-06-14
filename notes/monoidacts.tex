@@ -1,0 +1,17 @@
+\section{Monoids and acts}
+\begin{definition}
+    A 3-tuple $\mathcal{S} = (S,\star,e)$ where $S$ is a set and $\star : S\times S \to S$, $e : 1 \to S$ are 
+    maps is called a \textbf{monoid}, if the following two conditions hold
+    \begin{enumerate}
+        \item $\forall x,y,z\in S : (x\star y)\star z = x\star(y\star z)$
+        \item $\forall x\in S : x\star e = x = e \star x$
+    \end{enumerate}
+\end{definition}
+\begin{definition}
+    Let $\mathcal{S}$ be a monoid and $X$ a nonempty set. A tuple $(X,\mu)$, where $\mu : S\times X \to X$ is called 
+    an \textbf{$\mathcal{S}$-act} if the map $\mu$ satisfies the following
+    \begin{enumerate}
+        \item $\forall r,s \in S \forall x \in X : \mu(rs, x) = \mu(r,\mu(s,x))$
+        \item $\forall x \in S : \mu(e,x) = x$
+    \end{enumerate}
+\end{definition}

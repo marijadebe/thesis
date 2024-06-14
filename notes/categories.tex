@@ -1,0 +1,93 @@
+\section{Categories}
+    \begin{definition}
+        A \textbf{category} $\catc$ consists of
+        \begin{enumerate}
+            \item a collection of objects $\ob{\catc}$
+            \item for each $A,B\in\ob{\catc}$ a collection of morphisms $\homc{\catc}{A}{B}$ called the hom-set of $A$ and $B$\\
+            We will write $f : A\to B$ or
+$\begin{tikzcd}
+	A & B
+	\arrow["f", from=1-1, to=1-2]
+\end{tikzcd}$ for $f\in\homc{\catc}{A}{B}$
+            \item for each $A,B,C\in\ob{\catc}$ a map $\circ$ : $\homc{\catc}{A}{B}\times\homc{\catc}{B}{C}\to \homc{\catc}{A}{C}$ such that
+        for morphisms $\begin{tikzcd}
+            A & B & C & D
+            \arrow["f", from=1-1, to=1-2]
+            \arrow["g", from=1-2, to=1-3]
+            \arrow["h", from=1-3, to=1-4]
+        \end{tikzcd}$ we have $h\circ(g\circ f) = (h\circ g)\circ f$
+            \item for each object $A\in\ob{\catc}$ we have a morphism $1_A : A\to A$ satisfying
+             for all morphisms $\begin{tikzcd}
+                X & A & Y
+                \arrow["f", from=1-1, to=1-2]
+                \arrow["g", from=1-2, to=1-3]
+            \end{tikzcd}$ the identity
+            \begin{equation}1_A \circ f = f \hspace{20pt} g \circ 1_A = g\end{equation}
+            which we will call the identity morphism. 
+        \end{enumerate}
+    \end{definition}
+\begin{remark}
+    From $(1)$ if follows that the identity morphism $1_A$ is unique, since for $1_A,\hat{1}_A$ we have
+    \[1_A = 1_A\circ \hat{1}_A = \hat{1}_A\]
+\end{remark}
+\begin{definition}
+    A category $\catc$ is called \textbf{locally small} if all of the hom-sets in $\catc$ are sets. 
+    A category $\catc$ is \textbf{small} if it is locally small and $\ob{\catc}$ is a set.
+\end{definition}
+\begin{definition}
+    For a category $\catc$ we define the \textbf{opposite category} $\opp{\catc}$ by
+    \[\ob{\opp{\catc}} = \ob{\catc}\]
+    \[\homc{\opp{\catc}}{A}{B} = \homc{\catc}{B}{A}\]
+    For $A,B,C\in\ob{\opp{\catc}}$ and morphisms $\begin{tikzcd}
+	A & B & C
+	\arrow["f", from=1-1, to=1-2]
+	\arrow["g", from=1-2, to=1-3]
+\end{tikzcd}$ we'll let $g\circop f = f\circ g$ and define the identity morphisms of $\opp{\catc}$ as the identity morphisms of $\catc$.
+\end{definition}
+The opposite category is a category since 
+\[
+    h\circop (g\circop f) = (g\circop f) \circ h = (f \circ g) \circ h = f\circ (g\circ h) = (g\circ h)\circop f = (h\circop g)\circop f
+\]
+and 
+\[
+    g\circop 1_A = 1_A \circ g = g \hspace{20pt} 1_A\circop f = f\circ 1_A = f
+\]
+\begin{definition}
+    Let $\catc$ and $\catd$ be categories. A \textbf{covariant functor} $F: \catc \to \catd$ consists of 
+    \begin{enumerate}
+        \item a map $\ob{\catc}\to\ob{\catd}$ assigning $A \mapsto F(A)$
+        \item for each $A,B\in\ob{\catc}$ a map $\homc{\catc}{A}{B}\to\homc{\catd}{F(A)}{F(B)}$ which assigns $f \mapsto F(f)$
+    \end{enumerate}
+    which preserves composition $F(g\circ f) = F(g)\circ F(f)$ and the identity $F(1_A) = 1_{F(A)}$.\\ We define a \textbf{contravariant functor} $F:\catc \to \catd$ to 
+    be just a covariant functor $F:\opp{\catc} \to \catd$.
+\end{definition}
+\begin{definition}
+    Let $F: \catc \to \catd$ be a functor. We call $F$ \textbf{faithful}, if it is injective on hom-sets. 
+    More precisely for all $A,B\in\ob{\catc}$ and each pair of morphisms $\begin{tikzcd}
+        A & B
+        \arrow["g"', shift right, from=1-1, to=1-2]
+        \arrow["f", shift left, from=1-1, to=1-2]
+    \end{tikzcd}$ if $F(f)=F(g)$ then $f=g$.\\ 
+    We say that $F$ is \textbf{full} if it is surjective on hom-sets.
+    So for all $A,B\in\ob{C}$ and $g: F(A)\to F(B)$ there exists $f:A\to B$ such that $F(f)=g$.
+\end{definition}
+\begin{remark}
+    Note that the definition doesn't say anything about the map on objects being injective or surjective,
+    nor does it say that if the images of any two morphisms are equal then they are the same, since
+    the functor may map the morphisms between two different objects to the same morphism in the target category.
+\end{remark}
+\begin{definition}
+    Let $F,G: \catc \to \catd$ be covariant functors. A $\textbf{natural transformation}$ $\eta : F \to G$ is a 
+    collection of morphisms in $\catd$ indexed by the objects of $\catc$. Explicitly $\eta = \{\eta_A : F(A)\to G(A) \mid A \in\ob{\catc}\}$, such that
+    for all objects $A,B\in\catc$ and morphisms $f : A\to B$ the following square diagram commutes
+\[\begin{tikzcd}
+	{F(A)} && {F(B)} \\
+	\\
+	{G(A)} && {G(B)}
+	\arrow["{F(f)}", from=1-1, to=1-3]
+	\arrow["{\eta_A}"{description}, from=1-1, to=3-1]
+	\arrow["{\eta_B}"{description}, from=1-3, to=3-3]
+	\arrow["{G(f)}", from=3-1, to=3-3]
+\end{tikzcd}\]
+A natural transformation $\eta$ is a \textbf{natural isomorphism} if for all $A\in\ob{\catc}$ the morphism $\eta_A$ is an isomorphism.
+\end{definition}
