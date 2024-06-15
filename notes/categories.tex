@@ -22,12 +22,12 @@ $\begin{tikzcd}
                 \arrow["f", from=1-1, to=1-2]
                 \arrow["g", from=1-2, to=1-3]
             \end{tikzcd}$ the identity
-            \begin{equation}1_A \circ f = f \hspace{20pt} g \circ 1_A = g\end{equation}
+            \begin{equation}\label{ideq}1_A \circ f = f \hspace{20pt} g \circ 1_A = g\end{equation}
             which we will call the identity morphism. 
         \end{enumerate}
     \end{definition}
 \begin{remark}
-    From $(1)$ if follows that the identity morphism $1_A$ is unique, since for $1_A,\hat{1}_A$ we have
+    From \eqref{ideq} it follows that the identity morphism $1_A$ is unique, since for $1_A,\hat{1}_A$ we have
     \[1_A = 1_A\circ \hat{1}_A = \hat{1}_A\]
 \end{remark}
 \begin{definition}
@@ -58,7 +58,7 @@ and
         \item a map $\ob{\catc}\to\ob{\catd}$ assigning $A \mapsto F(A)$
         \item for each $A,B\in\ob{\catc}$ a map $\homc{\catc}{A}{B}\to\homc{\catd}{F(A)}{F(B)}$ which assigns $f \mapsto F(f)$
     \end{enumerate}
-    which preserves composition $F(g\circ f) = F(g)\circ F(f)$ and the identity $F(1_A) = 1_{F(A)}$.\\ We define a \textbf{contravariant functor} $F:\catc \to \catd$ to 
+    such that it preserves composition $F(g\circ f) = F(g)\circ F(f)$ and the identity $F(1_A) = 1_{F(A)}$.\\ We define a \textbf{contravariant functor} $F:\catc \to \catd$ to 
     be just a covariant functor $F:\opp{\catc} \to \catd$.
 \end{definition}
 \begin{definition}
