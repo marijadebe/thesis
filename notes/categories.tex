@@ -61,6 +61,17 @@ and
     g\circop 1_A = 1_A \circ g = g \hspace{20pt} 1_A\circop f = f\circ 1_A = f
 \]
 \begin{definition}
+    Let $\catc$ be a category and $f: A\to B$ a morphism in $\catc$. We call $f$ an \textbf{isomorphism}, if
+    there exists $g: B\to A$, such that $f\circ g = 1_B$ and $g\circ f = 1_A$.\par
+    We call $f:A\to B$ a \textbf{split monomorphism} if there exists $g:B\to A$, such that
+    $g\circ f = 1_A$ and similarly $f$ is a \textbf{split epimorphism} if there exists $g:B\to A$, such that
+    $f\circ g = 1_B$.
+\end{definition}
+\begin{remark}
+    Note that if $f$ is an isomorphism, then the inverse morphism $g$ is unique and that
+    $f$ is an isomorphism if and only if it is both a split epimorphism and a split monomorphism.
+\end{remark}
+\begin{definition}
     Let $\catc$ and $\catd$ be categories. A \textbf{(covariant) functor} $F: \catc \to \catd$ consists of 
     \begin{enumerate}
         \item a map $\ob{\catc}\to\ob{\catd}$ assigning $A \mapsto F(A)$
@@ -84,21 +95,7 @@ and
     nor does it say that if the images of any two morphisms are equal then they are the same, since
     the functor may map the morphisms between two different objects to the same morphism in the target category.
 \end{remark}
-\begin{definition}
-    Let $F,G: \catc \to \catd$ be a pair of functors. A $\textbf{natural transformation}$ $\eta : F \to G$ is a 
-    collection of morphisms in $\catd$ indexed by the objects of $\catc$. Explicitly $\eta = \{\eta_A : F(A)\to G(A) \mid A \in\ob{\catc}\}$, such that
-    for all objects $A,B\in\catc$ and morphisms $f : A\to B$ the following square diagram commutes
-\[\begin{tikzcd}
-	{F(A)} && {F(B)} \\
-	\\
-	{G(A)} && {G(B)}
-	\arrow["{F(f)}", from=1-1, to=1-3]
-	\arrow["{\eta_A}"{description}, from=1-1, to=3-1]
-	\arrow["{\eta_B}"{description}, from=1-3, to=3-3]
-	\arrow["{G(f)}", from=3-1, to=3-3]
-\end{tikzcd}\]
-A natural transformation $\eta$ is a \textbf{natural isomorphism} if for all $A\in\ob{\catc}$ the morphism $\eta_A$ is an isomorphism.
-\end{definition}
+\input{naturaltrans.tex}
 \begin{definition}
     Let $\catc$ be a category and choose $X\in\ob{\catc}$. We define the \textbf{slice category $\catc$ over $X$} denoted as $\catc /X$,
     whose objects are pairs $(A,f)$ where $A\in\ob{\catc}$, $f: A \to X$ and whose morphisms 

@@ -1,0 +1,124 @@
+\subsection{Natural transformations}
+\begin{definition}
+    Let $F,G: \catc \to \catd$ be a pair of functors. A $\textbf{natural transformation}$ $\eta : F \to G$ is a 
+    collection of morphisms in $\catd$ indexed by the objects of $\catc$. Explicitly $\eta = \{\eta_A : F(A)\to G(A) \mid A \in\ob{\catc}\}$, such that
+    for all objects $A,B\in\catc$ and morphisms $f : A\to B$ the following square diagram commutes
+\[\begin{tikzcd}
+	{F(A)} && {F(B)} \\
+	\\
+	{G(A)} && {G(B)}
+	\arrow["{F(f)}", from=1-1, to=1-3]
+	\arrow["{\eta_A}"{description}, from=1-1, to=3-1]
+	\arrow["{\eta_B}"{description}, from=1-3, to=3-3]
+	\arrow["{G(f)}", from=3-1, to=3-3]
+\end{tikzcd}\]
+For each $A\in\catc$ we call $\eta_A$ \textbf{the component of $\eta$ at $A$}.
+A natural transformation $\eta$ is a \textbf{natural isomorphism} if for all $A\in\ob{\catc}$ the morphism $\eta_A$ is an isomorphism.
+\end{definition}
+\begin{definition}
+    Given two natural transformations $\alpha:F\to G$ and $\beta:G\to H$ as such 
+\[\begin{tikzcd}
+	\catc && \catd
+	\arrow[""{name=0, anchor=center, inner sep=0}, "F", shift left, curve={height=-18pt}, from=1-1, to=1-3]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "H"', shift right, curve={height=18pt}, from=1-1, to=1-3]
+	\arrow[""{name=2, anchor=center, inner sep=0}, "G"{description}, from=1-1, to=1-3]
+	\arrow["\alpha", shorten <=3pt, shorten >=3pt, Rightarrow, from=0, to=2]
+	\arrow["\beta", shorten <=3pt, shorten >=3pt, Rightarrow, from=2, to=1]
+\end{tikzcd}\]
+    We define their \textbf{vertical composite} $\beta\circ\alpha$ componentwise by taking
+    $\forall A\in\ob{\catc} : (\beta\circ\alpha)_A = \beta_A\circ\alpha_A$.
+\end{definition}
+\begin{proposition}
+    The horizontal composite $\beta\circ\alpha: F\to H$ is a natural transformation. 
+\end{proposition}
+\begin{proof}
+    We need to show that the square diagram
+\[\begin{tikzcd}
+	{F(A)} && {H(A)} \\
+	\\
+	{F(B)} && {H(B)}
+	\arrow["{(\beta\circ\alpha)_A}"{description}, from=1-1, to=1-3]
+	\arrow["{F(f)}", from=1-1, to=3-1]
+	\arrow["{H(f)}"{description}, from=1-3, to=3-3]
+	\arrow["{(\beta\circ\alpha)_B}"{description}, from=3-1, to=3-3]
+\end{tikzcd}\]
+    commutes. From the definition of $(\beta\circ\alpha)$ we have
+    \[\begin{tikzcd}
+	{F(A)} && {G(A)} && {H(A)} \\
+	\\
+	{F(B)} && {G(B)} && {H(B)}
+	\arrow["{\alpha_A}"{description}, from=1-1, to=1-3]
+	\arrow["{F(f)}", from=1-1, to=3-1]
+	\arrow["{\beta_A}"{description}, from=1-3, to=1-5]
+	\arrow["{G(f)}"{description}, from=1-3, to=3-3]
+	\arrow["{H(f)}"{description}, from=1-5, to=3-5]
+	\arrow["{\alpha_B}"{description}, from=3-1, to=3-3]
+	\arrow["{\beta_B}"{description}, from=3-3, to=3-5]
+\end{tikzcd}\]
+    and from the definition of natural transformation it follows that the left and right squares
+    commute, so the whole diagram commutes as well.
+\end{proof}
+\begin{definition}
+    Let $1_F : F\to F$ be defined componentwise as $(1_F)_A = 1_{F(A)}$, then $1_F$
+    is a natural transformation which we will call the identity.
+\end{definition}
+\begin{definition}
+    Given any two categories $\catc,\catd$ we define a \textbf{functor category} $\funcat{\catc}{\catd}$
+    whose objects are functors from $\catc$ to $\catd$ and whose morphisms are
+    natural transformations. We define the composition in $\funcat{\catc}{\catd}$ as horizontal
+    composition and we let the identity morphisms be the identity natural transformations.
+\end{definition}
+\begin{proposition}
+    $\funcat{\catc}{\catd}$ is a category.
+\end{proposition}
+\begin{proof}
+    Choose $A\in\ob{\catc}$, then 
+    \begin{equation*}
+        (\gamma\circ(\beta\circ\alpha))_A = \gamma_A\circ(\beta\circ\alpha)_A
+        = \gamma_A\circ(\beta_A\circ\alpha_A) = (\gamma_A\circ\beta_A)\circ\alpha_A = 
+        (\gamma\circ\beta)_A\circ\alpha_A = ((\gamma\circ\beta)\circ\alpha)_A
+    \end{equation*}
+    \begin{equation*}
+        (\alpha\circ 1_F)_A = \alpha \circ 1_{F_(A)} = \alpha_A \hspace{20pt} 
+        (1_F\circ\beta)_A = 1_{F(A)}\circ\beta_A = \beta_A
+    \end{equation*}
+\end{proof}
+\begin{definition}
+    Given any four functors and two natural transformations like so
+    \[\begin{tikzcd}
+	\catc && \catd && \cate
+	\arrow[""{name=0, anchor=center, inner sep=0}, "{F_1}", curve={height=-12pt}, from=1-1, to=1-3]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "{G_1}"', curve={height=12pt}, from=1-1, to=1-3]
+	\arrow[""{name=2, anchor=center, inner sep=0}, "{F_2}", curve={height=-12pt}, from=1-3, to=1-5]
+	\arrow[""{name=3, anchor=center, inner sep=0}, "{G_2}"', curve={height=12pt}, from=1-3, to=1-5]
+	\arrow["\alpha", shorten <=3pt, shorten >=3pt, Rightarrow, from=0, to=1]
+	\arrow["\beta", shorten <=3pt, shorten >=3pt, Rightarrow, from=2, to=3]
+\end{tikzcd}\]
+    we define \textbf{the horizontal composite} $\beta\ast\alpha:F_1\circ F_1 \to G_2\circ G_1$ by
+    \[
+        \forall A\in\catc : (\beta\ast\alpha)_A = \beta_{G_1(A)}\circ F_2(\alpha_A)
+    \]
+\end{definition}
+\begin{remark}
+    Notice that $\beta_{G_1(A)}\circ F_2(\alpha_A)=G_2(\alpha_A)\circ\beta_{F_1(A)}$ by 
+    the naturality of $\beta$ at $F_1(A)$ and $G_1(A)$.
+\end{remark}
+\begin{theorem}[Middle-four interchange law]
+    Consider the following diagram
+\[\begin{tikzcd}
+	\catc && \catd && \cate
+	\arrow[""{name=0, anchor=center, inner sep=0}, "{F_1}", curve={height=-24pt}, from=1-1, to=1-3]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "{H_1}"', curve={height=24pt}, from=1-1, to=1-3]
+	\arrow[""{name=2, anchor=center, inner sep=0}, "{G_1}"{description}, from=1-1, to=1-3]
+	\arrow[""{name=3, anchor=center, inner sep=0}, "{F_1}", curve={height=-24pt}, from=1-3, to=1-5]
+	\arrow[""{name=4, anchor=center, inner sep=0}, "{H_2}"', curve={height=24pt}, from=1-3, to=1-5]
+	\arrow[""{name=5, anchor=center, inner sep=0}, "{G_2}"{description}, from=1-3, to=1-5]
+	\arrow["{\alpha_1}", shorten <=3pt, shorten >=3pt, Rightarrow, from=0, to=2]
+	\arrow["{\alpha_2}", shorten <=3pt, shorten >=3pt, Rightarrow, from=2, to=1]
+	\arrow["{\beta_1}", shorten <=3pt, shorten >=3pt, Rightarrow, from=3, to=5]
+	\arrow["{\beta_2}", shorten <=3pt, shorten >=3pt, Rightarrow, from=5, to=4]
+\end{tikzcd}
+\]
+then $(\beta_2\circ\beta_1)\ast(\alpha_2\circ\alpha_1) = (\beta_2\ast\alpha_2)\circ(\beta_1\ast\alpha_1)$.
+\end{theorem}
+\clearpage
