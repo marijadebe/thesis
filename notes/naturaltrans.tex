@@ -71,7 +71,7 @@ A natural transformation $\eta$ is a \textbf{natural isomorphism} if for all $A\
 \begin{proposition}
     $\funcat{\catc}{\catd}$ is a category.
 \end{proposition}
-\begin{proof}
+\begin{proof}[Proof]
     Choose $A\in\ob{\catc}$, then 
     \begin{equation*}
         (\gamma\circ(\beta\circ\alpha))_A = \gamma_A\circ(\beta\circ\alpha)_A
@@ -94,7 +94,7 @@ A natural transformation $\eta$ is a \textbf{natural isomorphism} if for all $A\
 	\arrow["\alpha", shorten <=3pt, shorten >=3pt, Rightarrow, from=0, to=1]
 	\arrow["\beta", shorten <=3pt, shorten >=3pt, Rightarrow, from=2, to=3]
 \end{tikzcd}\]
-    we define \textbf{the horizontal composite} $\beta\ast\alpha:F_1\circ F_1 \to G_2\circ G_1$ by
+    we define \textbf{the horizontal composite} $\beta\ast\alpha:F_2\circ F_1 \to G_2\circ G_1$ by
     \[
         \forall A\in\catc : (\beta\ast\alpha)_A = \beta_{G_1(A)}\circ F_2(\alpha_A)
     \]
@@ -121,4 +121,49 @@ A natural transformation $\eta$ is a \textbf{natural isomorphism} if for all $A\
 \]
 then $(\beta_2\circ\beta_1)\ast(\alpha_2\circ\alpha_1) = (\beta_2\ast\alpha_2)\circ(\beta_1\ast\alpha_1)$.
 \end{theorem}
+
+\begin{proposition}
+    Functor $F:\catc \to \catd$ is an equivalence of categories if and only if 
+    $F$ is full, faithful and essentialy surjective on objects.
+\end{proposition}
+\begin{proof}[Proof]
+    \begin{enumerate}
+        \item $F$ equivalence $\implies F$ faithful\par
+        Choose $f,g : A\to B$ and suppose that $F(f)=F(g)$, there exists a 
+        functor $G: \catd \to \catc$ and a natural isomorphism $\eta: G\circ F \to 1_\catc$.\par
+        Consider the following diagram 
+\[\begin{tikzcd}
+	A \\
+	{G(F(A))} && {G(F(B))} && B \\
+	A
+	\arrow["f", from=1-1, to=2-5]
+	\arrow["{\eta_A}", from=2-1, to=1-1]
+	\arrow["{G(F(f))=G(F(g))}"', from=2-1, to=2-3]
+	\arrow["{\eta_A}"', from=2-1, to=3-1]
+	\arrow["{\eta_B}"{description}, from=2-3, to=2-5]
+	\arrow["g"', from=3-1, to=2-5]
+\end{tikzcd}\]
+    both the upper and lower squares commute by naturality, hence
+    $f\circ\eta_A = g\circ\eta_A \implies f=g$ since $\eta_A$ is 
+    an isomorphism.
+    \item $F$ equivalence $\implies F$ full\par
+    Let $g: F(A)\to F(B)$ and define $f = \eta_B\circ G(g)\circ\eta_A^{-1}$
+    then $f: A\to B$. Since $G$ is an equivalence of categories it suffices
+    to show that $GF(f)=G(g)$ by $1$. From naturality we have that
+    \[\begin{tikzcd}
+	{GF(A)} && {GF(B)} \\
+	A && B
+	\arrow["{GF(f)}", from=1-1, to=1-3]
+	\arrow["{\eta_A}", from=1-1, to=2-1]
+	\arrow["f", from=2-1, to=2-3]
+	\arrow["{\eta_B}", from=1-3, to=2-3]
+\end{tikzcd}\]
+    commutes and therefore
+    \[
+        GF(f) = \eta_B^{-1}\circ f \circ\eta_A = G(g) \implies F(f)=g
+    \]
+    \end{enumerate}
+    \item $F$ equivalence $\implies F$ essentialy surjective on objects\par 
+    Choose an object $B\in\ob{\catd}$, then we have $\mu_B : F(G(B)) \to B$ an isomorphism.
+\end{proof}
 \clearpage

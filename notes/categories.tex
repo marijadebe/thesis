@@ -124,3 +124,23 @@ and
 	\arrow["{f_3}", from=2-3, to=3-2]
 \end{tikzcd}\]
 \end{definition}
+\begin{definition}
+    Given two objects $A,B$ their coproduct is an object $U$ with 
+    two morphisms $\iota_A: A \to U$ and $\iota_B: B \to U$, such
+    that for any other triple $(U^\prime,f: A\to U^\prime,g: A\to U^\prime)$
+    there exists a unique morphism $f+g: U\to U^\prime$, such that the following diagram commutes
+\[\begin{tikzcd}
+	& {U^\prime} \\
+	\\
+	A & U & B
+	\arrow["f", from=3-1, to=1-2]
+	\arrow["{\iota_A}", from=3-1, to=3-2]
+	\arrow["{f+g}"{description}, from=3-2, to=1-2]
+	\arrow["g"', from=3-3, to=1-2]
+	\arrow["{\iota_B}"', from=3-3, to=3-2]
+\end{tikzcd}\]
+\end{definition}
+\begin{proposition}
+    Coproduct $U$ is unique up to an isomorphism.
+\end{proposition}
+\input{extensivity.tex}

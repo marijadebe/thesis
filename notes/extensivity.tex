@@ -1,0 +1,146 @@
+\subsection{Extensivity}
+A category is extensive if 
+it has all finite products and coproducts and the functor
+\[
+   F_+ : \catc / X_1 \times \catc / X_2 \to \catc /(X_1+X_2)
+\]
+is an equivalence of categories. We define $F_+$ as follows
+\[
+    F_+((A_1,f_1: A_1 \to X_1),(A_2,f_2: A_2 \to X_2)) \mapsto 
+    (A_1\times A_2, (\iota_{X_1}\circ f_1) + (\iota_{X_2}\circ f_2))
+\]
+where $(\iota_{X_1}\circ f_1) + (\iota_{X_2}\circ f_2)$ is the unique map 
+(existence and uniqueness follows from universal property of $A_1+A_2$) such that the following diagram commutes 
+\[\begin{tikzcd}
+	{A_1} & {A_1+A_2} & {A_2} \\
+	{X_1} & {X_1+X_2} & {X_2}
+	\arrow["{\iota_{A_1}}", from=1-1, to=1-2]
+	\arrow["{f_1}"', from=1-1, to=2-1]
+	\arrow["{\exists !}", dashed, from=1-2, to=2-2]
+	\arrow["{\iota_{A_2}}"', from=1-3, to=1-2]
+	\arrow["{f_2}", from=1-3, to=2-3]
+	\arrow["{\iota_{X_1}}"', from=2-1, to=2-2]
+	\arrow["{\iota_{X_2}}", from=2-3, to=2-2]
+\end{tikzcd}\]
+Given a morphism in $\catc / X_1 \times \catc / X_2$
+\[
+    (h_1,h_2) : ((A_1,f_1: A_1 \to X_1),(A_2,f_2: A_2 \to X_2)) \to 
+    ((B_1,g_1: B_1 \to X_1),(B_2,g_2: B_2 \to X_2))
+\]
+so $h_1 : A_1 \to B_1 \land h_2 : A_2 \to B_2$ such that the following 
+two triangles commute
+\[\begin{tikzcd}
+	{A_1} & {B_1} & {A_2} & {B_2} \\
+	& {X_1} && {C_2}
+	\arrow["{h_1}", from=1-1, to=1-2]
+	\arrow["{f_1}"', from=1-1, to=2-2]
+	\arrow["{g_1}", from=1-2, to=2-2]
+	\arrow["{h_2}", from=1-3, to=1-4]
+	\arrow["{f_2}"', from=1-3, to=2-4]
+	\arrow["{g_2}", from=1-4, to=2-4]
+\end{tikzcd}\]
+we define $F_+(h_1,h_2)$ as the unique morphism $(\iota_{B_1}\circ h_1)+(\iota_{B_2}\circ h_2)$
+which make the following diagram commute
+\[\begin{tikzcd}
+	{A_1} & {A_1+A_2} & {A_2} \\
+	{B_1} & {B_1+B_2} & {B_2}
+	\arrow["{\ins{A_1}}", from=1-1, to=1-2]
+	\arrow["{h_1}", from=1-1, to=2-1]
+	\arrow["{\exists !}", dashed, from=1-2, to=2-2]
+	\arrow["{\ins{A_2}}"', from=1-3, to=1-2]
+	\arrow["{h_2}", from=1-3, to=2-3]
+	\arrow["{\ins{B_1}}", from=2-1, to=2-2]
+	\arrow["{\ins{B_2}}"', from=2-3, to=2-2]
+\end{tikzcd}\]
+Now to show that it is a morphism in the slice category,
+we have to verify that the following triangle commutes
+\[\begin{tikzcd}
+	{A_1+A_2} && {B_1+B_2} \\
+	\\
+	&& {X_1+X_2}
+	\arrow["{(\ins{B_1}\circ h_1)+(\ins{B_2}\circ h_2)}", from=1-1, to=1-3]
+	\arrow["{(\ins{X_1}\circ f_1)+(\ins{X_2}\circ f_2)}"', from=1-1, to=3-3]
+	\arrow["{(\ins{X_1}\circ g_1)+(\ins{X_2}\circ g_1)}", from=1-3, to=3-3]
+\end{tikzcd}\]
+\begin{lemma}
+    Morphism from coproduct is uniquely determined by
+    composition with its insertions. Consider the following diagram
+\[\begin{tikzcd}
+	{X_1} & {X_1+X_2} & {X_2} \\
+	& X
+	\arrow["{\ins{X_1}}", from=1-1, to=1-2]
+	\arrow["{g\circ\ins{X_1}=f\circ\ins{X_1}}"', from=1-1, to=2-2]
+	\arrow["f", shift left, from=1-2, to=2-2]
+	\arrow["g"', shift right, from=1-2, to=2-2]
+	\arrow["{\ins{X_2}}"', from=1-3, to=1-2]
+	\arrow["{f\circ\ins{X_2}=g\circ\ins{X_2}}", from=1-3, to=2-2]
+\end{tikzcd}\]
+then $f=g$.
+\end{lemma}
+\begin{proof}[Proof]
+    Follows directly from the universal property of coproducts, since
+    all four triangles commute by definition. Hence 
+    there exists a unique arrow $\kappa : X_1\times X_2\to X$, 
+    so $f=\kappa=g$.
+\end{proof}
+Consider the diagram
+\[\begin{tikzcd}
+	{A_1} && {A_1+A_2} && {A_2} \\
+	{B_1} && {B_1+B_2} && {B_2} \\
+	{X_1} && {X_1+X_2} && {X_2}
+	\arrow["{\ins{A_1}}", color={rgb,255:red,214;green,92;blue,92}, from=1-1, to=1-3]
+	\arrow["{f_1}", from=1-1, to=2-1]
+	\arrow["{h_1}"{description}, color={rgb,255:red,214;green,92;blue,92}, curve={height=24pt}, from=1-1, to=3-1]
+	\arrow[from=1-3, to=2-3]
+	\arrow[color={rgb,255:red,214;green,92;blue,92}, curve={height=-24pt}, from=1-3, to=3-3]
+	\arrow["{\ins{A_2}}"', color={rgb,255:red,214;green,92;blue,92}, from=1-5, to=1-3]
+	\arrow["{f_2}"', from=1-5, to=2-5]
+	\arrow["{h_2}"{description}, color={rgb,255:red,214;green,92;blue,92}, curve={height=-24pt}, from=1-5, to=3-5]
+	\arrow["{\ins{B_1}}", from=2-1, to=2-3]
+	\arrow["{g_1}", from=2-1, to=3-1]
+	\arrow[from=2-3, to=3-3]
+	\arrow["{\ins{B_2}}"', from=2-5, to=2-3]
+	\arrow["{g_2}"', from=2-5, to=3-5]
+	\arrow["{\ins{X_1}}", color={rgb,255:red,214;green,92;blue,92}, from=3-1, to=3-3]
+	\arrow["{\ins{X_2}}"', color={rgb,255:red,214;green,92;blue,92}, from=3-5, to=3-3]
+\end{tikzcd}\]
+To prove that the inner triangle (whose unmarked arrows are as above) commutes
+we chase around the diagram starting from the insertions by the lemma above.
+We know by assumption that the leftmost and rightmost 
+triangles commute and that all the four black squares
+commute by definition of the unmarked arrows and the
+same for the two red squares.\par
+Now we ought to show that $F_+$ really is a functor. We have
+\[
+    F_+(1_{A_1},1_{A_2}) = (\iota_{A_1}\circ 1_{A_1})+(\iota_{A_2}\circ 1_{A_2}) = \iota_{A_1}+\iota_{A_2} = 1_{A_1+A_2} = 1_{F_+((A_1,f_1),(A_2,f_2))}
+\]
+the penultimate equality again follows by the universal property of $A_1+A_2$.\par
+Given two morphisms $(h_1: A_1\to B_1,h_2: A_2\to B_2),(k_1:B_1\to C_1 ,k_2: B_2\to C_2)$ we have
+\[
+    F_+((k_1,k_2)\circ(h_1,h_2)) = F_+((k_1\circ h_1,k_2\circ h_2))
+    = (\iota_{C_1}\circ k_1\circ h_1)+(\iota_{C_2}\circ k_2\circ h_2)
+\]
+Notice that to prove this equals the desired
+\[((\iota_{C_1}\circ k_1)+(\iota_{C_2}\circ k_2))\circ((\ins{B_1}\circ h_1)+(\ins{B_2}\circ h_2))\] 
+amounts to showing that the unmarked inner triangle in the following diagram commutes provided
+that the four square diagrams commute (the square once again commute because of the universality of coproduct)
+\[\begin{tikzcd}
+	{A_1} && {A_1+A_2} && {A_2} \\
+	{B_1} && {B_1+B_2} && {B_2} \\
+	{C_1} && {C_1+C_2} && {C_2}
+	\arrow["{\iota_{A_1}}", from=1-1, to=1-3]
+	\arrow["{h_1}"', from=1-1, to=2-1]
+	\arrow[from=1-3, to=2-3]
+	\arrow[curve={height=-24pt}, from=1-3, to=3-3]
+	\arrow["{\iota_{A_2}}"', from=1-5, to=1-3]
+	\arrow["{k_1}", from=1-5, to=2-5]
+	\arrow["{\iota_{B_1}}", from=2-1, to=2-3]
+	\arrow["{h_2}"', from=2-1, to=3-1]
+	\arrow[from=2-3, to=3-3]
+	\arrow["{\iota_{B_2}}"', from=2-5, to=2-3]
+	\arrow["{k_2}", from=2-5, to=3-5]
+	\arrow["{\iota_{C_1}}", from=3-1, to=3-3]
+	\arrow["{\iota_{C_2}}"', from=3-5, to=3-3]
+\end{tikzcd}\]
+we again make use of the lemma and chase around the diagram until we get the equality. 
+It follows, that $F_+((k_1,k_2)\circ(h_1,h_2)) = F_+((k_1,k_2))\circ F_+(h_1,h_2)$.
