@@ -23,4 +23,28 @@
         \item $\forall r,s \in S\,\forall x \in X : \mu(rs, x) = \mu(r,\mu(s,x))$
         \item $\forall x \in S : \mu(e,x) = x$
     \end{enumerate}
+    we will denote a left $\mathcal{S}$-act as ${}_{\mathcal{S}}X$. Similarly we
+    define a right $\mathcal{S}$-act and use the notation $X_\mathcal{S}$.
 \end{definition}
+\begin{remark}
+    When we use the word $\mathcal{S}$-act we will mean the left $\mathcal{S}$-act, unless 
+    stated otherwise.
+\end{remark}
+\begin{definition}
+    Let $X$ be a set and $\mathcal{S}$ a monoid. We define the \textbf{free $\mathcal{S}$-act on X} to be 
+    the tuple  
+    \[(S\times X,\cdot : S\times (S\times X) \to S\times X)\]
+    where $s_1\cdot (s,x) = (s_1s,x)$.
+\end{definition}
+It is an act, since $e\cdot(s,x) = (es,x) = (s,x)$ and $s_1s_2\cdot(s,x) = 
+((s_1s_2)s,x) = (s_1(s_2s),x) = s_1\cdot(s_2s,x) = s_1\cdot(s_2\cdot(s,x))$.
+\begin{definition}
+    Given $\act{S}{X}$ and $\act{S}{Y}$ we call $f: X \to Y$ an
+    \textbf{act homomorphism}, if 
+    \[
+        \forall s\in S\,\forall x \in X : f(s\cdot x) = s\cdot f(x)
+    \]
+\end{definition}
+\begin{proposition}
+    Acts with their morphisms form a category, which we will denote $\cat{$\mathcal{S}$-act}$.
+\end{proposition}

@@ -1,0 +1,120 @@
+\section{Universal Algebra}
+\begin{definition}
+    We call a tuple $(\Omega,\tau : \Omega \to \mathbb{N}_0)$,
+    where $\Omega$ is a set of symbols and $\tau$ is a so called \textbf{arity function}
+    a \textbf{type}. We will often times identify the type with
+    its underlying set $\Omega$, when the arity function is implied.
+\end{definition}
+\begin{definition}
+    We call the tuple $(X,\{F_\omega\}_{\omega\in\Omega})$, where
+    $X$ is a set and $F_\omega : X^{\tau(\omega)} \to X$ are maps
+    indexed by $\Omega$, an \textbf{algebra of type $\Omega$}.
+\end{definition}
+\begin{definition}
+    Let $(X,\{F_\omega\}_{\omega\in\Omega})$ and $(Y,\{G_\omega\}_{\omega\in\Omega})$
+    be algebras of type $\Omega$, then $\phi: X\to Y$ is a 
+    \textbf{$\Omega$-homomorphism} if 
+    \[
+        \forall\omega\in\Omega\,\forall \{x_i\}_{i=1}^{\tau(\omega)}\subseteq X :
+        \phi(F_\omega(x_1,\dots,x_{\tau(\omega)})) = G_\omega(\phi(x_1),\dots,\phi(x_{\tau(\omega)}))
+    \]
+\end{definition}
+\begin{proposition}
+    The identity $1_X : X \to X$ is an $\Omega$-homomorphism and 
+    the composition of two $\Omega$-homomorphism yields a $\Omega$-homomorphism.
+\end{proposition}
+\begin{proposition}
+    $\Omega$-algebras with their homomorphisms form a category, which
+    we will call $\cat{Alg}_\Omega$.
+\end{proposition}
+\begin{definition}
+    Let $(X,\{F_\omega\}_{\omega\in\Omega})$ be an $\Omega$-algebra and
+    $\rho$ an equivalence relation on $X$. Then we call $\rho$ a \textbf{congruence
+    on $X$}, if or each $\omega\in\Omega$ we have
+    \[
+        \forall \{x_i\}_{i=1}^{\tau(\omega)}\,\forall \{y_i\}_{i=1}^{\tau(\omega)} : x_1\sim y_1 \land\dots\land x_{\tau(\omega)} \sim y_{\tau(\omega)} 
+        \implies F_\omega(x_1,\dots,x_{\tau(\omega)})\sim F_\omega(y_1,\dots,y_{\tau(\omega)})
+    \]
+\end{definition}
+\begin{proposition}
+    Given an $\Omega$-homomorphism $\phi : X\to Y$ we have that
+    the relation 
+    \[\ker\phi = \{(x,y) \in X^2 : \phi(x)=\phi(y)\}\] is a congruence relation on $X$.
+\end{proposition}
+\begin{definition}
+    Given $\sim$ a congruence on $\Omega$-algebra $(X,\{F_\omega\}_{\omega\in\Omega})$
+    then we define the \textbf{quotient $\Omega$-algebra of $X$ by $\sim$} as 
+    \[
+        (X/\sim,\{H_\omega\}_{\omega\in\Omega})
+    \]
+    where $X/\sim$ is the set of equivalence classes of $X$ by $\sim$ and $H_\omega$ is defined as 
+    \[
+        H_\omega([x_1]_\sim,\dots,[x_{\tau(\omega)}]_\sim) = [F_\omega(x_1,\dots,x_{\tau(\omega)})]_\sim
+    \]
+\end{definition}
+\begin{remark}
+    Well-definedness of the maps follows from the defining property of congruences.
+\end{remark}
+\begin{definition}
+    We define the \textbf{quotient map} $\pi_\sim : X \to X/\sim$ as $x\mapsto [x]_\sim$.
+\end{definition}
+\begin{remark}
+    It is straightforward to check that the quotient map is an $\Omega$-homomorphism.
+\end{remark}
+\begin{proposition}
+    Given $f : X \to Y$ and $\sim\,\leq\ker\phi$ a congruence on $X$, there exists a unique morphism $f^\sim$, such
+    that the following triangle commutes
+    \[\begin{tikzcd}
+	X && Y \\
+	& {X/\sim}
+	\arrow["f", from=1-1, to=1-3]
+	\arrow["{\pi_\sim}"', from=1-1, to=2-2]
+	\arrow["{f^\sim}"', from=2-2, to=1-3]
+\end{tikzcd}\]
+\end{proposition}
+\begin{proof}[Proof]
+    Let $f^\sim([x]_\sim) = f(x)$. The uniqueness is trivial.
+\end{proof}
+Given any $Y \in\cat{Alg}_\Omega$ we have a endofunctor in 
+the slice category $F: \cat{Alg}_\Omega/Y \to\cat{Alg}_\Omega/Y$
+\[
+    (X,\phi : X \to Y) \mapsto (X/\ker(\phi), \phi^{\ker(\phi)})
+\]
+\[
+    f : (X_1,\phi_1) \to (X_2,\phi_2) \mapsto F(f) : F(X_1) \to F(X_2)
+\]
+where
+\[
+    Ff : [x]_{\ker(\phi_1)} \mapsto [f(x)]_{\ker(\phi_2)}
+\]
+In fact it may be a monad
+
+\begin{definition}
+    Let $(X_i, \{F^i_{\omega}\}_{\omega\in\Omega}), i \in I$ be a family of
+    $\Omega$-algebras indexed by $I$. Then their product is an $\Omega$-algebra given by
+    \[
+    \left(\prod_{i\in I} X_i, \{F_\omega\}_{\omega\in\Omega}\right)
+    \]
+    where for $i\in I$ and $f_1,\dots,f_{\tau(\omega)} \in \prod_{i\in I} X_i$ we have
+    \[
+        F_\omega(f_1,\dots,f_{\tau(\omega)})(i) = F^{i}_\omega(f_1(i),\dots,f_{\tau(\omega)}(i))
+    \]
+    For $j\in I$ we define the $j$-th projection $p_j : \prod_{i\in I} X_i \to X_j$ as
+    \[
+        p_j(f) = f(j)
+    \]
+\end{definition} 
+\begin{remark}
+    The projections are homomorphisms, since
+    \[
+        p_j(F_\omega(f_1,\dots,f_{\tau(\omega)})) = F_\omega(f_1,\dots,f_{\tau(\omega)})(j) =
+        F^j_\omega (f_1(j),\dots,f_{\tau(\omega)}(j)) = F^j_\omega(p_j(f_1),\dots,p_j(f_{\tau(\omega)}))   
+    \]
+\end{remark}
+\begin{proposition}
+    The category $\cat{Alg}_\Omega$ admits products. 
+\end{proposition}
+\begin{proof}[Proof]
+    Given any family $X_i,i\in I$ assume there is an object $Q$ with morphisms
+    $q_i : Q \to X_i$ for each $i\in I$. 
+\end{proof}
