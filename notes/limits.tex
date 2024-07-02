@@ -1,0 +1,242 @@
+\subsection{Limits and colimits}
+\begin{definition}
+    Let $\catj$ be a small category. A \textbf{diagram $D$ of shape $\catj$} is
+    any functor $D: \catj \to \catc$. Define $\Delta:\catc\to\funcat{\catj}{\catc}$
+    which sends $A$ to the constant functor $\Delta A$ that 
+    assigns all $j\in\ob{\catj}$ to $A$ and every morphism in $\catj$ 
+    to the identity morphism $1_A$. Given $A\in\ob{\catc}$ a \textbf{cone with vertex $A$}
+    is a pair $(A,\lambda)$, where $\lambda:\Delta A\to D$ is a natural transformation.
+    A \textbf{universal cone} is a cone $(A,\lambda)$ so that for any other
+    cone $(B,\mu)$ there exists a unique morphism $f: B\to A$ such that
+    $\forall j\in\catj : \lambda_j \circ f = \mu_j$.
+\end{definition}
+\begin{lemma}
+    Universal cone of a diagram $D$ is unique up to a unique isomorphism, if it exists.
+\end{lemma}
+\begin{proof}[Proof]
+    
+\end{proof}
+\begin{definition}
+    The \textbf{limit of a diagram $D$} is its universal cone, if it exists.
+
+\end{definition}
+\begin{lemma}[Pullback lemma]
+    Consider this commutative diagram
+    \[\begin{tikzcd}
+	\bullet && \bullet && \bullet \\
+	\\
+	\bullet && \bullet && \bullet
+	\arrow["{f_1}"', from=1-1, to=1-3]
+	\arrow["{f_2}", from=1-1, to=3-1]
+	\arrow["{f_3}"', from=1-3, to=1-5]
+	\arrow["{p_1}", from=1-3, to=3-3]
+	\arrow["{q_1}"', from=1-5, to=3-5]
+	\arrow["{p_2}", from=3-1, to=3-3]
+	\arrow["{q_2}", from=3-3, to=3-5]
+\end{tikzcd}\]
+    assuming that the right square is a pullback, then 
+    the left square is a pullback iff the outer rectangle
+    is a pullback.
+\end{lemma}
+\begin{proof}[Proof]
+    Assume that the outer rectangle is a pullback and 
+    consider any cone $(U,s_1,s_2)$ like so 
+    \[\begin{tikzcd}
+	U \\
+	& \bullet && \bullet && \bullet \\
+	\\
+	& \bullet && \bullet && \bullet
+	\arrow["{s_1}"', curve={height=-6pt}, from=1-1, to=2-4]
+	\arrow["{s_2}"', curve={height=6pt}, from=1-1, to=4-2]
+	\arrow["{f_1}"', from=2-2, to=2-4]
+	\arrow["{f_2}", from=2-2, to=4-2]
+	\arrow["{f_3}"', from=2-4, to=2-6]
+	\arrow["{p_1}", from=2-4, to=4-4]
+	\arrow["{q_1}"', from=2-6, to=4-6]
+	\arrow["{p_2}", from=4-2, to=4-4]
+	\arrow["{q_2}", from=4-4, to=4-6]
+\end{tikzcd}\]
+    since the outer rectangle is a pullback there exists a unique 
+    morphism $m$ that makes the triangles in the following diagram commute
+    \[\begin{tikzcd}
+	U \\
+	& \bullet && \bullet \\
+	\\
+	& \bullet && \bullet
+	\arrow["m"{description}, from=1-1, to=2-2]
+	\arrow["{f_3\circ s_1}", curve={height=-6pt}, from=1-1, to=2-4]
+	\arrow["{s_2}"', curve={height=6pt}, from=1-1, to=4-2]
+	\arrow["{f_3\circ f_1}"', from=2-2, to=2-4]
+	\arrow["{f_2}", from=2-2, to=4-2]
+	\arrow["{q_1}"', from=2-4, to=4-4]
+	\arrow["{q_2\circ p_2}"', from=4-2, to=4-4]
+\end{tikzcd}\] 
+    because $(U,f_3\circ s_1, s_2)$ is a cone above the outer rectangle. Now we have
+    to prove that $f_1\circ m = s_1$
+    \[\begin{tikzcd}
+	U &&&&&&& U \\
+	& \bullet && \bullet && \bullet &&& \bullet & \bullet \\
+	&&&&&&&& \bullet & \bullet \\
+	& \bullet && \bullet && \bullet
+	\arrow["m"{description}, from=1-1, to=2-2]
+	\arrow["{{s_1}}"', curve={height=-6pt}, from=1-1, to=2-4]
+	\arrow["{{s_2}}"', curve={height=6pt}, from=1-1, to=4-2]
+	\arrow["{f_1\circ m}"{description}, curve={height=6pt}, from=1-8, to=2-9]
+	\arrow["{s_1}"{description}, curve={height=-6pt}, from=1-8, to=2-9]
+	\arrow["{f_3\circ s_1}"{description}, curve={height=-18pt}, from=1-8, to=2-10]
+	\arrow["{p_1\circ f_1\circ m}"{description}, curve={height=18pt}, from=1-8, to=3-9]
+	\arrow["{{f_1}}"', from=2-2, to=2-4]
+	\arrow["{{f_2}}", from=2-2, to=4-2]
+	\arrow["{{f_3}}"', from=2-4, to=2-6]
+	\arrow["{{p_1}}", from=2-4, to=4-4]
+	\arrow["{{q_1}}"', from=2-6, to=4-6]
+	\arrow["{f_3}", from=2-9, to=2-10]
+	\arrow["{p_1}", from=2-9, to=3-9]
+	\arrow["{q_1}", from=2-10, to=3-10]
+	\arrow["{q_2}"', from=3-9, to=3-10]
+	\arrow["{{p_2}}", from=4-2, to=4-4]
+	\arrow["{{q_2}}", from=4-4, to=4-6]
+\end{tikzcd}\]
+    By a diagram chase we verify, that the outer square on the right side 
+    really commutes. From the universal property of pullbacks we get that 
+    $f_1\circ m = s_1$ as required. Now to show that
+    $m$ is unique consider the commutative diagram
+    \[\begin{tikzcd}
+	U \\
+	& \bullet && \bullet \\
+	\\
+	& \bullet && \bullet
+	\arrow["m"{description}, shift right=2, from=1-1, to=2-2]
+	\arrow["{m'}"{description}, shift left=2, from=1-1, to=2-2]
+	\arrow["{s_1\circ f_3}", curve={height=-6pt}, from=1-1, to=2-4]
+	\arrow["{{s_2}}"', curve={height=6pt}, from=1-1, to=4-2]
+	\arrow["{f_3\circ f_1}"', from=2-2, to=2-4]
+	\arrow["{{f_2}}", from=2-2, to=4-2]
+	\arrow["{{q_1}}"', from=2-4, to=4-4]
+	\arrow["{q_2\circ p_2}"', from=4-2, to=4-4]
+\end{tikzcd}\]
+    it follows by the universal property that $m=m'$, since the outer
+    rectangle is a pullback. Now assume that the left square is a pullback
+    and consider any cone $(U,s_1,s_2)$
+\[\begin{tikzcd}
+	U \\
+	& \bullet && \bullet && \bullet \\
+	\\
+	& \bullet && \bullet && \bullet
+	\arrow["{s_1}"{description}, curve={height=-6pt}, from=1-1, to=2-6]
+	\arrow["{{s_2}}"', curve={height=6pt}, from=1-1, to=4-2]
+	\arrow["{{f_1}}"', from=2-2, to=2-4]
+	\arrow["{{f_2}}", from=2-2, to=4-2]
+	\arrow["{{f_3}}"', from=2-4, to=2-6]
+	\arrow["{{p_1}}", from=2-4, to=4-4]
+	\arrow["{{q_1}}"', from=2-6, to=4-6]
+	\arrow["{{p_2}}", from=4-2, to=4-4]
+	\arrow["{{q_2}}", from=4-4, to=4-6]
+\end{tikzcd}\]
+    Since $(U,s_1, p_2\circ s_2)$ is a cone and the right square is a pullback,
+    there exists unique $n$ such that $f_3\circ n = s_1$ and $p_1\circ n = p_2\circ s_2$,
+    but then $(U,s_2,n)$ is a cone on the left pullback square, so there exists a unique
+    $m$ such that $f_1\circ m = n$ and $f_2\circ m = s_2$ like so 
+\[\begin{tikzcd}
+	U \\
+	& \bullet && \bullet && \bullet \\
+	\\
+	& \bullet && \bullet && \bullet
+	\arrow["m"{description}, from=1-1, to=2-2]
+	\arrow["n"{description}, curve={height=-6pt}, from=1-1, to=2-4]
+	\arrow["{s_1}"{description}, curve={height=-12pt}, from=1-1, to=2-6]
+	\arrow["{{s_2}}"', curve={height=6pt}, from=1-1, to=4-2]
+	\arrow["{{f_1}}"', from=2-2, to=2-4]
+	\arrow["{{f_2}}", from=2-2, to=4-2]
+	\arrow["{{f_3}}"', from=2-4, to=2-6]
+	\arrow["{{p_1}}", from=2-4, to=4-4]
+	\arrow["{{q_1}}"', from=2-6, to=4-6]
+	\arrow["{{p_2}}", from=4-2, to=4-4]
+	\arrow["{{q_2}}", from=4-4, to=4-6]
+\end{tikzcd}\]
+    simple diagram chase shows that $m$ completes the cone $(U,s_1,s_2)$.
+    It remains to show that $m$ is unique. Let $m'$ be any other completion
+    of the cone $(U,s_1,s_2)$
+    \[\begin{tikzcd}
+	U \\
+	& \bullet && \bullet && \bullet \\
+	\\
+	& \bullet && \bullet && \bullet
+	\arrow["{m'}"{description}, from=1-1, to=2-2]
+	\arrow["n"{description}, curve={height=-6pt}, from=1-1, to=2-4]
+	\arrow["{s_1}"{description}, curve={height=-12pt}, from=1-1, to=2-6]
+	\arrow["{{s_2}}"', curve={height=6pt}, from=1-1, to=4-2]
+	\arrow["{{f_1}}"', from=2-2, to=2-4]
+	\arrow["{{f_2}}", from=2-2, to=4-2]
+	\arrow["{{f_3}}"', from=2-4, to=2-6]
+	\arrow["{{p_1}}", from=2-4, to=4-4]
+	\arrow["{{q_1}}"', from=2-6, to=4-6]
+	\arrow["{{p_2}}", from=4-2, to=4-4]
+	\arrow["{{q_2}}", from=4-4, to=4-6]
+\end{tikzcd}\]
+    if we show $f_1\circ m' = n$ then by the universal property we would have
+    that $m=m'$. By a diagram chase we see that $(U, s_1, p_2\circ s_2)$ is 
+    a cone completed by $n$ and $f_1\circ m'$ of the right pullback square
+    \[\begin{tikzcd}
+	U \\
+	&&& \bullet && \bullet \\
+	\\
+	&&& \bullet && \bullet
+	\arrow["n"{description}, curve={height=-6pt}, from=1-1, to=2-4]
+	\arrow["{f_1\circ m'}"{description}, curve={height=6pt}, from=1-1, to=2-4]
+	\arrow["{s_1}"{description}, curve={height=-12pt}, from=1-1, to=2-6]
+	\arrow["{p_2\circ s_2}"{description}, curve={height=12pt}, from=1-1, to=4-4]
+	\arrow["{{f_3}}"', from=2-4, to=2-6]
+	\arrow["{{p_1}}", from=2-4, to=4-4]
+	\arrow["{{q_1}}"', from=2-6, to=4-6]
+	\arrow["{{q_2}}", from=4-4, to=4-6]
+\end{tikzcd}\]
+therefore from universality $f_1\circ m' = n$ and again by universality of the left pullback $m=m'$.
+\end{proof}
+\begin{definition}
+    Let $\catc$ be a category and choose $X\in\ob{\catc}$. We define the \textbf{slice category $\catc$ over $X$} denoted as $\catc /X$,
+    whose objects are pairs $(A,f)$ where $A\in\ob{\catc}$, $f: A \to X$ and whose morphisms 
+    $g: (A,f_1) \to (B,f_2)$ are just morphisms $g:A\to B$ in $\catc$ such that the following diagram commutes
+\[\begin{tikzcd}
+	A && B \\
+	& X
+	\arrow["g", from=1-1, to=1-3]
+	\arrow["{f_1}", from=1-1, to=2-2]
+	\arrow["{f_2}"', from=1-3, to=2-2]
+\end{tikzcd}\]
+    Notice that composition of two morphisms $\catc /X$ yields again a morphisms in $\catc /X$
+    since when the two triangles in the left diagram below commute then the entire square commutes as well
+    and that by the very definition of identity morphism the triangle on the right side below commutes 
+\[\begin{tikzcd}
+	& B &&& A && A \\
+	A && C \\
+	& X &&&& X
+	\arrow["{g_2}", from=1-2, to=2-3]
+	\arrow["{f_2}"{description}, from=1-2, to=3-2]
+	\arrow["{1_A}", from=1-5, to=1-7]
+	\arrow["{f_1}"', from=1-5, to=3-6]
+	\arrow["{f_1}", from=1-7, to=3-6]
+	\arrow["{g_1}", from=2-1, to=1-2]
+	\arrow["{f_1}"', from=2-1, to=3-2]
+	\arrow["{f_3}", from=2-3, to=3-2]
+\end{tikzcd}\]
+\end{definition}
+\begin{definition}
+    Given two objects $A,B$ their coproduct is an object $U$ with 
+    two morphisms $\iota_A: A \to U$ and $\iota_B: B \to U$, such
+    that for any other triple $(U^\prime,f: A\to U^\prime,g: A\to U^\prime)$
+    there exists a unique morphism $f+g: U\to U^\prime$, such that the following diagram commutes
+\[\begin{tikzcd}
+	& {U^\prime} \\
+	\\
+	A & U & B
+	\arrow["f", from=3-1, to=1-2]
+	\arrow["{\iota_A}", from=3-1, to=3-2]
+	\arrow["{f+g}"{description}, from=3-2, to=1-2]
+	\arrow["g"', from=3-3, to=1-2]
+	\arrow["{\iota_B}"', from=3-3, to=3-2]
+\end{tikzcd}\]
+\end{definition}
+\begin{proposition}
+    Coproduct $U$ is unique up to an isomorphism.
+\end{proposition}

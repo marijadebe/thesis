@@ -1,7 +1,7 @@
 \subsection{Natural transformations}
 \begin{definition}
     Let $F,G: \catc \to \catd$ be a pair of functors. A $\textbf{natural transformation}$ $\eta : F \to G$ is a 
-    collection of morphisms in $\catd$ indexed by the objects of $\catc$. Explicitly $\eta = \{\eta_A : F(A)\to G(A) \mid A \in\ob{\catc}\}$, such that
+    collection of morphisms in $\catd$ indexed by the objects of $\catc$, $\eta = \{\eta_A : F(A)\to G(A) \mid A \in\ob{\catc}\}$, such that
     for all objects $A,B\in\catc$ and morphisms $f : A\to B$ the following square diagram commutes
 \[\begin{tikzcd}
 	{F(A)} && {F(B)} \\
@@ -349,4 +349,3 @@ then $(\beta_2\circ\beta_1)\ast(\alpha_2\circ\alpha_1) = (\beta_2\ast\alpha_2)\c
 	commutes as well, which completes the proof.
 \end{enumerate}
 \end{proof}
-\clearpage
