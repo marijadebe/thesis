@@ -199,6 +199,45 @@ then $(\beta_2\circ\beta_1)\ast(\alpha_2\circ\alpha_1) = (\beta_2\ast\alpha_2)\c
 	\arrow["\mu"', from=2-5, to=2-6]
 \end{tikzcd}\]
 \end{definition}
+\begin{definition}
+	We call the 6-tuple $(\catc, \otimes,I, \alpha, \rho, \lambda)$ a 
+	\textbf{monoidal category}, where $\otimes: \catc\times\catc \to \catc$, $I\in\catc$ and
+		\[\begin{tikzcd}
+	{X\otimes(Y\otimes Z)} & {(X\otimes Y)\otimes Z}
+	\arrow["\simeq", from=1-1, to=1-2]
+	\arrow["\alpha_{X,Y,Z}"', from=1-1, to=1-2]
+\end{tikzcd}\]
+	is a natural isomorphism natural in $X,Y$ and $Z$, called the \textbf{associator} and
+\[\begin{tikzcd}
+	{I\otimes X} & X & {X\otimes I} & X
+	\arrow["\simeq", from=1-1, to=1-2]
+	\arrow["{\lambda_X}"', from=1-1, to=1-2]
+	\arrow["{\rho_X}"', from=1-3, to=1-4]
+	\arrow["\simeq", from=1-3, to=1-4]
+\end{tikzcd}\]
+	are a pair of natural isomorphisms, $\lambda$ is called the \textbf{left unitor}
+	and $\rho$ is called the \textbf{right unitor} such that the following diagrams commute
+\[\begin{tikzcd}
+	& {(X\otimes Y)\otimes(Z\otimes W)} \\
+	{X\otimes(Y\otimes (Z\otimes W))} && {((X\otimes Y)\otimes Z)\otimes W} \\
+	\\
+	{X\otimes((Y\otimes Z)\otimes W)} && {(X\otimes (Y\otimes Z))\otimes W}
+	\arrow["{\alpha_{X\otimes Y, Z,W }}", from=1-2, to=2-3]
+	\arrow["{\alpha_{X, Y, Z\otimes W}}", from=2-1, to=1-2]
+	\arrow["{1_X\otimes \alpha_{Y,Z,W}}"{description}, from=2-1, to=4-1]
+	\arrow["{\alpha_{X,Y\otimes Z, W}}", from=4-1, to=4-3]
+	\arrow["{\alpha_{X,Y,Z}\otimes 1_W}"{description}, from=4-3, to=2-3]
+\end{tikzcd}\]
+\[\begin{tikzcd}
+	{X\otimes (I\otimes Y)} && {(X\otimes I) \otimes Y} \\
+	& {X\otimes Y}
+	\arrow["{\alpha_{X,I,Y}}", from=1-1, to=1-3]
+	\arrow["{1_X\otimes \lambda_Y}"', from=1-1, to=2-2]
+	\arrow["{\rho_X \otimes 1_Y}", from=1-3, to=2-2]
+\end{tikzcd}\]
+	and lastly $\lambda_I = \rho_I$.
+\end{definition}
+
 \begin{proposition}
     Functor $F:\catc \to \catd$ is an equivalence of categories if and only if 
     $F$ is full, faithful and essentialy surjective on objects.
@@ -245,37 +284,69 @@ then $(\beta_2\circ\beta_1)\ast(\alpha_2\circ\alpha_1) = (\beta_2\ast\alpha_2)\c
 	\item $F$ fully faithful and essentialy surjective on objects $\implies$ $F$ is an equivalence
 	\par
 	For $B\in\ob{\catd}$ choose $A\in\ob{\catc}$ such that $F(A)\cong B$ fix any such
-	isomorphism and let 
+	isomorphism, call it $\mu_B$ and let 
 	$G(B)=A$. Given any morphism $g: B \to C$ in $\catd$ we have
 	\[\begin{tikzcd}
 	{FG(B)} & B & C & {FG(C)}
-	\arrow["{\mu_1}", shift left, from=1-1, to=1-2]
-	\arrow["{\mu_1^{-1}}", shift left, from=1-2, to=1-1]
+	\arrow["{{\mu_B}}", shift left, from=1-1, to=1-2]
+	\arrow["{{\mu_B^{-1}}}", shift left, from=1-2, to=1-1]
 	\arrow["g", from=1-2, to=1-3]
-	\arrow["{\mu_2}", shift left=2, from=1-3, to=1-4]
-	\arrow["{\mu_2^{-1}}", shift left, from=1-4, to=1-3]
+	\arrow["{{\mu_C^{-1}}}"', shift right, from=1-3, to=1-4]
+	\arrow["{{\mu_C}}"', shift right=2, from=1-4, to=1-3]
 \end{tikzcd}\]
 	by full faithfulness of $F$ there exists a unique morphism
-	$f: G(B) \to G(C)$ such that $F(f) = \mu_2\circ g \circ \mu_1$. We let
+	$f: G(B) \to G(C)$ such that $F(f) = \mu_C^{-1}\circ g \circ \mu_B$. We let
 	$G(g) = f$. We will now prove, that $F(G(g_2)\circ G(g_1)) = FG(g_2\circ g_1)$. Then
 	it will follow by faithfulness, that $G$ respects composition.
-	\[\begin{tikzcd}
+\[\begin{tikzcd}
 	B & C & D \\
 	{FG(B)} & {FG(C)} & {FG(D)}
-	\arrow["{g_1}", from=1-1, to=1-2]
-	\arrow["{\mu_B^{-1}}", shift left, from=1-1, to=2-1]
-	\arrow["{g_2}", from=1-2, to=1-3]
-	\arrow["{\mu_C}", shift left=2, from=1-2, to=2-2]
-	\arrow["{\mu_D}", shift left, from=1-3, to=2-3]
-	\arrow["{\mu_B}", shift left, from=2-1, to=1-1]
-	\arrow["{\mu_C^{-1}}", shift left, from=2-2, to=1-2]
-	\arrow["{\mu_D^{-1}}", shift left, from=2-3, to=1-3]
+	\arrow["{{g_1}}", from=1-1, to=1-2]
+	\arrow["{{\mu_B^{-1}}}", shift left, from=1-1, to=2-1]
+	\arrow["{{g_2}}", from=1-2, to=1-3]
+	\arrow["{{\mu_C^{-1}}}", shift left, from=1-2, to=2-2]
+	\arrow["{{\mu_D^{-1}}}", shift left, from=1-3, to=2-3]
+	\arrow["{{\mu_B}}", shift left, from=2-1, to=1-1]
+	\arrow["{{\mu_C}}", shift left=2, from=2-2, to=1-2]
+	\arrow["{{\mu_D}}", shift left, from=2-3, to=1-3]
 \end{tikzcd}\]
 	We have $F(G(g_2) G(g_1))=FG(g_2) FG(g_1)
 	= \mu_3 g_2 \mu_2^{-1} \mu_2 g_1 \mu_1 = \mu_3 g_2 g_1 \mu_1
 	= FG(g_2\circ g_1)$ and $FG(1_B) = 1_{FG(B)} = F(1_{G(B)})$.
-	Now we have to check, that $FGB\cong B$ naturally in $B$.
-
+	Now we have to check, that $FGB\cong B$ naturally in $B$. This follows
+	easily, we define a natural transformation $\mu : FG \to 1_\catd$ whose
+	components are those that we have picked and the naturality square
+	\[\begin{tikzcd}
+	FGB && FGC \\
+	\\
+	B && C
+	\arrow["FGg", from=1-1, to=1-3]
+	\arrow["{\mu_B}"{description}, from=1-1, to=3-1]
+	\arrow["{\mu_C}"{description}, from=1-3, to=3-3]
+	\arrow["g"', from=3-1, to=3-3]
+\end{tikzcd}\]
+	commutes by the definition of $G(g)$ and $\mu$ is a natural isomorphism.
+	Choose $A\in\ob{\catc}$, there exists $A'\in\ob{\catc}$ such that
+	\[\begin{tikzcd}
+	{F(A)} & {F(A')}
+	\arrow["{\mu_{F(A)}}", shift left, from=1-1, to=1-2]
+	\arrow["{\mu_{F(A)}^{-1}}", shift left, from=1-2, to=1-1]
+\end{tikzcd}\]
+	thus $GF(A) = A'$. From full faithfulness of $F$, there exists
+	an isomorphism $\eta_A : A \to A'$ such that $F(\eta_A) = \mu_{F(A)}$.
+	Define $\eta : 1_\catc \to GF$, whose components are $\eta_A$. Consider
+	\[\begin{tikzcd}
+	A && B \\
+	\\
+	GFA && GFB
+	\arrow["f", from=1-1, to=1-3]
+	\arrow["{\eta_A}"{description}, from=1-1, to=3-1]
+	\arrow["{\eta_B}"{description}, from=1-3, to=3-3]
+	\arrow["{GF(f)}", from=3-1, to=3-3]
+\end{tikzcd}\]
+	where $GF(f)$ is the unique morphism such that $FGF(f) = \mu_{F(B)}^{-1} \circ F(f) \circ \mu_{F(A)}$.
+	Therefore the $F$ image of this diagram commutes and by faithfulness of $F$ the square above
+	commutes as well, which completes the proof.
 \end{enumerate}
 \end{proof}
 \clearpage

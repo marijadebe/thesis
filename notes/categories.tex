@@ -9,7 +9,7 @@ $\begin{tikzcd}
 	A & B
 	\arrow["f", from=1-1, to=1-2]
 \end{tikzcd}$ for $f\in\homc{\catc}{A}{B}$
-            \item for each $A,B,C\in\ob{\catc}$ a map $\circ$ : $\homc{\catc}{A}{B}\times\homc{\catc}{B}{C}\to \homc{\catc}{A}{C}$ such that
+            \item for each $A,B,C\in\ob{\catc}$ an assignment $\circ$ : $\homc{\catc}{B}{C}\times\homc{\catc}{A}{B}\to \homc{\catc}{A}{C}$ such that
         for morphisms $\begin{tikzcd}
             A & B & C & D
             \arrow["f", from=1-1, to=1-2]
@@ -74,8 +74,8 @@ and
 \begin{definition}
     Let $\catc$ and $\catd$ be categories. A \textbf{(covariant) functor} $F: \catc \to \catd$ consists of 
     \begin{enumerate}
-        \item \textcolor{red}{a map} $\ob{\catc}\to\ob{\catd}$ assigning $A \mapsto F(A)$
-        \item for each $A,B\in\ob{\catc}$ \textcolor{red}{a map} $\homc{\catc}{A}{B}\to\homc{\catd}{F(A)}{F(B)}$ which assigns $f \mapsto F(f)$
+        \item an assignment $\ob{\catc}\to\ob{\catd}$ taking $A \mapsto F(A)$
+        \item for each $A,B\in\ob{\catc}$ an assignment $\homc{\catc}{A}{B}\to\homc{\catd}{F(A)}{F(B)}$ which takes $f \mapsto F(f)$
     \end{enumerate}
     such that it preserves composition $F(g\circ f) = F(g)\circ F(f)$ and the identity $F(1_A) = 1_{F(A)}$.\\ We define a \textbf{contravariant functor} $F:\catc \to \catd$ to 
     be just a covariant functor $F:\opp{\catc} \to \catd$.
