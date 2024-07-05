@@ -18,7 +18,6 @@
 \end{proof}
 \begin{definition}
     The \textbf{limit of a diagram $D$} is its universal cone, if it exists.
-
 \end{definition}
 \begin{lemma}[Pullback lemma]
     Consider this commutative diagram
@@ -192,6 +191,65 @@
 	\arrow["{{q_2}}", from=4-4, to=4-6]
 \end{tikzcd}\]
 therefore from universality $f_1\circ m' = n$ and again by universality of the left pullback $m=m'$.
+\end{proof}
+\begin{proposition}
+    Given a diagram 
+    \[\begin{tikzcd}
+	E & A & B
+	\arrow["e", from=1-1, to=1-2]
+	\arrow["{f_1}", shift left, from=1-2, to=1-3]
+	\arrow["{f_2}"', shift right, from=1-2, to=1-3]
+\end{tikzcd}\]
+    such that $(E,e)$ is the equaliser of $f_1$ and $f_2$, then
+    $e$ is a monomorphism.
+\end{proposition}
+\begin{proof}[Proof]
+    Consider a pair of morphisms $g_1,g_2: A'\to E$ such that $eg_1=eg_2$, then
+    \[\begin{tikzcd}
+	E & A & B \\
+	{A'}
+	\arrow["e", from=1-1, to=1-2]
+	\arrow["{f_1}", shift left, from=1-2, to=1-3]
+	\arrow["{f_2}"', shift right, from=1-2, to=1-3]
+	\arrow["{\exists !}", dashed, from=2-1, to=1-1]
+	\arrow["{eg_1=eg_2}"', from=2-1, to=1-2]
+\end{tikzcd}\]
+    therefore $g_1=g_2$ since they both also make the triangle on the left commute.
+\end{proof}
+\begin{proposition}
+    Consider the following pullback diagram
+    \[\begin{tikzcd}
+	P && A \\
+	\\
+	B && C
+	\arrow["{m_1}", from=1-1, to=1-3]
+	\arrow["{f_1}"', from=1-1, to=3-1]
+	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=3-3]
+	\arrow["{f_2}", from=1-3, to=3-3]
+	\arrow["{m_2}"', hook, from=3-1, to=3-3]
+\end{tikzcd}\]
+    then $m_1$ is a monomorphism.
+\end{proposition}
+\begin{proof}[Proof]
+    Suppose that $g_1$ and $g_2$ are such that $m_1 g_1 = m_1 g_2$
+    then by a diagram chase we can easily show that $f_1 g_2 = f_1 g_1$ 
+    so that we have
+    \[\begin{tikzcd}
+	X \\
+	& P && A \\
+	\\
+	& B && C
+	\arrow["{g_1}"{description}, curve={height=-6pt}, from=1-1, to=2-2]
+	\arrow["{g_2}"{description}, curve={height=6pt}, from=1-1, to=2-2]
+	\arrow["{m_1\circ g_1=m_1\circ g_2}", curve={height=-6pt}, from=1-1, to=2-4]
+	\arrow["{f_1\circ g_2 = f_1\circ g_1}"', curve={height=12pt}, from=1-1, to=4-2]
+	\arrow["{m_1}", from=2-2, to=2-4]
+	\arrow["{f_1}"', from=2-2, to=4-2]
+	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=2-2, to=4-4]
+	\arrow["{f_2}", from=2-4, to=4-4]
+	\arrow["{m_2}"', hook, from=4-2, to=4-4]
+\end{tikzcd}\]
+    since we have a pullback square it follows that $g_1=g_2$.
 \end{proof}
 \begin{definition}
     Let $\catc$ be a category and choose $X\in\ob{\catc}$. We define the \textbf{slice category $\catc$ over $X$} denoted as $\catc /X$,

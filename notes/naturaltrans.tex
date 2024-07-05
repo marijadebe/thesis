@@ -101,7 +101,8 @@ A natural transformation $\eta$ is a \textbf{natural isomorphism} if for all $A\
 \end{definition}
 \begin{remark}
     Notice that $\beta_{G_1(A)}\circ F_2(\alpha_A)=G_2(\alpha_A)\circ\beta_{F_1(A)}$ by 
-    the naturality of $\beta$ at $F_1(A)$ and $G_1(A)$.
+    the naturality of $\beta$ at $F_1(A)$ and $G_1(A)$. With the use of whiskering (definition \ref{def:whiskerOne}) 
+	we may also define $\beta\ast\alpha = \beta G_1\circ F_2\alpha = G_2\alpha \circ \beta F_1$.
 \end{remark}
 \begin{theorem}[Middle-four interchange law]
     Consider the following diagram
@@ -110,7 +111,7 @@ A natural transformation $\eta$ is a \textbf{natural isomorphism} if for all $A\
 	\arrow[""{name=0, anchor=center, inner sep=0}, "{F_1}", curve={height=-24pt}, from=1-1, to=1-3]
 	\arrow[""{name=1, anchor=center, inner sep=0}, "{H_1}"', curve={height=24pt}, from=1-1, to=1-3]
 	\arrow[""{name=2, anchor=center, inner sep=0}, "{G_1}"{description}, from=1-1, to=1-3]
-	\arrow[""{name=3, anchor=center, inner sep=0}, "{F_1}", curve={height=-24pt}, from=1-3, to=1-5]
+	\arrow[""{name=3, anchor=center, inner sep=0}, "{F_2}", curve={height=-24pt}, from=1-3, to=1-5]
 	\arrow[""{name=4, anchor=center, inner sep=0}, "{H_2}"', curve={height=24pt}, from=1-3, to=1-5]
 	\arrow[""{name=5, anchor=center, inner sep=0}, "{G_2}"{description}, from=1-3, to=1-5]
 	\arrow["{\alpha_1}", shorten <=3pt, shorten >=3pt, Rightarrow, from=0, to=2]
@@ -121,8 +122,32 @@ A natural transformation $\eta$ is a \textbf{natural isomorphism} if for all $A\
 \]
 then $(\beta_2\circ\beta_1)\ast(\alpha_2\circ\alpha_1) = (\beta_2\ast\alpha_2)\circ(\beta_1\ast\alpha_1)$.
 \end{theorem}
+\begin{proof}[Proof]
+	All the squares in the following diagram commute by naturality
+\[\begin{tikzcd}
+	{F_2F_1} && {F_2G_1} && {F_2H_1} \\
+	\\
+	{G_2F_1} && {G_2G_1} && {G_2H_1} \\
+	\\
+	{H_2F_1} && {H_2G_1} && {H_2H_1}
+	\arrow["{F_2\alpha_1}", from=1-1, to=1-3]
+	\arrow["{\beta_1F_1}"{description}, from=1-1, to=3-1]
+	\arrow["{F_2\alpha_2}", from=1-3, to=1-5]
+	\arrow["{\beta_1G_1}"{description}, from=1-3, to=3-3]
+	\arrow["{\beta_1 H_1}"{description}, from=1-5, to=3-5]
+	\arrow["{G_2\alpha_1}", from=3-1, to=3-3]
+	\arrow["{\beta_2F_1}"{description}, from=3-1, to=5-1]
+	\arrow["{G_2\alpha_2}", from=3-3, to=3-5]
+	\arrow["{\beta_2G_1}"{description}, from=3-3, to=5-3]
+	\arrow["{\beta_2 H_1}"{description}, from=3-5, to=5-5]
+	\arrow["{H_2\alpha_1}", from=5-1, to=5-3]
+	\arrow["{H_2\alpha_2}", from=5-3, to=5-5]
+\end{tikzcd}\]
+The outer path is exactly the left side of the equation and 
+the inner path is exactly the right side. This completes the proof.
+\end{proof}
 
-\begin{definition}
+\begin{definition}\label{def:whiskerOne}
 	Given a diagram like so
 	\[\begin{tikzcd}
 	\catc && \catd && \cate
