@@ -31,7 +31,7 @@ A natural transformation $\eta$ is a \textbf{natural isomorphism} if for all $A\
 \begin{proposition}
     The horizontal composite $\beta\circ\alpha: F\to H$ is a natural transformation. 
 \end{proposition}
-\begin{proof}
+\begin{proof}[Proof]
     We need to show that the square diagram
 \[\begin{tikzcd}
 	{F(A)} && {H(A)} \\
@@ -227,12 +227,12 @@ the inner path is exactly the right side. This completes the proof.
 \begin{definition}
 	We call the 6-tuple $(\catc, \otimes,I, \alpha, \rho, \lambda)$ a 
 	\textbf{monoidal category}, where $\otimes: \catc\times\catc \to \catc$, $I\in\catc$ and
-		\[\begin{tikzcd}
-	{X\otimes(Y\otimes Z)} & {(X\otimes Y)\otimes Z}
-	\arrow["\simeq", from=1-1, to=1-2]
-	\arrow["\alpha_{X,Y,Z}"', from=1-1, to=1-2]
+\[\begin{tikzcd}
+	{(X\otimes Y)\otimes Z} & {X\otimes(Y\otimes Z)}
+	\arrow["\simeq"', from=1-1, to=1-2]
+	\arrow["{\alpha_{X,Y,Z}}", from=1-1, to=1-2]
 \end{tikzcd}\]
-	is a natural isomorphism natural in $X,Y$ and $Z$, called the \textbf{associator} and
+	is an isomorphism natural in $X,Y$ and $Z$, called the \textbf{associator} and
 \[\begin{tikzcd}
 	{I\otimes X} & X & {X\otimes I} & X
 	\arrow["\simeq", from=1-1, to=1-2]
@@ -244,23 +244,55 @@ the inner path is exactly the right side. This completes the proof.
 	and $\rho$ is called the \textbf{right unitor} such that the following diagrams commute
 \[\begin{tikzcd}
 	& {(X\otimes Y)\otimes(Z\otimes W)} \\
-	{X\otimes(Y\otimes (Z\otimes W))} && {((X\otimes Y)\otimes Z)\otimes W} \\
+	{((X\otimes Y)\otimes Z)\otimes W} && {X\otimes(Y\otimes(Z\otimes W))} \\
 	\\
-	{X\otimes((Y\otimes Z)\otimes W)} && {(X\otimes (Y\otimes Z))\otimes W}
-	\arrow["{\alpha_{X\otimes Y, Z,W }}", from=1-2, to=2-3]
-	\arrow["{\alpha_{X, Y, Z\otimes W}}", from=2-1, to=1-2]
-	\arrow["{1_X\otimes \alpha_{Y,Z,W}}"{description}, from=2-1, to=4-1]
-	\arrow["{\alpha_{X,Y\otimes Z, W}}", from=4-1, to=4-3]
-	\arrow["{\alpha_{X,Y,Z}\otimes 1_W}"{description}, from=4-3, to=2-3]
+	{(X\otimes(Y\otimes Z))\otimes W} && {X\otimes((Y\otimes Z)\otimes W)}
+	\arrow["{\alpha_{X,Y,Z\otimes W}}", from=1-2, to=2-3]
+	\arrow["{\alpha_{X\otimes Y,Z,W}}", from=2-1, to=1-2]
+	\arrow["{\alpha_{X,Y,Z}\otimes 1_W}"', from=2-1, to=4-1]
+	\arrow["{\alpha_{X,Y\otimes Z, W}}"', from=4-1, to=4-3]
+	\arrow["{1_X\otimes\alpha_{Y,Z,W}}"', from=4-3, to=2-3]
 \end{tikzcd}\]
 \[\begin{tikzcd}
-	{X\otimes (I\otimes Y)} && {(X\otimes I) \otimes Y} \\
+	{(X\otimes I) \otimes Y} && {X\otimes (I\otimes Y)} \\
 	& {X\otimes Y}
-	\arrow["{\alpha_{X,I,Y}}", from=1-1, to=1-3]
-	\arrow["{1_X\otimes \lambda_Y}"', from=1-1, to=2-2]
-	\arrow["{\rho_X \otimes 1_Y}", from=1-3, to=2-2]
+	\arrow["{{\alpha_{X,I,Y}}}", from=1-1, to=1-3]
+	\arrow["{{\rho_X \otimes 1_Y}}"', from=1-1, to=2-2]
+	\arrow["{{1_X\otimes \lambda_Y}}", from=1-3, to=2-2]
 \end{tikzcd}\]
-	and lastly $\lambda_I = \rho_I$.
+\end{definition}
+
+\begin{definition}
+	Let $(\catm, \otimes,I, \alpha, \rho, \lambda)$ be a monoidal category. A \textbf{category $\catc$ 
+	enriched over $\catm$} consists of
+	\begin{enumerate}
+		\item A collection of objects $\ob{\catc}$
+		\item for any pair of objects $A,B\in\ob{\catc}$ an object $\homc{\catc}{A}{B}$ of category $\catm$
+		\item for all $A,B,C\in\ob{\catc}$ we have a morphism $\circ_{A,B,C} : \homc{\catc}{B}{C}\otimes\homc{\catc}{A}{B}\to\homc{\catc}{A}{C}$
+		\item given $A\in\ob{\catc}$ a morphism $i_A : I \to\homc{\catc}{A}{A}$
+	\end{enumerate} 
+	such that the following diagrams commute
+	\[\begin{tikzcd}
+	{(\homc{\catc}{C}{D}\otimes\homc{\catc}{B}{C})\otimes\homc{\catc}{A}{B}} && {\homc{\catc}{C}{D}\otimes (\homc{\catc}{B}{C}\otimes\homc{\catc}{A}{B})} \\
+	{\homc{\catc}{B}{D}\otimes\homc{\catc}{A}{B}} && {\homc{\catc}{C}{D}\otimes\homc{\catc}{A}{C}} \\
+	& {\homc{\catc}{A}{D}}
+	\arrow["{\alpha_{\homc{\catc}{C}{D},\homc{\catc}{B}{C},\homc{\catc}{A}{B}}}", from=1-1, to=1-3]
+	\arrow["{\circ_{B,C,D}\otimes 1_{\homc{\catc}{A}{B}}}", from=1-1, to=2-1]
+	\arrow["{1_{\homc{\catc}{C}{D}}\otimes\circ_{A,B,C}}"', from=1-3, to=2-3]
+	\arrow["{\circ_{A,B,D}}", from=2-1, to=3-2]
+	\arrow["{\circ_{A,B,C}}"', from=2-3, to=3-2]
+\end{tikzcd}\]
+\[\begin{tikzcd}
+	{I\otimes\homc{\catc}{A}{B}} &&&& {\homc{\catc}{A}{B}\otimes I} \\
+	\\
+	{\homc{\catc}{B}{B}\otimes \homc{\catc}{A}{B}} && {\homc{\catc}{A}{B}} && {\homc{\catc}{A}{B}\otimes \homc{\catc}{A}{A}}
+	\arrow["{i_B\otimes 1_{\homc{\catc}{A}{B}}}", from=1-1, to=3-1]
+	\arrow["{\lambda_{\homc{\catc}{A}{B}}}", from=1-1, to=3-3]
+	\arrow["{\rho_{\homc{\catc}{A}{B}}}"', from=1-5, to=3-3]
+	\arrow["{1_{\homc{\catc}{A}{B}}\otimes i_A}", from=1-5, to=3-5]
+	\arrow["{\circ_{A,B,B}}", from=3-1, to=3-3]
+	\arrow["{\circ_{A,A,B}}", from=3-5, to=3-3]
+\end{tikzcd}\]
 \end{definition}
 
 \begin{proposition}
@@ -374,3 +406,23 @@ the inner path is exactly the right side. This completes the proof.
 	commutes as well, which completes the proof.
 \end{enumerate}
 \end{proof}
+\begin{definition}
+	Let $\catc$ be a locally small category, then for each $A\in\catc$
+	we have a 
+	functor $h^A : \catc\to\textbf{Set}$ the \textbf{covariant 
+	hom functor}, which maps 
+	\[
+		X \mapsto \homc{\catc}{A}{X}
+	\]
+	\[
+		f : X \to Y \mapsto f_\ast : \homc{\catc}{A}{X} \to \homc{\catc}{A}{Y}
+	\]
+		where $f_\ast(g) := f\circ g$.
+\end{definition}
+\begin{lemma}[Yoneda]
+	For all $F : \catc \to \cat{Set}$ we have
+	\[
+		\homc{\funcat{\catc}{\textbf{Set}}}{h^A}{F} \cong F(A)
+	\]
+	naturally in $A$ and $F$.
+\end{lemma}
