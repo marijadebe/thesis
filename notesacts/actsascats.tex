@@ -1,0 +1,20 @@
+\section{Acts as cats}
+\begin{definition}
+    Let $(X,\cdot)$ be an $\mathcal{S}$-act, then we consider the following category
+    \begin{enumerate}
+        \item the collection of objects is just $X$
+        \item for each $x,y\in X$ let $\hom(x,y) = \{r\in\mathcal{S} : r\cdot x = y\}$
+        \item $\circ : \hom(y,z) \times \hom(x,y) \to \hom(x,z)$ given by $(r,s)\mapsto rs$ (juxtaposition is the monoidal operation)
+        \item the identity on any object is just the monoidal unit
+    \end{enumerate}
+\end{definition}
+This motivates the following definition.
+\begin{definition}
+    Let $(X,\cdot)$ be an $\mathcal{S}$-act and $(Y,\cdot)$ a $\mathcal{M}$-act. Given $F: X \to Y$ a set map, we say that a  
+    monoid homomorphism $G: \mathcal{S}\to\mathcal{M}$ is $F$-compatible iff 
+    \[
+        \forall x,y\in X\,\forall g\in\mathcal{S} : g \cdot x =y \implies G(g)\cdot F(x) = F(y)
+    \]
+\end{definition}
+Every pair $(F,G)$, where $G$ is $F$-compatible, is a functor of the categories as defined above. Now given 
+$(F,G)$ and $(F',G')$ we can talk about the natural transformations between them.

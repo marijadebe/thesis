@@ -1,0 +1,150 @@
+\section{Monoidal categories}
+
+\begin{definition}
+	We call the $6$-tuple $(\catc, \otimes,I, \alpha, \rho, \lambda)$ a 
+	\textbf{monoidal category}, where $\otimes: \catc\times\catc \to \catc$, $I\in\catc$ and
+\[\begin{tikzcd}
+	{(X\otimes Y)\otimes Z} & {X\otimes(Y\otimes Z)}
+	\arrow["\simeq"', from=1-1, to=1-2]
+	\arrow["{\alpha_{X,Y,Z}}", from=1-1, to=1-2]
+\end{tikzcd}\]
+	is an isomorphism natural in $X,Y$ and $Z$, called the \textbf{associator} and
+\[\begin{tikzcd}
+	{I\otimes X} & X & {X\otimes I} & X
+	\arrow["\simeq", from=1-1, to=1-2]
+	\arrow["{\lambda_X}"', from=1-1, to=1-2]
+	\arrow["{\rho_X}"', from=1-3, to=1-4]
+	\arrow["\simeq", from=1-3, to=1-4]
+\end{tikzcd}\]
+	are a pair of natural isomorphisms, $\lambda$ is called the \textbf{left unitor}
+	and $\rho$ is called the \textbf{right unitor} such that the following diagrams commute
+\[\begin{tikzcd}
+	& {(X\otimes Y)\otimes(Z\otimes W)} \\
+	{((X\otimes Y)\otimes Z)\otimes W} && {X\otimes(Y\otimes(Z\otimes W))} \\
+	\\
+	{(X\otimes(Y\otimes Z))\otimes W} && {X\otimes((Y\otimes Z)\otimes W)}
+	\arrow["{\alpha_{X,Y,Z\otimes W}}", from=1-2, to=2-3]
+	\arrow["{\alpha_{X\otimes Y,Z,W}}", from=2-1, to=1-2]
+	\arrow["{\alpha_{X,Y,Z}\otimes 1_W}"', from=2-1, to=4-1]
+	\arrow["{\alpha_{X,Y\otimes Z, W}}"', from=4-1, to=4-3]
+	\arrow["{1_X\otimes\alpha_{Y,Z,W}}"', from=4-3, to=2-3]
+\end{tikzcd}\]
+\[\begin{tikzcd}
+	{(X\otimes I) \otimes Y} && {X\otimes (I\otimes Y)} \\
+	& {X\otimes Y}
+	\arrow["{{\alpha_{X,I,Y}}}", from=1-1, to=1-3]
+	\arrow["{{\rho_X \otimes 1_Y}}"', from=1-1, to=2-2]
+	\arrow["{{1_X\otimes \lambda_Y}}", from=1-3, to=2-2]
+\end{tikzcd}\]
+\end{definition}
+\begin{definition}
+    Let $(\catc, \otimes,I, \alpha, \rho, \lambda)$ be a monoidal category. We say that an isomorphism 
+    \[\begin{tikzcd}
+	{X\otimes Y} && {Y\otimes X}
+	\arrow["{\sigma_{X,Y}}", from=1-1, to=1-3]
+	\arrow["\simeq"', from=1-1, to=1-3]
+\end{tikzcd}\]
+    natural in $X$ and $Y$ is a \textbf{symmetry} if the following diagrams commute
+    \[
+    \begin{tikzcd}
+	{X\otimes Y} && {Y\otimes X} \\
+	\\
+	&& {X\otimes Y}
+	\arrow["{\sigma_{X,Y}}", from=1-1, to=1-3]
+	\arrow[from=1-1, to=1-3]
+	\arrow[Rightarrow, no head, from=1-1, to=3-3]
+	\arrow["{\sigma_{Y,X}}", from=1-3, to=3-3]
+    \end{tikzcd}
+    \]
+    \[\begin{tikzcd}
+	{(X\otimes Y)\otimes Z} && {X\otimes(Y\otimes Z)} && {(Y\otimes Z)\otimes X} \\
+	{(Y\otimes X)\otimes Z} && {Y\otimes(X\otimes Z)} && {Y\otimes (Z\otimes X)}
+	\arrow["{\alpha_{X,Y,Z}}", from=1-1, to=1-3]
+	\arrow["{\sigma_{X,Y}\otimes 1_Z}"', from=1-1, to=2-1]
+	\arrow["{\sigma_{Y\otimes Z, X}}", from=1-3, to=1-5]
+	\arrow["{\alpha_{Y,Z,X}}", from=1-5, to=2-5]
+	\arrow["{\alpha_{Y,X,Z}}"', from=2-1, to=2-3]
+	\arrow["{1_Y\otimes \sigma_{X,Z}}"', from=2-3, to=2-5]
+    \end{tikzcd}
+\]
+\[
+    \begin{tikzcd}
+        {I\otimes X} && {X\otimes I} \\
+        & X
+        \arrow["{\sigma_{I,X}}", from=1-1, to=1-3]
+        \arrow["{\lambda_X}"', from=1-1, to=2-2]
+        \arrow["{\rho_X}", from=1-3, to=2-2]
+    \end{tikzcd}
+\]
+    The $7$-tuple $(\catc, \otimes,I, \alpha, \rho, \lambda, \sigma)$ is then called a \textbf{symmetric monoidal category}.
+\end{definition}
+\begin{definition}
+    A monoidal category $(\catc, \otimes,I, \alpha, \rho, \lambda)$ is \textbf{closed}, if for all $Y\in\ob{\catc}$ 
+    the functor $-\otimes Y : \catc \to \catc$ has a right adjoint functor $[Y,-]:\catc\to\catc$ called the \textbf{internal hom functor}.
+\end{definition}
+\begin{definition}
+    Closed symmetric monoidal category is a \textbf{cosmos}, if it is complete and cocomplete.
+\end{definition}
+\begin{definition}
+	Let $(\catm, \otimes,I, \alpha, \rho, \lambda)$ be a monoidal category. A \textbf{category $\catc$ 
+	enriched over $\catm$} consists of
+	\begin{enumerate}
+		\item A collection of objects $\ob{\catc}$
+		\item for any pair of objects $A,B\in\ob{\catc}$ an object $\homc{\catc}{A}{B}$ of category $\catm$
+		\item for all $A,B,C\in\ob{\catc}$ we have a morphism $\circ_{A,B,C} : \homc{\catc}{B}{C}\otimes\homc{\catc}{A}{B}\to\homc{\catc}{A}{C}$
+		\item given $A\in\ob{\catc}$ a morphism $i_A : I \to\homc{\catc}{A}{A}$
+	\end{enumerate} 
+	such that the following diagrams commute
+	\[\begin{tikzcd}
+	{(\homc{\catc}{C}{D}\otimes\homc{\catc}{B}{C})\otimes\homc{\catc}{A}{B}} && {\homc{\catc}{C}{D}\otimes (\homc{\catc}{B}{C}\otimes\homc{\catc}{A}{B})} \\
+	{\homc{\catc}{B}{D}\otimes\homc{\catc}{A}{B}} && {\homc{\catc}{C}{D}\otimes\homc{\catc}{A}{C}} \\
+	& {\homc{\catc}{A}{D}}
+	\arrow["{\alpha_{\homc{\catc}{C}{D},\homc{\catc}{B}{C},\homc{\catc}{A}{B}}}", from=1-1, to=1-3]
+	\arrow["{\circ_{B,C,D}\otimes 1_{\homc{\catc}{A}{B}}}", from=1-1, to=2-1]
+	\arrow["{1_{\homc{\catc}{C}{D}}\otimes\circ_{A,B,C}}"', from=1-3, to=2-3]
+	\arrow["{\circ_{A,B,D}}", from=2-1, to=3-2]
+	\arrow["{\circ_{A,B,C}}"', from=2-3, to=3-2]
+\end{tikzcd}\]
+\[\begin{tikzcd}
+	{I\otimes\homc{\catc}{A}{B}} &&&& {\homc{\catc}{A}{B}\otimes I} \\
+	\\
+	{\homc{\catc}{B}{B}\otimes \homc{\catc}{A}{B}} && {\homc{\catc}{A}{B}} && {\homc{\catc}{A}{B}\otimes \homc{\catc}{A}{A}}
+	\arrow["{i_B\otimes 1_{\homc{\catc}{A}{B}}}", from=1-1, to=3-1]
+	\arrow["{\lambda_{\homc{\catc}{A}{B}}}", from=1-1, to=3-3]
+	\arrow["{\rho_{\homc{\catc}{A}{B}}}"', from=1-5, to=3-3]
+	\arrow["{1_{\homc{\catc}{A}{B}}\otimes i_A}", from=1-5, to=3-5]
+	\arrow["{\circ_{A,B,B}}", from=3-1, to=3-3]
+	\arrow["{\circ_{A,A,B}}", from=3-5, to=3-3]
+\end{tikzcd}\]
+\end{definition}
+\begin{definition}
+    Given $(\catc, \otimes,I, \alpha, \rho, \lambda)$ a \textbf{monoid in $\catc$} 
+    is a triple $(X,\mu,\eta)$, where $X\in\ob{\catc}$, $\mu : X \otimes X \to X$ and 
+    $\eta: I \to X$ such that the following diagrams commute
+    \[\begin{tikzcd}
+	{(X\otimes X)\otimes X} && {X\otimes(X\otimes X) } \\
+	{X\otimes X} & X & {X\otimes X}
+	\arrow["{\alpha_{X,X,X}}", from=1-1, to=1-3]
+	\arrow["{\mu\otimes 1_X}"', from=1-1, to=2-1]
+	\arrow["{1_X\otimes \mu}", from=1-3, to=2-3]
+	\arrow["\mu", from=2-1, to=2-2]
+	\arrow["\mu"', from=2-3, to=2-2]
+    \end{tikzcd}\]
+    \[\begin{tikzcd}
+	& {X\otimes X} \\
+	{I\otimes X} && {X\otimes I} \\
+	& X
+	\arrow["\mu"{description}, from=1-2, to=3-2]
+	\arrow["{\eta\otimes 1_X}", from=2-1, to=1-2]
+	\arrow["{\lambda_X}"', from=2-1, to=3-2]
+	\arrow["{1_X\otimes\eta}"', from=2-3, to=1-2]
+	\arrow["{\rho_X}", from=2-3, to=3-2]
+\end{tikzcd}\]
+\end{definition}
+\begin{proposition}
+    If $\catc$ is a category with finite products, then $\catc$
+    is a symmetric monoidal category.
+\end{proposition}
+\begin{proof}[Proof]
+    
+\end{proof}

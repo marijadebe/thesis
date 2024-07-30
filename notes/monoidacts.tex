@@ -1,59 +1,740 @@
+\iffalse
 \clearpage
 \section{Monoids and acts}
+\subsection{Preliminaries}
+    \begin{definition}
+        A 3-tuple $\mathcal{S} = (S,\star,e)$ where $S$ is a set and $\star : S\times S \to S$, $e : 1 \to S$ are 
+        maps is called a \textbf{monoid}, if the following two conditions hold
+        \begin{enumerate}
+            \item $\forall x,y,z\in S : (x\star y)\star z = x\star(y\star z)$
+            \item $\forall x\in S : x\star e = x = e \star x$
+        \end{enumerate}
+    \end{definition}
+    \begin{example}
+        Let $X$ be a nonempty set. Denote by $T(X)$ the set of all maps
+        $X\to X$.\\ Then $\mathcal{T}(X) = (T(X),\circ,\text{id}_X) $, where $\circ$ is a 
+        composition of maps and $\text{id}_X$ the identity map, is a monoid. We will
+        call $\mathcal{T}(X)$ the transformation monoid of $X$.\par
+        Let $\mathcal{S} = (S,\star,e)$ be a monoid, we define the opposite monoid $\opp{\mathcal{S}}=(S,\star_{\text{op}}, e)$ where
+        \[\forall x,y\in S: x\star_{\text{op}} y = y\star x\]
+    \end{example}
+    \begin{definition}
+        Let $\mathcal{S}$ be a monoid and $X$ a nonempty set. A tuple $(X,\mu)$, where $\mu : S\times X \to X$ is called 
+        a \textbf{left $\mathcal{S}$-act} if the map $\mu$ satisfies the following
+        \begin{enumerate}
+            \item $\forall r,s \in S\,\forall x \in X : \mu(rs, x) = \mu(r,\mu(s,x))$
+            \item $\forall x \in S : \mu(e,x) = x$
+        \end{enumerate}
+        we will denote a left $\mathcal{S}$-act as ${}_{\mathcal{S}}X$. Similarly we
+        define a right $\mathcal{S}$-act and use the notation $X_\mathcal{S}$.
+    \end{definition}
+    \begin{remark}
+        When we use the word $\mathcal{S}$-act we will mean the left $\mathcal{S}$-act, unless 
+        stated otherwise.
+    \end{remark}
+    \begin{definition}
+        Given $\act{S}{X}$ and $\act{S}{Y}$ we call $f: X \to Y$ an
+        \textbf{act homomorphism}, if 
+        \[
+            \forall s\in S\,\forall x \in X : f(s\cdot x) = s\cdot f(x)
+        \]
+    \end{definition}
+    \begin{proposition}
+        Acts with their homomorphisms form a category, which we will denote $\cat{$\mathcal{S}$-Act}$.
+    \end{proposition}
+    \begin{construction}[Powerset Act Monad (TBA)]
+        Consider an act $\act{S}{A}$, then we have an endofunctor
+        $\mathcal{P}$ in $\cat{$\mathcal{S}$-Act}$. 
+        \[\act{S}{A} \mapsto \act{S}{P(A)}\]
+        given 
+    \end{construction}
+    \begin{definition}
+        Let $M$ and $N$ be monoids, $f: M \to N$, then we have a functor $\Gamma_f : \actcat{M} \to \actcat{N}$.
+    \end{definition}
+
+    Both $\actcat{S}$ and $\actcat{S}_0$ are monoidal categories 
+    with the tensor product being a direct product of acts. 
+    The unit being the terminal and zero objects respectively.\par 
+        A monoid in $\actcat{S}$ is an act equipped with 
+        a multiplication map $\circ$ and a unit $e$ such that
+        the following holds
+        \[
+            (x\circ y)\circ z = x\circ (y\circ z)
+        \]
+        \[
+            e \circ x = x = x \circ e
+        \]
+        \[
+            s\cdot (x\circ y) = (s\cdot x) \circ (s\cdot y)
+        \]
+        \[
+            s\cdot e = e
+        \]
+        Act homomorphism $f$ is a homomorphism of monoids if
+        \[
+            f(x\circ y) = f(x)\circ f(y)
+        \]
+        \[
+            f(e) = e
+        \]
+\subsection{Free objects}
+    \begin{definition}
+        Let $X$ be a set and $\mathcal{S}$ a monoid. We define the \textbf{free $\mathcal{S}$-act on X} to be 
+        the tuple  
+        \[(S\times X,\cdot : S\times (S\times X) \to S\times X)\]
+        where $s_1\cdot (s,x) = (s_1s,x)$.
+    \end{definition}
+    It is an act, since $e\cdot(s,x) = (es,x) = (s,x)$ and $(s_1s_2)\cdot(s,x) = 
+    ((s_1s_2)s,x) = (s_1(s_2s),x) = s_1\cdot(s_2s,x) = s_1\cdot(s_2\cdot(s,x))$.
+    \begin{definition}
+        In $\actcat{S}_0$ we define the free act on $X$ by taking the quotient of 
+        $S\times X$ by an equivalence relation $\sim$, where 
+        \[
+            (s,x)\sim (r,y) \iff (s=r \land x=y) \lor s=0=r
+        \]
+        (it is easy to see that it is really an equivalence relation)
+        and putting for $[(s,x)]_\sim\in S\times X/\sim$ and $r\in\mathcal{S}$
+        \[
+            r\cdot[(s,x)]_\sim = [(rs,x)]_\sim
+        \]    
+    \end{definition}
+    \begin{remark}
+        It is a well defined act. Take $(s,x)\sim(r,y)$
+    \end{remark}
+\fi
+\subsection{Complexes and exact sequences}
 \begin{definition}
-    A 3-tuple $\mathcal{S} = (S,\star,e)$ where $S$ is a set and $\star : S\times S \to S$, $e : 1 \to S$ are 
-    maps is called a \textbf{monoid}, if the following two conditions hold
-    \begin{enumerate}
-        \item $\forall x,y,z\in S : (x\star y)\star z = x\star(y\star z)$
-        \item $\forall x\in S : x\star e = x = e \star x$
-    \end{enumerate}
-\end{definition}
-\begin{example}
-    Let $X$ be a nonempty set. Denote by $T(X)$ the set of all maps
-    $X\to X$.\\ Then $\mathcal{T}(X) = (T(X),\circ,\text{id}_X) $, where $\circ$ is a 
-    composition of maps and $\text{id}_X$ the identity map, is a monoid. We will
-    call $\mathcal{T}(X)$ the transformation monoid of $X$.\par
-    Let $\mathcal{S} = (S,\star,e)$ be a monoid, we define the opposite monoid $\opp{\mathcal{S}}=(S,\star_{\text{op}}, e)$ where
-    \[\forall x,y\in S: x\star_{\text{op}} y = y\star x\]
-\end{example}
-\begin{definition}
-    Let $\mathcal{S}$ be a monoid and $X$ a nonempty set. A tuple $(X,\mu)$, where $\mu : S\times X \to X$ is called 
-    a \textbf{left $\mathcal{S}$-act} if the map $\mu$ satisfies the following
-    \begin{enumerate}
-        \item $\forall r,s \in S\,\forall x \in X : \mu(rs, x) = \mu(r,\mu(s,x))$
-        \item $\forall x \in S : \mu(e,x) = x$
-    \end{enumerate}
-    we will denote a left $\mathcal{S}$-act as ${}_{\mathcal{S}}X$. Similarly we
-    define a right $\mathcal{S}$-act and use the notation $X_\mathcal{S}$.
+    A \textbf{chain complex} $(X_n, d_n: X_{n} \to X_{n-1})_{n\in\mathbb{Z}}$ is a sequence of acts and act morphisms
+    \[\begin{tikzcd}
+	\dots & {X_{n+1}} & {X_n} & {X_{n-1}} & \dots
+	\arrow[from=1-1, to=1-2]
+	\arrow["{d_{n+1}}", from=1-2, to=1-3]
+	\arrow["{d_n}", from=1-3, to=1-4]
+	\arrow[from=1-4, to=1-5]
+\end{tikzcd}\]
+    such that for all $n\in\mathbb{Z}$ we have $\text{im}(d_{n+1})\subseteq\ker(d_n)$. Chain
+    complex is \textbf{Rees exact at $X_n$} if and only if $\text{im}(d_{n+1})=\ker(d_n)$.
+    Chain complex is \textbf{Rees exact} if it is Rees exact at $X_n$ for each $n\in\mathbb{Z}$.
 \end{definition}
 \begin{remark}
-    When we use the word $\mathcal{S}$-act we will mean the left $\mathcal{S}$-act, unless 
-    stated otherwise.
+    If $(X_n, d_n: X_{n} \to X_{n-1})_{n\in\mathbb{Z}}$ is a sequence of pointed acts, then
+    it is a chain complex if and only if $\forall n\in\mathbb{Z} : d_n\circ d_{n+1} = 0$.
+\end{remark}
+\begin{proof}[Proof]
+    First we assume that $d_{n+1}\circ d_n = 0$. Let $(y_1,y_2)\in\text{im}(d_{n+1})$, if 
+    $y_1=y_2$ we are done. Suppose then that there are some $x_1,x_2\in X_{n+1}$ such that
+    $d_{n+1}(x_1)=y_1$ and $d_{n+1}(x_2) = y_2$, then we have 
+    \[
+        d_n(y_1) = (d_n\circ d_{n+1})(x_1) = 0 = (d_n\circ d_{n+1})(x_2) = d_n(y_2)
+    \]
+    therefore $(y_1,y_2)\in\ker(d_m)$, hence $\text{im}(d_{n+1})\subseteq\ker(d_n)$.\par
+    Assume now that $\im(d_{n+1})\subseteq\ker(d_n)$. We know that $0\in\im(d_{n+1})$, since
+    $d_{n+1}(0) = 0$ therefore for any $x\in X_{n+1}$ by assumption $(0,d_{n+1}(x))\in\ker(d_n)$
+    so $d_{n+1}(d_n(x)) = d_n(0) = 0$.
+\end{proof}
+\begin{definition}
+    Let $(X_n, d_n)_{n\in\mathbb{Z}}$ and $(Y_n, e_n)_{n\in\mathbb{Z}}$ be two 
+    chain complexes. A \textbf{chain map} between them is a sequence of act morphisms
+    $(f_n: X_n\to Y_n)_{n\in\mathbb{Z}}$ such that for all $n\in\mathbb{Z}$ the following square commutes 
+    \[\begin{tikzcd}
+	{X_{n+1}} && {X_n} \\
+	\\
+	{Y_{n+1}} && {Y_n}
+	\arrow["{d_{n+1}}", from=1-1, to=1-3]
+	\arrow["{f_{n+1}}"{description}, from=1-1, to=3-1]
+	\arrow["{f_n}"{description}, from=1-3, to=3-3]
+	\arrow["{e_{n+1}}", from=3-1, to=3-3]
+    \end{tikzcd}\]
+\end{definition}
+\begin{remark}
+    We have that $f_n(\text{Im}(d_{n+1}))\subseteq\text{Im}(e_{n+1})$.
 \end{remark}
 \begin{definition}
-    Let $X$ be a set and $\mathcal{S}$ a monoid. We define the \textbf{free $\mathcal{S}$-act on X} to be 
-    the tuple  
-    \[(S\times X,\cdot : S\times (S\times X) \to S\times X)\]
-    where $s_1\cdot (s,x) = (s_1s,x)$.
-\end{definition}
-It is an act, since $e\cdot(s,x) = (es,x) = (s,x)$ and $s_1s_2\cdot(s,x) = 
-((s_1s_2)s,x) = (s_1(s_2s),x) = s_1\cdot(s_2s,x) = s_1\cdot(s_2\cdot(s,x))$.
-\begin{definition}
-    Given $\act{S}{X}$ and $\act{S}{Y}$ we call $f: X \to Y$ an
-    \textbf{act homomorphism}, if 
+    Let $(X_n, d_n: X_{n} \to X_{n-1})_{n\in\mathbb{Z}}$ be a chain complex,
+    then we define \textbf{the $n$-th homology act} by
     \[
-        \forall s\in S\,\forall x \in X : f(s\cdot x) = s\cdot f(x)
+        h_n(X) = \ker(d_{n})/\im(d_{n+1}) = \{[x,y] : (x,y)\in\ker(d_n) \}
     \]
+    where by $\ker(d_{n})/\im(d_{n+1})$ we mean the Rees factor by a subact.
+\end{definition}
+Let $(A,a)$ and $(B,b)$ be chain complexes and $f: A \to B$ a chain map, then define 
+$h_n(f): h_n(A) \to h_n(B)$ by $[x,y]\mapsto [f_n(x),f_n(y)]$. It is well-defined, since if 
+$(x,y)\in\ker(a_n)$, then $b_n(f_n(x)) = f_{n-1}(a_n(x)) = f_{n-1}(a_n(y)) = b_n(f_n(y))$. And if 
+we choose $[x_1,y_1]=[x_2,y_2]$, then either $(x_1,y_1)\sim(0,0)\sim (x_2,y_2)$ or $x_1=x_2$ and 
+$y_1=y_2$. If the latter then we are done, otherwise it suffices to show
+\[
+    \left[(x_1,y_1)\sim (0,0) \iff (x_1,y_1)\in\im(a_{n+1})\right] \implies (f_n(x_1),f_n(y_1))\sim (0,0)
+\] 
+If $x_1=y_1$, then $f_n(x_1)=f_n(y_1)$ which implies $(f(x_1),f(y_1))\sim (0,0)$. 
+Otherwise we find $x_2,y_2\in A_{n+1}$ such that $a_{n+1}(x_2)=x_1$ and $a_{n+1}(y_2)=y_1$, but 
+then $f_n(x_1) = f_n(a_{n+1}(x_2)) = b_{n+1}(f_{n+1}(x_2))$ and 
+$f_n(y_1) = f_n(a_{n+1}(y_2)) = b_{n+1}(f_{n+1}(y_2))$, therefore 
+$(f_n(x_1),f_n(y_1))\in\im(b_{n+1}) \iff (f_n(x_1),f_n(y_1))\sim (0,0)$.
+
+\begin{proposition}
+    $h_n : Ch(\actcat{S})\to\actcat{S}$ is a functor.
+\end{proposition}
+\begin{proof}[Proof]
+    \[
+        h_n(1_A)([x,y]) = [1_{A_n}(x),1_{A_n}(y)] = [x,y] \implies h_n(1_A) = 1_{h_n(A)}
+    \]
+    \[
+        h_n(g\circ f)([x,y]) = [g_n(f_n(x)),g_n(f_n(y))] 
+        = h_n(g)([f_n(x), f_n(y)]) = (h_n(g)\circ h_n(f))([x,y])
+    \]
+    therefore $h_n(g\circ f) = h_n(g)\circ h_n(f)$.
+\end{proof}
+From now on by acts we will mean pointed acts, objects of the category $\actcat{S}_0$. 
+\begin{definition}
+    \textbf{Rees short exact sequence} is a sequence of acts
+    \[\begin{tikzcd}
+        0 & A & B & C & 0
+        \arrow[from=1-1, to=1-2]
+        \arrow["f", from=1-2, to=1-3]
+        \arrow["g", from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    exact at $A,B$ and $C$.
+\end{definition}
+\begin{remark}
+    By definition of exactness it follows that $\ker(f) = \{(0,0)\}\cup\Delta_L$ and 
+    $\im(g) = N\times N$, therefore $f$ is injective and $g$ is surjective. Similarly
+    injectivity of $f$ and surjectivity of $g$ imply exactness 
+    at $A$ and $C$ respectively.
+\end{remark}
+\begin{example}
+    Let $A$ and $B$ be acts, then we have the following sequence
+    \[\begin{tikzcd}
+        0 & A & {A\oplus B} & B & 0
+        \arrow[from=1-1, to=1-2]
+        \arrow["\iota", from=1-2, to=1-3]
+        \arrow["\lambda", from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    where $\iota: x \mapsto (x,0)$ and 
+    \[
+        \lambda(x,y) = 
+        \begin{cases}
+            y, & \text{if } x=0 \\
+            0, & \text{otherwise}
+        \end{cases}
+    \]
+    the exactness at $A$ and $B$ is easily seen. We will show exactness 
+    at $A\oplus B$.\par
+    Choose $((x_1,y_1),(x_2,y_2))\in\im(\iota)$, if $x_1=x_2$ and $y_1=y_2$ we are done, 
+    otherwise we have $y_1=0=y_2$, therefore 
+    \[
+        \lambda(x_1,y_1)=0=\lambda(x_2,y_2)
+    \]
+    which implies $\im(\iota)\subseteq\ker(\lambda)$.
+    Let $((x_1,y_1),(x_2,y_2))\in\ker(\lambda)$, if $x_1=x_2$ and $y_1=y_2$
+    we are done, therefore assume that $x_1\neq x_2$ or $y_1\neq y_2$.\par
+    Suppose $x_1=0$, then $x_2\neq 0$ (else $y_1=y_2$), this implies
+    that $y_2=0$ and $y_1=\lambda(x_1,y_1)=\lambda(x_2,y_2)=0$
+    so $(x_1,y_1)=(0,0)$ and $y_2=0$, then 
+    $\iota(x_2)=(x_2,y_2)$ and $\iota(0)=(x_1,y_1)$.\par
+    Suppose now that $x_1\neq 0$, then $y_1=0$ and 
+    $\lambda(x_2,y_2)=\lambda(x_1,y_1)=0$, which means either 
+    $(x_2,y_2)=(0,0)$ or that $x_2\neq 0$, in either case $y_2=0$,
+    hence $\iota(x_1)=(x_1,y_1)$ and $\iota(x_2)=(x_2,y_2)$.
+    In conclusion $\ker(\lambda)=\im(\iota)$ as required.
+\end{example}
+\begin{lemma}
+    Consider the following commutative diagram
+    \[\begin{tikzcd}
+	0 & A & B & C & 0 \\
+	0 & {A'} & {B'} & {C'} & 0
+	\arrow[from=1-1, to=1-2]
+	\arrow["f", from=1-2, to=1-3]
+	\arrow["\alpha", from=1-2, to=2-2]
+	\arrow["g", from=1-3, to=1-4]
+	\arrow["\beta", from=1-3, to=2-3]
+	\arrow[from=1-4, to=1-5]
+	\arrow["\gamma", from=1-4, to=2-4]
+	\arrow[from=2-1, to=2-2]
+	\arrow["{f'}", from=2-2, to=2-3]
+	\arrow["{g'}", from=2-3, to=2-4]
+	\arrow[from=2-4, to=2-5]
+\end{tikzcd}\]
+    where $\alpha, \beta, \gamma$ are isomorphisms, 
+    then the first row is Rees exact iff the second row is.
+\end{lemma}
+\begin{proof}[Proof]
+    \par Assume that the first row is Rees exact. We will prove that 
+    $f'$ is injective. Let $f'(x)=f'(y)$, then there are unique 
+    $x_1,y_1\in A$ such that $\alpha(x_1) = x$ and $\alpha(y_1) = y$, 
+    by commutativity of the left square $\beta(f(x_1))=f'(\alpha(x_1))=f'(\alpha(y_1))=\beta(f(y_1))$ so 
+    $f(x_1)=f(y_1)$ and since $f$ is injective $x_1=y_1$. Choose any $y\in C'$,
+    then we find unique $y_1\in C$ such that $\gamma(y_1) = y$, since $g$ is surjective
+    there is some $y_2\in B$ such that $g(y_2) = y_1$. By the commutativity of the right square
+    we have $g'(\beta(y_2)) = \gamma(g(y_2)) = y$, therefore $g'$ is surjective.
+    \par It remains to prove exactness at $B'$, let $(x,y)\in\ker(g')$ so $g'(x)=g'(y)$. 
+    If $x=y$ we are done, assume then that $x\neq y$. We find unique $x_1,y_1\in B$ such that 
+    $\beta(x_1) = x$ and $\beta(y_1) = y$. By commutativity of the right square we get
+    $\gamma(g(x_1)) = \gamma(g(y_1)) \implies g(x_1)=g(y_1)$. By exactness at $B$ 
+    it follows that $(x_1,y_1)\in\im(f)$, since $x\neq y$ there are some 
+    $x_2,y_2\in A$ such that $f(x_2)=x_1$ and $f(y_2)=y_1$, thus 
+    by commutativity of the left square $f'(\alpha(x_2)) = \beta(f(x_2)) = x$ 
+    and $f'(\alpha(y_2)) = \beta(f(y_2)) = y$ or $(x,y)\in\im(f')$.
+    \par Choose any $(x,y)\in\im(f')$, if $x=y$ we are done, so assume $x\neq y$,
+    then there are some $x_1,y_1\in A'$ such that $f'(x_1)=x$ and $f'(y_1)=y$. 
+    Since $\alpha$ is an iso there are unique $x_2,y_2\in A$ so that 
+    $\alpha(x_2)=x_1$ and $\alpha(y_2)=y_1$, then by commutativity of the 
+    left square $x = \beta(f(x_2))$ and $y=\beta(f(y_2))$, by exactness at $B$
+    $g(f(x_2))=g(f(y_2))$, since $(f(x_2),f(y_2))\in\im(f)$ by definition.
+    Then we have $\gamma(g(f(x_2))) = \gamma(g(f(y_2)))$ and therefore 
+    by commutativity of the outer rectangle 
+    $g'(x) = g'(f'(\alpha(x_2))) = \gamma(g(f(x_2))) = \gamma(g(f(y_2))) = g'(f'(\alpha(y_2))) = g'(y)$
+    which means $(x,y)\in\ker(g')$. It follows that $\ker(g') = \im(f')$ as 
+    required.
+    \par Assume now that the second row is Rees exact. We can consider the following 
+    commutative diagram 
+    \[\begin{tikzcd}
+        0 & {A'} & {B'} & {C'} & 0 \\
+        0 & A & B & C & 0
+        \arrow[from=1-1, to=1-2]
+        \arrow["{f'}", from=1-2, to=1-3]
+        \arrow["{\alpha^{-1}}", from=1-2, to=2-2]
+        \arrow["{g'}", from=1-3, to=1-4]
+        \arrow["{\beta^{-1}}", from=1-3, to=2-3]
+        \arrow[from=1-4, to=1-5]
+        \arrow["{\gamma^{-1}}", from=1-4, to=2-4]
+        \arrow[from=2-1, to=2-2]
+        \arrow["f", from=2-2, to=2-3]
+        \arrow["g", from=2-3, to=2-4]
+    	\arrow[from=2-4, to=2-5]
+    \end{tikzcd}\]
+    and notice that the result follows by symmetry from the first part of the proof. 
+\end{proof}
+
+In contrast with the category of modules, the 
+internal hom functor isn't left exact. Indeed, consider the following
+counterexample.
+\begin{counterexample}
+    Recall that $\mathbb{Z}_2$-acts are just pointed sets. Consider a 
+    short exact sequence of pointed sets
+    \[\begin{tikzcd}
+        0 & {\mathbb{Z}_2} & {\mathbb{Z}_3} & {\mathbb{Z}_3/\mathbb{Z}_2} & 0
+        \arrow[from=1-1, to=1-2]
+        \arrow["\iota", hook, from=1-2, to=1-3]
+        \arrow["\pi", two heads, from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    where $\iota$ is the inclusion map and $\pi$ is the canonical projection.
+    We will show that the following sequence isn't exact at $\text{Hom}(\mathbb{Z}_3,\mathbb{Z}_3)$
+    \[\begin{tikzcd}
+        0 & {\text{Hom}(\mathbb{Z}_3,\mathbb{Z}_2)} & {\text{Hom}(\mathbb{Z}_3,\mathbb{Z}_3)} & {\text{Hom}(\mathbb{Z}_3,\mathbb{Z}_3/\mathbb{Z}_2)}
+        \arrow[from=1-1, to=1-2]
+        \arrow["{\iota_*}", from=1-2, to=1-3]
+        \arrow["{\pi_*}", from=1-3, to=1-4]
+    \end{tikzcd}\]
+    the elements of acts in the sequence are as below
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{ccccccccc}
+        \hline
+        \multicolumn{9}{|c|}{$\text{Hom}(\mathbb{Z}_3,\mathbb{Z}_3)$}                                                                                                                                                                                                                                                                              \\ \hline
+        \multicolumn{1}{|c|}{$0$}          & \multicolumn{1}{c|}{$f_1$}        & \multicolumn{1}{c|}{$f_2$}        & \multicolumn{1}{c|}{$f_3$}        & \multicolumn{1}{c|}{$f_4$}        & \multicolumn{1}{c|}{$f_5$}          & \multicolumn{1}{c|}{$f_6$}          & \multicolumn{1}{c|}{$f_7$}          & \multicolumn{1}{l|}{$f_8$}          \\ \hline
+        \multicolumn{1}{|c|}{$0\mapsto 0$} & \multicolumn{1}{c|}{$0\mapsto 0$} & \multicolumn{1}{c|}{$0\mapsto 0$} & \multicolumn{1}{c|}{$0\mapsto 0$} & \multicolumn{1}{c|}{$0\mapsto 0$} & \multicolumn{1}{c|}{$0\mapsto 0$}   & \multicolumn{1}{c|}{$0\mapsto 0$}   & \multicolumn{1}{c|}{$0\mapsto 0$}   & \multicolumn{1}{c|}{$0\mapsto 0$}   \\ \hline
+        \multicolumn{1}{|c|}{$1\mapsto 0$} & \multicolumn{1}{c|}{$1\mapsto 0$} & \multicolumn{1}{c|}{$1\mapsto 0$} & \multicolumn{1}{c|}{$1\mapsto 1$} & \multicolumn{1}{c|}{$1\mapsto 1$} & \multicolumn{1}{c|}{$1\mapsto 1$}   & \multicolumn{1}{c|}{$1\mapsto 2$}   & \multicolumn{1}{c|}{$1\mapsto 2$}   & \multicolumn{1}{c|}{$1\mapsto 2$}   \\ \hline
+        \multicolumn{1}{|c|}{$2\mapsto 0$} & \multicolumn{1}{c|}{$2\mapsto 1$} & \multicolumn{1}{c|}{$2\mapsto 2$} & \multicolumn{1}{c|}{$2\mapsto 0$} & \multicolumn{1}{c|}{$2\mapsto 1$} & \multicolumn{1}{c|}{$2\mapsto 2$}   & \multicolumn{1}{c|}{$2\mapsto 0$}   & \multicolumn{1}{c|}{$2\mapsto 1$}   & \multicolumn{1}{c|}{$2\mapsto 2$}   \\ \hline
+                                           &                                   &                                   &                                   &                                   &                                     &                                     &                                     &                                     \\ \cline{1-4} \cline{6-9} 
+        \multicolumn{4}{|c|}{$\text{Hom}(\mathbb{Z}_3,\mathbb{Z}_2)$}                                                                                  & \multicolumn{1}{c|}{}             & \multicolumn{4}{c|}{$\text{Hom}(\mathbb{Z}_3,\mathbb{Z}_3/\mathbb{Z}_2)$}                                                                             \\ \cline{1-4} \cline{6-9} 
+        \multicolumn{1}{|c|}{$0$}          & \multicolumn{1}{c|}{$f_1$}        & \multicolumn{1}{c|}{$f_2$}        & \multicolumn{1}{c|}{$f_3$}        & \multicolumn{1}{c|}{}             & \multicolumn{1}{c|}{$0$}            & \multicolumn{1}{c|}{$f_1$}          & \multicolumn{1}{c|}{$f_2$}          & \multicolumn{1}{c|}{$f_3$}          \\ \cline{1-4} \cline{6-9} 
+        \multicolumn{1}{|c|}{$0\mapsto 0$} & \multicolumn{1}{c|}{$0\mapsto 0$} & \multicolumn{1}{c|}{$0\mapsto 0$} & \multicolumn{1}{c|}{$0\mapsto 0$} & \multicolumn{1}{c|}{}             & \multicolumn{1}{c|}{$0\mapsto [0]$} & \multicolumn{1}{c|}{$0\mapsto [0]$} & \multicolumn{1}{c|}{$0\mapsto [0]$} & \multicolumn{1}{c|}{$0\mapsto [0]$} \\ \cline{1-4} \cline{6-9} 
+        \multicolumn{1}{|c|}{$1\mapsto 0$} & \multicolumn{1}{c|}{$1\mapsto 0$} & \multicolumn{1}{c|}{$1\mapsto 1$} & \multicolumn{1}{c|}{$1\mapsto 1$} & \multicolumn{1}{c|}{}             & \multicolumn{1}{c|}{$1\mapsto [0]$} & \multicolumn{1}{c|}{$1\mapsto [0]$} & \multicolumn{1}{c|}{$1\mapsto [2]$} & \multicolumn{1}{c|}{$1\mapsto [2]$} \\ \cline{1-4} \cline{6-9} 
+        \multicolumn{1}{|c|}{$2\mapsto 0$} & \multicolumn{1}{c|}{$2\mapsto 1$} & \multicolumn{1}{c|}{$2\mapsto 0$} & \multicolumn{1}{c|}{$2\mapsto 1$} & \multicolumn{1}{c|}{}             & \multicolumn{1}{c|}{$2\mapsto [0]$} & \multicolumn{1}{c|}{$2\mapsto [2]$} & \multicolumn{1}{c|}{$2\mapsto [0]$} & \multicolumn{1}{c|}{$2\mapsto [2]$} \\ \cline{1-4} \cline{6-9} 
+        \end{tabular}
+        \end{table}
+    we now see that 
+    $\iota\circ f_1 = f_1$, $\iota\circ f_2 = f_3$, $\iota\circ f_3 = f_4$, therefore we have
+    \[
+        \im(\iota_*) = \{(f_1,f_3),(f_3,f_1),(f_1,f_4),(f_4,f_1),(f_3,f_4),(f_4,f_3)\}\cup\{(0,0),\cdots,(f_8,f_8)\}
+    \]
+    but $\pi\circ f_2 = f_1 = \pi\circ f_5$ hence $(f_2,f_5)\in\ker(\pi_*)$, however $(f_2,f_5)\not\in\im(\iota_*)$.
+\end{counterexample}
+    Weaker result holds, the covariant internal hom functor does preserve chain complexes.
+\begin{proposition}
+    Let $(X_n, d_n)_{n\in\mathbb{Z}}$ be a chain complex and $D$ an act, then 
+    $(\text{Hom}(D,X_n),{d_n}_*)$ is a chain complex.
+\end{proposition}
+\begin{proof}[Proof]
+    Choose $n\in\mathbb{Z}$ and $(f_1,f_2)\in\im({d_{n+1}}_*)$, if 
+    $f_1=f_2$ we are done, otherwise we find $h_1,h_2\in\text{Hom}(D,X_{n+1})$
+    such that $d_{n+1}\circ h_1 = f_1$ and $d_n\circ h_2 = f_2$, then 
+    for all $x\in D$ we have $(f_1(x),f_2(x))\in\im(d_{n+1})\subseteq\ker(d_n)$,
+    which implies $d_n\circ f_1(x)=d_n\circ f_2(x)$ so $(f_1,f_2)\in\ker({f_n}_*)$.
+\end{proof}
+\begin{lemma}[Four lemma]
+    Consider the following commutative diagram, whose rows are exact
+    \[\begin{tikzcd}
+        A & B & C & D \\
+        {A'} & {B'} & {C'} & {D'}
+        \arrow["f", from=1-1, to=1-2]
+        \arrow["r", from=1-1, to=2-1]
+        \arrow["g", from=1-2, to=1-3]
+        \arrow["s", from=1-2, to=2-2]
+        \arrow["h", from=1-3, to=1-4]
+        \arrow["t", from=1-3, to=2-3]
+        \arrow["u", from=1-4, to=2-4]
+        \arrow["{f'}", from=2-1, to=2-2]
+        \arrow["{g'}", from=2-2, to=2-3]
+        \arrow["{h'}", from=2-3, to=2-4]
+    \end{tikzcd}\]
+    then 
+    \begin{enumerate}
+        \item if $s,u$ are monomorphisms and $r$ is an epimorphism, then $t$ is a monomorphism.
+        \item if $r,t$ are epimorphisms and $u$ is a monomorphism, then $s$ is an epimorphsm.
+    \end{enumerate}
+\end{lemma}
+\begin{proof}[Proof]
+    To prove the first part choose $(x,y)\in\ker(t)$ and assume for a contradiction
+    that $x\neq y$. By commutativity of the right square we have 
+    $u(h(x))=u(h(y)) \implies h(x)=h(y)$ since $u$ is a mono by assumption.
+    By exactness at $C$ and the fact that $x\neq y$ there are $x_1,y_1\in B$ such that 
+    $g(x_1)=x$ and $g(y_1)=y$ and $x_1\neq y_1$, then $s(x_1)\neq s(y_1)$, since 
+    $s$ is injective by assumption, moreover we have  
+    \[t(g(x_1))=t(x)=t(y)=t(g(y_1))\]
+    hence $g'(s(x_1))=g'(s(y_1))$, which implies 
+    $(s(x_1)),s(y_1))\in\im f'$ by exactness at $B'$, since 
+    $s(x_1)\neq s(y_1)$ there are $x_2,y_2\in A'$ such that 
+    $f'(x_2)=s(x_1)$ and $f'(y_2)=s(y_1)$. By surjecitvity of $r$
+    we find $x_3,y_3\in A$ such that 
+    $r(x_3)=x_2$ and $r(y_3)=y_2$, then 
+    \[
+        s(f(x_3))=f'(r(x_3)) = f'(x_2) = s(x_1)
+    \]
+    \[
+        s(f(y_3))=f'(r(y_3)) = f'(y_2) = s(y_1)
+    \]
+    by injectivity of $s$ we have 
+    $f(x_3)=x_1$ and $f(y_3)=y_1$, therefore by exactness at $B$
+    \[
+        x = g(x_1) = g(y_1) = y
+    \]
+    we have reached a contradiction.\par
+    To prove the second part choose $y\in C'$, if $y=0$ we are done, since $s(0)=0$, assume
+    that $y\neq 0$, then since $t$ is surjective we find $y_1\in C$ such that 
+    $t(y_1)=g'(y)$, then by exactness at $C'$ and commutativity of the
+    right square we have $u(0) = 0 = h'(g'(y)) = h'(t(y_1)) = u(h(y_1))$,
+    hence $h(0)=0=h(y_1)$, since $u$ is injective. We now have that 
+    $(0,y_1)\in\im(g)$ by exactness at $C$.\par 
+    If $y_1\neq 0$ we find $y_2\in B$ such that 
+    $g(y_2) = y_1$, then 
+    \[
+        g'(s(y_2)) = t(g(y_2)) = t(y_1) = g'(y)
+    \] 
+    so by exactness at $B'$ we have $(s(y_2),y)\in\im(f')$, if $s(y_2)=y$ we are done
+    otherwise we find $z\in A'$ such that $f'(z)=y$ and $z_1\in A$
+    such that $r(z_1)=z$, then $y=f'(r(z_1)) = s(f(z_1))$ by the commutativity
+    of the left square.\par
+    If $y_1=0$, then $g'(y)=t(y_1)=0=g'(0)$, therefore $(y,0)\in\im(f')$
+    by exactness at $B'$, by assumption $y\neq 0$ so there exists $z\in A'$ 
+    such that $f'(z)=y$ and $z_1\in A$ satisfying $r(z_1)=z$ and again we have
+    by commutativity of the left square   
+    \[
+        y = f'(r(z_1)) = s(f(z_1))
+    \]
+    which concludes the proof.
+\end{proof}
+\begin{corollary}[Five lemma]
+    Consider the following commutative diagram with exact rows
+    \[\begin{tikzcd}
+        A & B & C & D & E \\
+        {A'} & {B'} & {C'} & {D'} & {E'}
+        \arrow["f", from=1-1, to=1-2]
+        \arrow["r", from=1-1, to=2-1]
+        \arrow["g", from=1-2, to=1-3]
+        \arrow["s", from=1-2, to=2-2]
+        \arrow["h", from=1-3, to=1-4]
+        \arrow["t", from=1-3, to=2-3]
+        \arrow["k", from=1-4, to=1-5]
+        \arrow["u", from=1-4, to=2-4]
+        \arrow["v", from=1-5, to=2-5]
+        \arrow["{f'}", from=2-1, to=2-2]
+        \arrow["{g'}", from=2-2, to=2-3]
+        \arrow["{h'}", from=2-3, to=2-4]
+        \arrow["{k'}", from=2-4, to=2-5]
+    \end{tikzcd}\]
+    if $s,u$ are isomorphisms, $r$ is an epimorphism and $v$ is a monomorphism, then $t$ is an isomorphism.
+\end{corollary}
+\begin{proof}[Proof]
+    By applying the first and second part of the lemma to our diagram we 
+    get that $t$ is a monomorphism and an epimorphism, therefore an isomorphism, 
+    since the category of acts is balanced.
+\end{proof}
+\begin{definition}
+    A sequence of chain complexes 
+\[\begin{tikzcd}
+	0 & {(A,a)} & {(B,b)} & {(C,c)} & 0
+	\arrow[from=1-1, to=1-2]
+	\arrow["f", from=1-2, to=1-3]
+	\arrow["g", from=1-3, to=1-4]
+	\arrow[from=1-4, to=1-5]
+\end{tikzcd}\]
+    (where by $0$ we mean $\cdots\to 0\to0\to0\to\cdots$) is exact 
+    if for each $n\in\mathbb{Z}$ we have that 
+    \[\begin{tikzcd}
+	0 & {A_n} & {B_n} & {C_n} & 0
+        \arrow[from=1-1, to=1-2]
+        \arrow["{f_n}", from=1-2, to=1-3]
+        \arrow["{g_n}", from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    is a Rees short exact sequence.
 \end{definition}
 \begin{proposition}
-    Acts with their homomorphisms form a category, which we will denote $\cat{$\mathcal{S}$-Act}$.
+    If 
+        \[\begin{tikzcd}
+        0 & {(A,a)} & {(B,b)} & {(C,c)} & 0
+        \arrow[from=1-1, to=1-2]
+        \arrow["f", from=1-2, to=1-3]
+        \arrow["g", from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    is a short exact sequence of chain complexes, then the sequence
+    \[\begin{tikzcd}
+	{h_n(A)} & {h_n(B)} & {h_n(C)}
+	\arrow["{h_n(f)}", from=1-1, to=1-2]
+	\arrow["{h_n(g)}", from=1-2, to=1-3]
+    \end{tikzcd}\]
+    is Rees exact.
 \end{proposition}
-\begin{construction}[Powerset Act Monad (TBA)]
-    Consider an act $\act{S}{A}$, then we have an endofunctor
-    $\mathcal{P}$ in $\cat{$\mathcal{S}$-Act}$. 
-    \[\act{S}{A} \mapsto \act{S}{P(A)}\]
-    given 
-\end{construction}
-\begin{definition}
-    Let $M$ and $N$ be monoids, $f: M \to N$, then we have a functor $\Gamma_f : \actcat{M} \to \actcat{N}$.
-\end{definition}
+\begin{proof}[Proof]
+    Choose $[x,y]\in h_n(A)$, then we have 
+    \[
+        (h_n(g)\circ h_n(f))([x,y]) = [g_n(f_n(x)),g_n(f_n(y))] = [0,0] \implies \im(h_n(f))\subseteq\ker(h_n(g))
+    \]
+\end{proof}
+\begin{proposition}
+    Consider a short exact sequence of chain complexes
+    \[\begin{tikzcd}
+	0 & {(A,c)} & {(B,d)} & {(C,e)} & 0
+	\arrow[from=1-1, to=1-2]
+	\arrow["f", from=1-2, to=1-3]
+	\arrow["g", from=1-3, to=1-4]
+	\arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    if any pair of chain complexes $A$,$B$ and $C$ is exact, so is the third.
+\end{proposition}
+\begin{proof}[Proof]
+    Choose $n\in\mathbb{Z}$ and assume $B$ and $C$ are exact. We 
+    have the following commutative diagram
+    \[\begin{tikzcd}
+        0 & {A_{n+1}} & {B_{n+1}} & {C_{n+1}} & 0 \\
+        0 & {A_n} & {B_n} & {C_n} & 0 \\
+        0 & {A_{n-1}} & {B_{n-1}} & {C_{n-1}} & 0 \\
+        0 & {A_{n-2}} & {B_{n-2}} & {C_{n-2}} & 0
+        \arrow[from=1-1, to=1-2]
+        \arrow["{{{f_{n+1}}}}", hook', from=1-2, to=1-3]
+        \arrow["{{{a_{n+1}}}}", from=1-2, to=2-2]
+        \arrow["{{{g_{n+1}}}}", two heads, from=1-3, to=1-4]
+        \arrow["{{{b_{n+1}}}}", from=1-3, to=2-3]
+        \arrow[from=1-4, to=1-5]
+        \arrow["{{{c_{n+1}}}}", from=1-4, to=2-4]
+        \arrow[from=2-1, to=2-2]
+        \arrow["{{{f_n}}}", hook', from=2-2, to=2-3]
+        \arrow["{{{a_n}}}", from=2-2, to=3-2]
+        \arrow["{{{g_n}}}", two heads, from=2-3, to=2-4]
+        \arrow["{{{b_n}}}", from=2-3, to=3-3]
+        \arrow[from=2-4, to=2-5]
+        \arrow["{{{c_{n}}}}", from=2-4, to=3-4]
+        \arrow[from=3-1, to=3-2]
+        \arrow["{{{f_{n-1}}}}", hook', from=3-2, to=3-3]
+        \arrow["{a_{n-1}}", from=3-2, to=4-2]
+        \arrow["{{{g_{n-1}}}}", two heads, from=3-3, to=3-4]
+        \arrow["{b_{n-1}}", from=3-3, to=4-3]
+        \arrow[from=3-4, to=3-5]
+        \arrow["{c_{n-1}}", from=3-4, to=4-4]
+        \arrow[from=4-1, to=4-2]
+        \arrow["{f_{n-2}}", hook', from=4-2, to=4-3]
+        \arrow["{g_{n-2}}", two heads, from=4-3, to=4-4]
+        \arrow[from=4-4, to=4-5]
+    \end{tikzcd}\]
+    since we are dealing with chain complexes, it suffices to show $\ker(a_n)\subseteq\im(a_{n+1})$.
+    Choose $x,y\in A_n$ such that $a_n(x)=a_n(y)$ and assume $x\neq y$ (otherwise we are done), then we have
+    $b_n(f_n(x))=f_{n-1}(a_n(x))=f_{n-1}(a_n(y))=b_n(f_n(y))$ which implies 
+    $(f_n(x),f_n(y))\in\im(b_{n+1})$, since $f_n(x)\neq f_n(y)$ there are 
+    $x_1,y_1\in B_{n+1}$ such that $b_{n+1}(x_1)=f_n(x)$ and $b_{n+1}(y_1)=f_n(y)$.
+    Then we have 
+    \[
+    c_{n+1}(g_{n+1}(x_1))=g_n(b_{n+1}(x_1))=g_n(f_n(x))=0=g_n(f_n(y))= g_n(b_{n+1}(y_1))=c_{n+1}(g_{n+1}(y_1))
+    \]
+    therefore $(g_{n+1}(x_1),g_{n+1}(y_1))\in\im(c_{n+2})$ by exactness.\par
+    If $g_{n+1}(x_1)=g_{n+1}(y_1)$, then $(x_1,y_1)\in\im(f_{n+1})$, we know
+    $x_1\neq y_1$, else $f_n(x)=f_n(y) \implies x=y$, a contradiction.
+    So there are $x_2,y_2\in A_{n+1}$ such that 
+    $f_{n+1}(x_2)=x_1$ and $f_{n+1}(y_2)=y_1$, but then 
+    \[
+        f_{n}(a_{n+1}(x_2)) = b_{n+1}(f_{n+1}(x_2)) = b_{n+1}(x_1) = f_n(x) \implies x=a_{n+1}(x_2)
+    \] 
+    \[
+        f_{n}(a_{n+1}(y_2)) = b_{n+1}(f_{n+1}(y_2)) = b_{n+1}(y_1) = f_n(y) \implies y=a_{n+1}(y_2)
+    \]
+    therefore $(x,y)\in\im(a_{n+1})$ as required.\par
+    If $g_{n+1}(x_1)\neq g_{n+1}(y_1)$, then since $(g_{n+1}(x_1),g_{n+1}(y_1))\in\im(c_{n+2})$ we find
+    $z_1,w_1\in C_{n+2}$ such that $c_{n+2}(z_1)=g_{n+1}(x_1)$ and $c_{n+2}(w_1)=g_{n+1}(y_1)$. Since
+    $g_{n+2}$ is an epimorphism we find $z_2,w_2\in B_{n+2}$ such that 
+    $g_{n+2}(z_2)=z_1$ and $g_{n+2}(w_2)=w_1$. Now we have 
+    \[
+        g_{n+1}(b_{n+2}(z_2)) = c_{n+2}(g_{n+2}(z_2))=c_{n+2}(z_1)=g_{n+1}(x_1)
+    \]
+    \[
+        g_{n+1}(b_{n+2}(w_2)) = c_{n+2}(g_{n+2}(w_2)) = c_{n+2}(w_1) = g_{n+1}(y_1)
+    \]
+    which implies that $(b_{n+2}(z_2),x_1)\in\im(f_{n+1})$ and $(b_{n+2}(w_2),y_1)\in\im(f_{n+1})$
+    by exactness. Now assume that $x_1=b_{n+2}(z_2)$ then
+    \[
+        f_n(x)=b_{n+1}(x_1)= b_{n+1}(b_{n+2}(z_2)) = 0 = f_{n}(0) \implies x=0=a_{n+1}(0)
+    \]
+    by symmetry the same holds for $y$, but both cannot hold at the same time since we would have $x=y$ which would be a contradiction.
+    Without loss of generality we will only consider the case when $x_1\neq b_{n+2}(z_2)$ and $y=0=a_{n+1}(0)$, then 
+    since $(x_1,b_{n+2}(z_2))\in\im(f_{n+1})$ we find $x_2\in A_{n+1}$ such that 
+    $f_{n+1}(x_2)=x_1$
+    then 
+    \[
+        f_{n}(a_{n+1}(x_2)) = b_{n+1}(f_{n+1}(x_2)) = b_{n+1}(x_1) = f_n(x) \implies a_{n+1}(z_1)=x
+    \]\par
+    Now assume that $A$ and $B$ are exact. Choose $x,y\in\ker(c_n)$, $x\neq y$, find $x_1,y_1\in B_n$ such that 
+    $g_n(x_1)=x$,$g_n(y_1)=y$, then $g_{n-1}(b_n(x_1))=c_n(x)=c_n(y)=g_{n-1}(b_n(y_1))$
+    which implies $(b_n(x_1),b_n(y_1))\im f_{n-1}$.\par
+    If $b_n(x_1)=b_n(y_1)$, then $(x_1,y_1)\in\im(b_{n+1})$ (note that 
+    we have $x_1\neq y_1$, because $x\neq y$) so we find $b,c\in B_{n+1}$ 
+    such that $b_{n+1}(b) = x_1$ and $b_{n+1}(c)=y_1$, then 
+    \[
+        x = g_n(x_1) = g_n(b_{n+1}(b)) = c_{n+1}(g_{n+1}(b))
+    \] 
+    \[
+        y = g_n(y_1) = g_n(b_{n+1}(c)) = c_{n+1}(g_{n+1}(c)) 
+    \]
+    therefore $(x,y)\in\im(c_{n+1})$.\par
+    If $b_n(x_1)\neq b_n(y_1)$, then since $(b_n(x_1),b_n(y_1))\in\im(f_{n-1})$
+    we find $x_2,y_2\in A_{n-1}$ such that $f_{n-1}(x_2)=b_n(x_1)$ and 
+    $f_{n-1}(y_2) = b_n(y_1)$. Now we compute
+    \[
+    f_{n-2}(a_{n-1}(x_2)) = b_{n-1}(b_n(x_1)) = 0 = b_{n-1}(b_n(y_1)) =
+    f_{n-2}(a_{n-1}(y_2))
+    \]
+    hence $a_{n-1}(x_2)=a_{n-1}(y_2)$ and by exactness $(x_2,y_2)\in\im(a_n)$. 
+    If $x_2=y_2$ we would have $b_n(x_1)=b_n(y_1)$ which contradicts our assumption 
+    so we find $x_3,y_3\in A_n$ such that $a_n(x_3)=x_2$ and $a_n(y_3)=y_2$
+    then $b_n(f_n(x_3)) = f_{n-1}(a_n(x_3)) = b_n(x_1)$ and similarly 
+    $b_n(f_n(y_3)) = b_n(y_1)$. So by exactness $(f_n(x_3),x_1)\in\im(b_{n+1})$
+    and $(f_n(y_3),y_1)\in\im(b_{n+1})$. From now on we will only consider $(x_1,f_n(x_3))$
+    because the same reasoning applies to the other pair. If $f_n(x_3)=x_1$, then 
+    $x=g_n(x_1) = g_n(f_n(x_3)) = 0 = c_{n+1}(0)$. If $f_n(x_3)\neq x_1$, then we find 
+    $z_1\in B_{n+1}$ such that $x_1=b_{n+1}(z_1)$, then 
+    \[
+        x = g_n(x_1) = g_n(b_{n+1}(z_1)) = c_{n+1}(g_{n+1}(z_1))
+    \]
+    in either case $x$ in in the image of $c_{n+1}$ as required.\par 
+    Finally assume that $A$ and $C$ are exact. Choose $(x,y)\in\ker(b_n)$,$x\neq y$, then 
+    \[
+    c_n(g_n(x)) = g_{n-1}(b_n(x)) = g_{n-1}(b_n(y)) = c_n(g_n(y)) \implies (g_n(x),g_n(y))\in\im(c_{n+1})
+    \]
+    If $g_n(x)=g_n(y)$, then $(x,y)\in\im(f_n)$, we find $x_1,y_1\in A_n$
+    such that $f_n(x_1)=x$ and $f_n(y_1)=y$, then $x_1\neq y_1$ since $x\neq y$ and we have 
+    \[
+        f_{n-1}(a_n(x_1)) = b_n(f_n(x_1)) = b_n(x) = b_n(y) = f_{n-1}(a_n(y_1)) \implies a_n(x_1)=a_n(y_1)
+    \]
+    hence by exactness we find $x_2, y_2\in A_{n+1}$ such that 
+    $a_{n+1}(x_2) = x_1$ and $A_{n+1}(y_2)=y_1$, then 
+    $x=f_{n}(a_{n+1}(x_2)) = b_{n+1}(f_{n+1}(x_2))$ and similarly 
+    $y = b_{n+1}(f_{n+1}(y_2))$, thus $(x,y)\in\im(b_{n+1})$. \par 
+    If $g_{n}(x)\neq g_n(y)$, then we find $z_1,w_1\in C_{n+1}$ such that 
+    $c_{n+1}(z_1)=g_n(x)$, $c_{n+1}(w_1)=g_n(y)$. Next we find $z_2,w_2\in B_{n+1}$
+    such that $g_{n+1}(z_2) = z_1$, $g_{n+1}(w_2) = w_1$, then 
+    $g_n(b_{n+1}(z_2)) = c_{n+1}(g_{n+1}(z_2)) = g_n(x)$ and 
+    $g_n(b_{n+1}(w_2)) = c_{n+1}(g_{n+1}(w_2)) = g_n(y)$, thus 
+    $(b_{n+1}(z_2),x)\in\im(f_n)$,$(b_{n+1}(w_2),y)\in\im(f_n)$.\par 
+    If $x=b_{n+1}(z_2)$ and $y=b_{n+1}(w_2)$ we are done. Assume first that 
+    $x\neq b_{n+1}(z_2)$ and $y=b_{n+1}(w_2)$. We find $r_1\in A_n$ such that 
+    $f_n(r_1)=x$, then 
+    \[
+        f_{n-1}(a_n(r_1)) = b_n(f_{n}(r_1)) = b_n(x) = b_n(y) = b_n(b_{n+1}(w_2)) = 0 = f_{n-1}(0)
+    \]
+    The penultimate equality follows from the fact that $(B,b)$ is a chain complex. Since $f_{n-1}$
+    is a monomorphism we have $a_n(r_1)=0=a_n(0)$, so $(r_1,0)\in\im(a_{n+1})$. If 
+    $r_1=0$, then $x=0=b_{n+1}(0)$. Assume $r_1\neq 0$, then we find $r_2\in A_{n+1}$ such that 
+    $a_{n+1}(r_2) =r_1$, then $x= f_{n}(a_{n+1}(r_2)) = b_{n+1}(f_{n+1}(r_2))$ 
+    and we are done.\par 
+    The case $x=b_{n+1}(z_2)$ and $y\neq b_{n+1}(w_2)$ resolves in the same way as the last one, by symmetry.\par 
+    Assume $x\neq b_{n+1}(z_2)$ and $y \neq b_{n+1}(w_2)$, then we find $r_1,s_1\in A_n$ such that 
+    $f_n(r_1)=x$,$f_n(s_1)=y$. We have 
+    \[
+    f_{n-1}(a_n(r_1))=b_n(f_n(r_1))=b_n(x)=b_n(y)=b_n(f_n(s_1))=
+    f_{n-1}(a_n(s_1)) \implies a_n(r_1) = a_n(s_1)
+    \]
+    We cannot have $r_1=s_1$, since it would contradict our assumption $x\neq y$. So 
+    we find $r_2,s_2\in A_{n+1}$ such that $a_{n+1}(r_2)=r_1$,$a_{n+1}(s_2)=s_1$, then 
+    \[
+        x = f_n(r_1) = f_n(a_{n+1}(r_2)) = b_{n+1}(f_{n+1}(r_2))
+    \]
+    \[
+        y = f_n(s_1) = f_n(a_{n+1}(s_2)) = b_{n+1}(f_{n+1}(s_2))
+    \]
+    which concludes the proof.
+\end{proof}
+\begin{corollary}[3x3 lemma]
+    Consider the following commutative diagram, whose rows are Rees exact
+    \[\begin{tikzcd}
+        & 0 & 0 & 0 \\
+        0 & {A_3} & {B_3} & {C_3} & 0 \\
+        0 & {A_2} & {B_2} & {C_2} & 0 \\
+        0 & {A_1} & {B_1} & {C_1} & 0 \\
+        & 0 & 0 & 0
+        \arrow[from=1-2, to=2-2]
+        \arrow[from=1-3, to=2-3]
+        \arrow[from=1-4, to=2-4]
+        \arrow[from=2-1, to=2-2]
+        \arrow["{f_3}", from=2-2, to=2-3]
+        \arrow["{r_3}", from=2-2, to=3-2]
+        \arrow["{g_3}", from=2-3, to=2-4]
+        \arrow["{r_2}", from=2-3, to=3-3]
+        \arrow[from=2-4, to=2-5]
+        \arrow["{r_1}", from=2-4, to=3-4]
+        \arrow[from=3-1, to=3-2]
+        \arrow["{f_2}", from=3-2, to=3-3]
+        \arrow["{s_3}", from=3-2, to=4-2]
+        \arrow["{g_2}", from=3-3, to=3-4]
+        \arrow["{s_2}", from=3-3, to=4-3]
+        \arrow[from=3-4, to=3-5]
+        \arrow["{s_1}", from=3-4, to=4-4]
+        \arrow[from=4-1, to=4-2]
+        \arrow["{f_1}", from=4-2, to=4-3]
+        \arrow[from=4-2, to=5-2]
+        \arrow["{g_1}", from=4-3, to=4-4]
+        \arrow[from=4-3, to=5-3]
+        \arrow[from=4-4, to=4-5]
+        \arrow[from=4-4, to=5-4]
+    \end{tikzcd}\]
+    \begin{enumerate}
+        \item If the first and the second columns are exact, then so is the third.
+        \item If the second and the third columns are exact, then so is the first.
+        \item If the first and the third columns are exact and additionaly $s_2\circ r_2=0$, then so is the second.
+    \end{enumerate}
+\end{corollary}
+\begin{proof}[Proof]
+    For the first part we will have to show, that the sequence 
+    \[\begin{tikzcd}
+        \cdots & 0 & {C_3} & {C_2} & {C_1} & 0 & \cdots
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow["{r_1}", from=1-3, to=1-4]
+        \arrow["{s_1}", from=1-4, to=1-5]
+        \arrow[from=1-5, to=1-6]
+        \arrow[from=1-6, to=1-7]
+    \end{tikzcd}\]
+    is a chain complex. It suffices to prove that $\im(r_1)\subseteq\ker(s_1)$.
+    We have to show $s_1\circ r_1 = 0$, since $g_3$ is epic we have 
+    \[
+        s_1\circ r_1\circ g_3 = s_1\circ g_2\circ r_2 = g_1\circ s_2\circ s_1 = g_1 \circ 0 = 0 = 0\circ g_3 \implies s_1\circ r_1 = 0
+    \]
+    Now applying the previous proposition to the evident chain complex yields the statement.\par
+    Assume now that the second and the third columns are exact. We again only have to show that 
+    $s_3\circ r_3 = 0$. We have 
+    \[
+    f_1\circ s_3\circ r_3 = s_2 \circ f_2 \circ r_3 = s_2 \circ r_2 \circ f_3 = 0\circ f_3 = 0 = f_1\circ 0 \implies s_3\circ r_3 = 0
+    \]
+    For the third part we can just directly apply the previous proposition. This completes the proof.
+\end{proof}

@@ -4,20 +4,29 @@
 \usetikzlibrary{babel}
 \usepackage{amsmath}
 \usepackage[czech]{babel}
+\usepackage{booktabs}
+\usepackage{etoolbox}
+\preto\tabular{\shorthandoff{-}}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{textcomp}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{amsthm}
+\usepackage{float}
+\usepackage{tabularray}
+
 \theoremstyle{plain}
 \newtheorem{lemma}{Lemma}[section]
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{proposition}{Proposition}[section]
-\newtheorem{example}{Example}[section]
 \newtheorem{construction}{Construction}[section]
+\newtheorem{corollary}{Corollary}[section]
+
 \theoremstyle{definition}
+\newtheorem{example}{Example}[section]
 \newtheorem{definition}{Definition}[section]
+\newtheorem{counterexample}{Counterexample}[section]
 \theoremstyle{remark}
 \newtheorem*{remark}{Remark}
 \newcommand*{\funcat}[2]{\left[#1,#2 \right]}
@@ -32,5 +41,6 @@
 \newcommand*{\circop}{\circ_{\text{op}}}
 \newcommand*{\homc}[3]{#1(#2,#3)}
 \newcommand*{\ins}[1]{\iota_{#1}}
+\newcommand*{\im}{\text{im}}
 \newcommand*{\act}[2]{_{\mathcal{#1}}#2}
 \newcommand*{\actcat}[1]{\mathcal{#1}-\mathrm{\textbf{Act}}}
