@@ -239,6 +239,33 @@ From now on by acts we will mean pointed acts, objects of the category $\actcat{
     hence $\iota(x_1)=(x_1,y_1)$ and $\iota(x_2)=(x_2,y_2)$.
     In conclusion $\ker(\lambda)=\im(\iota)$ as required.
 \end{example}
+\begin{definition}
+    Let $A$ be an $\mathcal{S}$ act. We say, that $A$ is \textbf{torsion free}, if 
+    for $r\in S$ a left cancellative element we have 
+    \[
+        \forall x,y\in S : r(x)=r(y) \implies x=y
+    \]
+\end{definition}
+\begin{proposition}
+    Consider the Rees short exact sequence of acts 
+    \[\begin{tikzcd}
+        0 & A & B & C & 0
+        \arrow[from=1-1, to=1-2]
+        \arrow["f", from=1-2, to=1-3]
+        \arrow["g", from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    if $A$ and $C$ are torsion free, then $B$ is torsion free.
+\end{proposition}
+\begin{proof}[Proof]
+    Suppose $rx=ry$ and assume for a contradiction that $x\neq y$. Then we have 
+    $rg(x)=rg(y) \implies g(x)=g(y)$, by exactness there exists $z,w\in A$ such that 
+    $f(z)=x$ and $f(w)=y$, then $f(rz)=rf(z)=rx=ry=rf(w)=f(rw) \implies rz=rw$, then 
+    $z=w$, since $A$ is torsion free, which implies $x=y$ a contradiction.
+\end{proof}
+\begin{corollary}
+    Coproduct of torsion free acts is torsion free.
+\end{corollary}
 \begin{lemma}
     Consider the following commutative diagram
     \[\begin{tikzcd}
@@ -383,8 +410,8 @@ counterexample.
     \end{tikzcd}\]
     then 
     \begin{enumerate}
-        \item if $s,u$ are monomorphisms and $r$ is an epimorphism, then $t$ is a monomorphism.
-        \item if $r,t$ are epimorphisms and $u$ is a monomorphism, then $s$ is an epimorphsm.
+        \item If $s,u$ are monomorphisms and $r$ is an epimorphism, then $t$ is a monomorphism.
+        \item If $r,t$ are epimorphisms and $u$ is a monomorphism, then $s$ is an epimorphsm.
     \end{enumerate}
 \end{lemma}
 \begin{proof}[Proof]
@@ -463,6 +490,29 @@ counterexample.
     get that $t$ is a monomorphism and an epimorphism, therefore an isomorphism, 
     since the category of acts is balanced.
 \end{proof}
+\begin{corollary}[Short five lemma]
+    Consider the following commutative diagram with Rees exact rows
+    \[\begin{tikzcd}
+        0 & A & B & C & 0 \\
+        0 & {A'} & {B'} & {C'} & 0
+        \arrow[from=1-1, to=1-2]
+        \arrow["f", from=1-2, to=1-3]
+        \arrow["r", from=1-2, to=2-2]
+        \arrow["g", from=1-3, to=1-4]
+        \arrow["s", from=1-3, to=2-3]
+        \arrow[from=1-4, to=1-5]
+        \arrow["t", from=1-4, to=2-4]
+        \arrow[from=2-1, to=2-2]
+        \arrow["{f'}", from=2-2, to=2-3]
+        \arrow["{g'}", from=2-3, to=2-4]
+        \arrow[from=2-4, to=2-5]
+    \end{tikzcd}\]
+    \begin{enumerate}
+        \item If $r$ and $t$ are monomorphisms, then $s$ is a monomorphism.
+        \item If $r$ and $t$ are epimorphisms, then $s$ is an epimorphism.
+        \item If $r$ and $t$ are isomorphism, then $s$ is an isomorphim. 
+    \end{enumerate}
+\end{corollary}
 \begin{definition}
     A sequence of chain complexes 
 \[\begin{tikzcd}
@@ -505,6 +555,63 @@ counterexample.
     \[
         (h_n(g)\circ h_n(f))([x,y]) = [g_n(f_n(x)),g_n(f_n(y))] = [0,0] \implies \im(h_n(f))\subseteq\ker(h_n(g))
     \]
+\end{proof}
+\begin{proposition}
+    Consider a finite nonempty collection of Rees short exact sequences 
+    \[\begin{tikzcd}
+        0 & {X_1} & {Y_1} & {Z_1} & 0 \\
+        0 & {X_n} & {Y_n} & {Z_n} & 0
+        \arrow[from=1-1, to=1-2]
+        \arrow["{f_1}", from=1-2, to=1-3]
+        \arrow["\vdots"{description, pos=0.4}, draw=none, from=1-2, to=2-2]
+        \arrow["{g_1}", from=1-3, to=1-4]
+        \arrow["\vdots"{description, pos=0.4}, draw=none, from=1-3, to=2-3]
+        \arrow[from=1-4, to=1-5]
+        \arrow["\vdots"{description, pos=0.4}, draw=none, from=1-4, to=2-4]
+        \arrow[from=2-1, to=2-2]
+        \arrow["{f_n}", from=2-2, to=2-3]
+        \arrow["{g_n}", from=2-3, to=2-4]
+        \arrow[from=2-4, to=2-5]
+    \end{tikzcd}\]
+    then the following sequence is Rees exact
+    \[\begin{tikzcd}
+        0 & {\displaystyle\bigoplus_{i=1}^n X_i} & {\displaystyle\bigoplus_{i=1}^n Y_i} & {\displaystyle\bigoplus_{i=1}^n Z_i} & 0
+        \arrow[from=1-1, to=1-2]
+        \arrow["f", from=1-2, to=1-3]
+        \arrow["g", from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+\end{proposition}
+\begin{proof}[Proof]
+    Choose $(a_1,\dots, a_n)\in\bigoplus_{i=1}^n X_i$, then we find $k\in\{1,\dots,n\}$ 
+    such that $a_1=\dots=a_{k-1}=a_{k+1}=\dots=a_n=0$, hence 
+    \[
+        (g\circ f)(a_1,\dots, a_n) = (0,\dots,g_k(f_k(a_k)),\dots,0) = (0,\dots,0)\implies\im(f)\subseteq\ker(g)
+    \]
+    Choose $((a_1,\dots,a_n),(b_1,\dots,b_n))\in\ker(g)$ and assume that $(a_1,\dots,a_n)\neq(b_1,\dots,b_n)$, 
+    otherwise we are done. We find $i,j\in\{1,\dots,n\}$ such that 
+    $a_1=\dots=a_{i-1}=a_{i+1}=\dots=a_n=0$ and $b_1=\dots=b_{j-1}=b_{j+1}=\dots=b_n=0$. \par 
+    If $i=j$, then $g_i(a_i)=g_i(b_i)$, therefore $(a_i,b_i)\in\im(f_i)$, by assumption we have $a_i\neq b_i$, so 
+    we find $z,w\in X_i$ such that $f_i(z)=a_i$ and $f_i(w)=b_i$, then 
+    \[
+        f(0,\dots,0,z,0,\dots,0) = (0,\dots,0,a_i,0,\dots,0) = (a_1,\dots, a_n)
+    \]
+    \[
+        f(0,\dots,0,w,0,\dots,0) = (0,\dots,0,b_i,0,\dots,0) = (b_1,\dots, b_n)
+    \]
+    If $i\neq j$, then $g_i(a_i) = 0$ and $g_j(b_j) = 0$. If $a_i=0$ then $(0,\dots,0)\mapsto(a_1,\dots,a_n)$, if 
+    $a_i\neq 0$ we find $z\in X_i$ such that $f_i(z)=a_i$, and again 
+    \[
+        f(0,\dots,0,z,0,\dots,0) = (0,\dots,0,a_i,0,\dots,0) = (a_1,\dots, a_n)
+    \]
+    similarly for $b_i$, therefore $\ker(g)\subseteq\im(f)$, which proves exactness at $\bigoplus_{i=1}^n Y_i$.\par 
+    Let $(a_1,\dots,a_n)\in\bigoplus_{i=1}^n Z_i$, then find $i$ such that $a_j=0$ for $j\neq i$, since 
+    $g_i$ is surjective we find $z\in Y_i$ such that $g_i(z)=a_i$, then $g(0,\dots,0,z,0,\dots,0) = (a_1,\dots,a_n)$.
+    Thus $g$ is surjective.\par 
+    Suppose $f(a_1,\dots,a_n)=f(b_1,\dots,b_n)$, then we again find $i,j\in\{1,\dots,n\}$, such that 
+    $a_k=0$ for $k\neq i$ and $b_=0$ for $l\neq j$. \par If $i\neq j$, then we have $f(a_i)=0=f(0) \implies a_i=0$ and 
+    $f(b_j)=0=f(0) \implies b_j=0$, then we have trivially $(a_1,\dots,a_n)=(b_1,\dots,b_n)$. 
+    If $i=j$, then $f_i(a_i)=f_i(b_i) \implies a_i=b_i$, so $(a_1,\dots,a_n)=(b_1,\dots,b_n)$. 
 \end{proof}
 \begin{proposition}
     Consider a short exact sequence of chain complexes
