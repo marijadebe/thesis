@@ -102,6 +102,118 @@
         It is a well defined act. Take $(s,x)\sim(r,y)$
     \end{remark}
 \fi
+\subsection{Localisation of a pointed monoids and acts}
+\begin{construction}
+    Let $(S,\cdot,0,1)$ be a pointed commutative monoid and 
+    $K\subseteq S$ a submonoid of $S$ such that $0\not\in K$. 
+    We define $K^{-1}S = S\times K/\sim$, where 
+    \[
+        (s_1,k_1)\sim(s_2,k_2)\iff \exists v\in K : s_1k_2v = s_2k_1v 
+    \]
+    then $K^{-1}S$ is well-defined and admits the structure of a pointed commutative monoid.
+\end{construction}
+\begin{proof}[Proof]
+    Relation $\sim$ is reflexive, since $1\in K$. It is clearly symmetric. 
+    Let $(s_1,k_1)\sim(s_2,k_2)\sim(s_3,k_3)$, so there are $v,w\in K$ such that 
+    $s_1k_2v = s_2k_1v$ and $s_2k_3w = s_3k_2w$, then 
+    \[
+    (s_1k_3)k_2vw = s_1k_2vk_3w = s_2k_1vk_3w = s_2k_3wk_1v = s_3k_2wk_1v = (s_3k_1)k_2vw
+    \]
+    therefore $(s_1,k_1)\sim(s_3,k_3)$. We will denote the equivalence classes as
+    $\frac{s}{k} = [s,k]_{\sim}$. Define 
+    \[
+        \frac{s_1}{k_1}\cdot\frac{s_2}{k_2} = \frac{s_1 s_2}{k_1 k_2}
+    \]
+    to prove well-definedness assume $(s_1,k_1)\sim(d_1,l_1)$ and $(s_2,k_2)\sim(d_2,l_2)$, then 
+    we find $u,v\in K$ such that 
+    $s_1l_1u=d_1k_1v$ and $s_2l_2v = d_2k_2v$, then 
+    \[
+    s_1s_2l_1l_2uv = (s_1l_1u)(s_2l_2)v = d_1k_1ud_2k_2v = d_1d_2k_1k_2uv 
+    \]
+    thus
+    \[
+        \frac{s_1}{k_1}\cdot\frac{s_2}{k_2} = \frac{s_1s_2}{k_1k_2} = \frac{d_1d_2}{l_1l_2} = \frac{d_1}{l_1}\cdot\frac{d_2}{l_2}
+    \]
+    We define the unit $1 = \frac{1}{1}$ and $0 = \frac{0}{1}$. The associativity, commutativity and unit axioms are clearly 
+    satisfied. We have 
+    \[
+        0\cdot\frac{s}{k} = \frac{0}{k} = \frac{0}{1} = 0
+    \]
+    since $(0,k)\sim(0,1)$, because $0\cdot 1 = 0 = 0\cdot k$. 
+\end{proof}
+\begin{definition}
+    We define the \textbf{localisation map} $\Lambda: S \to K^{-1}S$ by $\Lambda(x) = \frac{x}{1}$. It is a 
+    homomorphism of pointed monoids.  
+\end{definition}
+\begin{construction}
+    Let $K\subseteq S$ be a submonoid of $S$ such that $0\not\in S$ and $A$ an $S$ act. We define 
+    $K^{-1}A = A\times K/\sim$, where 
+    \[
+        (a_1,k_1)\sim(a_2,k_2) \iff \exists u\in K : uk_1 a_2 = uk_2 a_1
+    \]
+    then $K^{-1}A$ admits the structure of a pointed act.
+\end{construction}
+\begin{proof}[Proof]
+    The relation is clearly a reflexive and symmetric relation. Assume 
+    that $(k_1,a_1)\sim(k_2,a_2)\sim(k_3,a_3)$, so 
+    $uk_1a_2 = uk_2a_1$ and $vk_2a_3 = vk_3a_2$ for some $u,v\in K$, then 
+    \[
+        uvk_2(k_1a_3) = uk_1vk_2a_3 = uk_1vk_3a_2 = vk_3uk_1a_2 = vk_3uk_2a_1 = uvk_2(k_3a_1)
+    \] 
+    thus the relation is an equivalence. Denote the equivalence classes as $\frac{a}{k} = [a,k]_\sim$. 
+    Define the action of $K^{-1}S$ on $K^{-1}A$ by 
+    \[
+        \frac{s_1}{k_1}\cdot\frac{a}{k} = \frac{s_1 a}{k_1 k}
+    \]
+    to show well-definedness assume $\frac{s_1}{k_1}=\frac{s_2}{k_2}$ and $\frac{a_1}{l_1}=\frac{a_2}{l_2}$, then 
+    we find $u,v\in K$ such that $s_1k_2u = s_2k_1u$ and $vl_1a_2 = vl_2a_1$, then we have 
+    \[
+        uvk_2l_2s_1a_1 = s_1k_2uvl_2a_1 = s_2k_1uvl_1a_2 = uvk_1l_1s_2a_2 \implies \frac{s_1a_1}{k_1l_1} = \frac{s_2a_2}{k_2l_2}
+    \]
+    so 
+    \[
+        \frac{s_1}{k_1}\cdot\frac{a_1}{l_1} = \frac{s_1a_1}{k_1l_1} = \frac{s_2a_2}{k_2l_2} = \frac{s_2}{k_2}\cdot\frac{a_2}{l_2}
+    \]
+    which proves that the map is well defined. We have to show that it is an action. 
+    The associativity and unit axiom is trivial. Define $0 = \frac{0}{1}$, then 
+    \[
+        0\cdot\frac{a}{k} = \frac{0}{1}\cdot \frac{a}{k} = \frac{0}{k} = \frac{0}{1} = 0
+    \]
+    since $k\cdot 0 = 1\cdot 0$. Hence it is really a pointed act. 
+\end{proof}
+\begin{proposition}
+    Let $f: A\to B$ be an act homomorphism, then we have an induced 
+    map $K^{-1}f : K^{-1}A \to K^{-1}B$ defined as 
+    \[
+        K^{-1}f\left(\frac{a}{k}\right) = \frac{f(a)}{k}
+    \] 
+    it is a well-defined homomorphism of acts.
+\end{proposition}
+\begin{proof}[Proof]
+    Assume $\frac{a_1}{k_1}=\frac{a_2}{k_2}$, so we find $u\in K$ such that 
+    $uk_2a_1= uk_1a_2$, then 
+    \[
+        uk_2f(a_1) = f(uk_2a_1) = f(uk_1a_2) = uk_1f(a_2) \implies K^{-1}f\left(\frac{a_1}{k_1}\right)=\frac{f(a_1)}{k_1}=\frac{f(a_2)}{k_2} = K^{-1}f\left(\frac{a_2}{k_2}\right)
+    \]
+    and 
+    \[
+    \frac{s_1}{k_1}\cdot K^{-1}f\left(\frac{a}{k}\right) = \frac{s_1f(a)}{k_1k} = \frac{f(s_1a)}{k_1k} = 
+    K^{-1}f\left(\frac{s_1a}{k_1k}\right) = K^{-1}f\left(\frac{s_1}{k_1}\cdot\frac{a}{k}\right)
+    \]
+\end{proof}
+\begin{proposition}
+    We have a localisation functor $K^{-1}:\actcat{S}\to K^{-1}\actcat{S}$.
+\end{proposition}
+\begin{proof}[Proof]
+    Choose $\frac{a}{k}$, then
+    \[
+    K^{-1}(g\circ f)\left(\frac{a}{k}\right) = \frac{g(f(a))}{k} = K^{-1}g\left(\frac{f(a)}{k}\right) = (K^{-1}g\circ K^{-1}f)(\frac{a}{k}) \implies K^{-1}(g\circ f) = K^{-1}g\circ K^{-1}f
+    \]
+    and 
+    \[
+        K^{-1}1_A\left(\frac{a}{k}\right) = \frac{a}{k} = 1_{K^{-1}A}(\frac{a}{k}) \implies K^{-1}1_A = 1_{K^{-1}A}
+    \]
+\end{proof}
 \subsection{Complexes and exact sequences}
 \begin{definition}
     A \textbf{chain complex} $(X_n, d_n: X_{n} \to X_{n-1})_{n\in\mathbb{Z}}$ is a sequence of acts and act morphisms
@@ -239,12 +351,108 @@ From now on by acts we will mean pointed acts, objects of the category $\actcat{
     hence $\iota(x_1)=(x_1,y_1)$ and $\iota(x_2)=(x_2,y_2)$.
     In conclusion $\ker(\lambda)=\im(\iota)$ as required.
 \end{example}
+\begin{example}
+    If $B$ is a subact of $A$, then the following sequence is Rees short exact 
+    \[\begin{tikzcd}
+        0 & B & A & {A/B} & 0
+        \arrow[from=1-1, to=1-2]
+        \arrow["\iota", from=1-2, to=1-3]
+        \arrow["\pi", from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    where $\iota$ is the set inclusion map and $\pi$ is the canonical projection. 
+    The exactness at $A$ and $A/B$ is trivial. Choose $x\in B$, then we have 
+    $\pi(\iota(x)) = \pi(x) = [x] = [0] \implies \im(\iota)\subseteq\ker(\pi)$. Choose 
+    $(x,y)\in\ker(\pi)$, so $[x]=[y]$, if $x=y$, then its trivially in $\im(\iota)$, else 
+    we necessarily have $[x]=[0]=[y]$, so $x,y\in B$ as required.
+\end{example}
+\begin{proposition}
+    Assume that $\mathcal{S}$ is a commutative, pointed monoid and $K\subseteq S$ is a submonoid of $S$ such that $0\not\in K$, then
+    given a Rees short exact sequence 
+    \[\begin{tikzcd}
+        0 & A & B & C & 0
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    the following sequence is Rees short exact
+    \[\begin{tikzcd}
+        0 & {K^{-1}A} & {K^{-1}B} & {K^{-1}C} & 0
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+\end{proposition}
+\begin{proof}[Proof]
+    Let $\frac{a}{k}\in K^{-1}A$, then 
+    \[
+    (K^{-1}g\circ fK^{-1}f)\left(\frac{a}{k}\right) = \frac{g(f(a))}{k} = \frac{0}{k} =\frac{0}{1}=0 \implies \im(K^{-1}f)\subseteq\ker(K^{-1}g)
+    \]
+    Assume that $\frac{g(b_1)}{k_1}=\frac{g(b_2)}{k_2}$, so we find $u\in K$ such that 
+    $g(uk_1b_2)=uk_1g(b_2)=uk_2g(b_1)=g(uk_2b_1)$, therefore 
+    $(uk_1b_2,uk_2b_1)\in\im(f)$. If $uk_1b_2=uk_2b_1$ we are done, otherwise 
+    we find $z_1,z_2\in A$ such that $f(z_1) = uk_1b_2$ and $f(z_2)=uk_2b_1$.
+    then 
+    \[
+        K^{-1}f\left(\frac{z_1}{uk_1k_2}\right) = \frac{uk_1b_2}{uk_1k_2} = \frac{b_2}{k_2}
+    \] 
+    \[
+        K^{-1}f\left(\frac{z_2}{uk_2k_1}\right) = \frac{uk_2b_1}{uk_2k_1} = \frac{b_1}{k_1}
+    \]
+    which proves exactness at $K^{-1}B$, we have to show that $K^{-1}$ preserves injections and surjections.
+    Suppose $\frac{f(a_1)}{k_1}=\frac{f(a_2)}{k_2}$, then find $u\in K^{-1}$ such that 
+    \[
+    uk_1f(a_2) = uk_2f(a_1)\implies f(uk_1a_2)=f(uk_2a_1) \implies uk_1a_2=uk_2a_1 \implies\frac{a_1}{k_1}=\frac{a_2}{k_2}
+    \]
+    To prove surjectivity choose $\frac{z}{k}\in K^{-1}C$, we find $y\in B$ such that $g(y)=z$, then 
+    \[
+        K^{-1}g\left(\frac{y}{k}\right) = \frac{g(y)}{k} = \frac{z}{k}
+    \]
+    which completes the proof.
+\end{proof}
+\begin{corollary}
+    Let $B$ be a subact of $A$, then $K^{-1}B$ is a subact of $K^{-1}A$ and  
+    \[
+        K^{-1}\left(\frac{A}{B}\right) \simeq \frac{K^{-1}A}{K^{-1}B}
+    \]
+\end{corollary}
+\begin{proof}[Proof]
+    Consider the Rees short exact sequence 
+    \[\begin{tikzcd}
+        0 & {K^{-1}B} & {K^{-1}A} & {K^{-1}(A/B)} & 0
+        \arrow[from=1-1, to=1-2]
+        \arrow["{K^{-1}\iota}", from=1-2, to=1-3]
+        \arrow["{K^{-1}\pi}", from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    $K^{-1}B$ is clearly a subset of $K^{-1}A$, it contains zero, since $B$ contains zero and 
+    it is closed under the monoidal action, because $B$ is.
+    First we need to show that $\im K^{-1}\iota = \rho_{K^{-1}B}$, we have 
+    \[
+    \left(\frac{b_1}{k_1},\frac{b_2}{k_2}\right)\in\im(S^{-1}\iota) \iff \frac{b_1}{k_1}=\frac{b_2}{k_2}\lor\exists\,\frac{a_1}{l_1},\frac{a_2}{l_1}\in K^{-1}B :
+    \frac{a_1}{l_1}=\frac{b_1}{k_1}\land\frac{a_2}{l_2}=\frac{b_2}{k_2}
+    \]
+    \[
+        \iff \frac{b_1}{k_1}=\frac{b_2}{k_2}\lor \frac{b_1}{k_1},\frac{b_2}{k_2}\in K^{-1}B \iff \left(\frac{a_1}{k_1},\frac{a_2}{k_2}\right)\in\rho_{K^{-1}B}
+    \]
+    then by the first isomorphism theorem we have 
+    \[
+    K^{-1}(A/B)\simeq K^{-1}(A)/\ker(K^{-1}\pi) = K^{-1}(A)/\im(K^{-1}\iota) = K^{-1}A/K^{-1}B
+    \]
+\end{proof}
 \begin{definition}
     Let $A$ be an $\mathcal{S}$ act. We say, that $A$ is \textbf{torsion free}, if 
-    for $r\in S$ a left cancellative element we have 
+    for each $r\in S$ a left cancellative element we have 
     \[
         \forall x,y\in S : r(x)=r(y) \implies x=y
     \]
+\end{definition}
+\begin{definition}
+    We call an $\mathcal{S}$ act $A$ \textbf{finitely generated}, if there exist 
+    $x_1,\dots,x_n\in A$ such that $A = \bigcup_{i=1}^n S\cdot x_i$. Then we say 
+    that the set $\{x_1,\dots,x_n\}$ is a \textbf{generating set} of $A$.
 \end{definition}
 \begin{proposition}
     Consider the Rees short exact sequence of acts 
@@ -266,6 +474,27 @@ From now on by acts we will mean pointed acts, objects of the category $\actcat{
 \begin{corollary}
     Coproduct of torsion free acts is torsion free.
 \end{corollary}
+\begin{proposition}
+    Consider the following Rees short exact sequence 
+    \[\begin{tikzcd}
+	0 & A & B & C & 0
+	\arrow[from=1-1, to=1-2]
+	\arrow["f", from=1-2, to=1-3]
+	\arrow["g", from=1-3, to=1-4]
+	\arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    if $A$ and $C$ are finitely generated, then so is $B$.
+\end{proposition}
+\begin{proof}[Proof]
+    Let $\{x_1,\dots,x_n\}$ and $\{z_1,\dots,z_m\}$ be the generating sets 
+    of $A$ and $C$ respectively. From surjectivity of $g$, we find $y_i$ for each $i\in\{1,\dots,m\}$
+    such that $g(y_i)=z_i$. We will show that the set \[\{f(x_1),\dots,f(x_n),y_1,\dots,y_m\}\] 
+    generates $B$.\par Choose $y\in B$, then we find $r\in S$ and $z_i\in C$ such that 
+    $g(y)=r\cdot z_i = r\cdot g(y_i) = g(r\cdot y_i)$, so by exactness we have 
+    $(y,r\cdot y_i)\in\im(f)$. If $y=r\cdot y_i$ we are done, otherwise we find 
+    $x\in A$ such that $f(x)=y$. Since $A$ is finite generated there is $s\in S$ and 
+    $x_i\in A$ such that $r\cdot x_i = x$, then $y=f(x)=r\cdot f(x_i)$, which completes the proof. 
+\end{proof}
 \begin{lemma}
     Consider the following commutative diagram
     \[\begin{tikzcd}
