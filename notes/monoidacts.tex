@@ -102,6 +102,51 @@
         It is a well defined act. Take $(s,x)\sim(r,y)$
     \end{remark}
 \fi
+\subsection{Exact sequences and congruences}
+\begin{definition}
+    Define $\con{\bullet} :\actcat{S}\to\cat{Lat}$ for each $f:A\to B$ as
+    $\con{f}:\con{B}\to\con{A}$, where $\con{f}(\rho) = \{(x,y)\in A : (f(x),f(y))\in\rho\}$ 
+    for each $\rho\in\con{B}$.
+\end{definition}
+\begin{definition}
+    An act $A$ is Rees regular, if every congruence in $A$ is a Rees congruence.
+\end{definition}
+\begin{proposition}
+    The functor $\con{\bullet}$ reflects monomorphisms and epimorphisms.
+    Given $\begin{tikzcd}
+	A & B
+	\arrow["f", hook, from=1-1, to=1-2]
+\end{tikzcd}$, if $A$ is Rees regular, then $B$ is.
+\end{proposition}
+\begin{proof}[Proof]
+    Choose $\rho\in\con{B}$, then we find $A'\leq A$ such that 
+    $\con{f}(\rho)=\rho_{A'}$. We will show that $\rho_{f(A')} = \rho$. Indeed, 
+    if $x\neq y$ and $(x,y)\in\rho_{f(A')}$ we find $x_1,y_1\in B'$ such that 
+    $f(x_1)=x,f(y_1)=y$, then $(x_1,y_1)\in\rho_{A'}=\con{f}(\rho)$, that means precisely 
+    $(x,y)=(f(x_1),f(y_1))\in\rho$. Let $(x,y)\in\rho,x\neq y$, then we find 
+\end{proof}
+\subsection{Ideals and prime spectra}
+    For this entire section all monoids are pointed and commutative.
+    \begin{definition}
+        An \textbf{ideal} $I\neq\emptyset$ of a monoid $S$ is a subset of $S$ such that 
+        $RI \subseteq I$. Ideal $\mathfrak{p}\subseteq S$ is \textbf{prime}, if $ab\in\mathfrak{p}\implies a\in\mathfrak{p}\lor b\in\mathfrak{p}$ and $\mathfrak{p}\neq S$. 
+    \end{definition}
+    \begin{definition}
+        Prime spectrum of $S$, denoted by $\spec{S}$ is a set of prime ideals of $S$. Let $I$ be an ideal, 
+        define $V(I) = \{\mathfrak{p}\in\spec{S} : I \subseteq\mathfrak{p}\}$, then sets of the form $V(I)$ for any
+        ideal $I\subseteq S$ are
+        precisely the closed sets of a topology on the prime spectrum called the \textbf{Zariski topology}.
+    \end{definition}
+    \begin{proof}[Proof]
+        Notice that $V(S)=\emptyset$ and $V(\{0\}) = \spec{S}$. Choose two ideals $I$ and $J$, then 
+        \[
+        \mathfrak{p}\in V(I)\cup V(J) \iff I\subseteq\mathfrak{p}\lor J\subseteq\mathfrak{p} \implies I\cap J\subseteq\mathfrak{p}\iff\mathfrak{p}\in V(I\cap J) 
+        \]
+        and since $IJ\subseteq I\cap J$ we have $IJ\subseteq\mathfrak{p}$ for $\mathfrak{p}\in V(I\cap J)$.
+        Assume WLOG $I\not\subseteq\mathfrak{p}$, then there exists $i\in I$ such that $i\not\in\mathfrak{p}$,
+        choose $j\in J$, then $ij\in\mathfrak{p} \implies j\in\mathfrak{p}$, therefore $J\subseteq\mathfrak{p}$.
+    \end{proof}
+    
 \subsection{Localisation of a pointed monoids and acts}
 \begin{construction}
     Let $(S,\cdot,0,1)$ be a pointed commutative monoid and 
@@ -483,17 +528,25 @@ From now on by acts we will mean pointed acts, objects of the category $\actcat{
 	\arrow["g", from=1-3, to=1-4]
 	\arrow[from=1-4, to=1-5]
     \end{tikzcd}\]
-    if $A$ and $C$ are finitely generated, then so is $B$.
+    \begin{enumerate}
+        \item If $A$ and $C$ are finitely generated, then so is $B$.
+        \item If $B$ is finitely generated, then $C$ is.
+    \end{enumerate}
+    
 \end{proposition}
 \begin{proof}[Proof]
-    Let $\{x_1,\dots,x_n\}$ and $\{z_1,\dots,z_m\}$ be the generating sets 
+    To prove the first part let $\{x_1,\dots,x_n\}$ and $\{z_1,\dots,z_m\}$ be the generating sets 
     of $A$ and $C$ respectively. From surjectivity of $g$, we find $y_i$ for each $i\in\{1,\dots,m\}$
     such that $g(y_i)=z_i$. We will show that the set \[\{f(x_1),\dots,f(x_n),y_1,\dots,y_m\}\] 
     generates $B$.\par Choose $y\in B$, then we find $r\in S$ and $z_i\in C$ such that 
     $g(y)=r\cdot z_i = r\cdot g(y_i) = g(r\cdot y_i)$, so by exactness we have 
     $(y,r\cdot y_i)\in\im(f)$. If $y=r\cdot y_i$ we are done, otherwise we find 
     $x\in A$ such that $f(x)=y$. Since $A$ is finite generated there is $s\in S$ and 
-    $x_i\in A$ such that $r\cdot x_i = x$, then $y=f(x)=r\cdot f(x_i)$, which completes the proof. 
+    $x_i\in A$ such that $r\cdot x_i = x$, then $y=f(x)=r\cdot f(x_i)$.\par 
+    To prove the second part we show that $\{f(y_1)\dots,f(y_m)\}$ generates $C$, where 
+    $\{y_1,\dots,y_m\}$ is the generating set of $B$. Choose $z\in C$, we find $y\in B$ such that 
+    $f(y)=z$ and we find $r\in S$ and $i\in\{1,\dots,m\}$ such that $r\cdot y_i = y$, then 
+    $z = f(y) = r\cdot f(y_i)$, which concludes the proof.
 \end{proof}
 \begin{lemma}
     Consider the following commutative diagram
