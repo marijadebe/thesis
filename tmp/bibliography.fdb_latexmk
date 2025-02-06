@@ -1,0 +1,9 @@
+# Fdb version 4
+["lualatex"] 0 "bibliography.tex" "bibliography.pdf" "bibliography" 0 -1
+  "bibliography.tex" 0 -1 0 ""
+  "tmp/bibliography.aux" 0 -1 0 "lualatex"
+  (generated)
+  "bibliography.pdf"
+  "tmp/bibliography.aux"
+  "tmp/bibliography.log"
+  (rewritten before read)

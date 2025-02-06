@@ -1,0 +1,361 @@
+\chapter{Pointed acts}
+\section{Basic notions}
+\begin{definition}
+    A pointed monoid is a $4$-tuple $(S,\ast,1,0)$, where $0,1\in S$ and $\ast: S\times S \to S$ a map, that satisfies the following
+    \begin{enumerate}
+        \item $\forall x,y,z\in S: (x\ast y)\ast z = x\ast(y\ast z)$
+        \item $\forall x\in S: x\ast 1 = x = 1\ast x$
+        \item $\forall x\in S: x\ast 0 = 0 = 0\ast x$
+    \end{enumerate}
+    we will call $1$ the \textbf{unit} of $(S,\ast,1,0)$ and $0$ the \textbf{zero} of $(S,\ast,1,0)$. We will often identify
+    such a $4$-tuple with its underlying set $S$, if the structure is generic or clear from context. Often we will also write
+    $xy$ instead of $x\ast y$ and omit unnecessary brackets.
+\end{definition}
+\begin{example}
+    The most natural examples are $(\mathbb{N}_0, \cdot, 1,0)$ and $(\mathbb{N}_0\cup\{\infty\}, +,0,\infty)$. Given any ring $(R,+,-,0,\cdot,1)$ 
+    we can also forget some of the structure and get a pointed monoid $(R,\cdot,1,0)$.  
+\end{example}
+\begin{example}
+    In general given any monoid $(M,\cdot,1)$, we can consider the disjoint union $\{\bullet\}\times\{0\}\cup M\times\{1\}$ with any one element set
+    $\{\bullet\}$ and extend the operation $\cdot$ as
+    \[
+        (m,1)\cdot(n,1) = (m\cdot n,1)
+    \]
+    \[
+        (m,1)\cdot(\bullet, 0) = (\bullet, 0) = (\bullet,0)\cdot(m,1)
+    \]
+    \[
+        (\bullet,0)\cdot(\bullet,0) = (\bullet,0)
+    \]
+    which gives us a pointed monoid, with the further property that $ab=0 \implies a=0 \lor b=0$. It can be shown that if pointed monoid 
+    has this property, then it is isomorphic to this construction.
+\end{example}
+
+\begin{definition}
+    Let $S$ be a pointed monoid. A (left) pointed $S$-act is a $3$-tuple $(A,\cdot, 0)$, where $0\in A$ and $\cdot: S\times A \to A$ 
+    a map, that satisfies the following
+    \begin{enumerate}
+        \item $\forall r,s\in S\, \forall x\in A : (r\ast s)\cdot x = r\ast(s\cdot x)$
+        \item $\forall x\in A : 1\cdot x = x$
+        \item $\forall x\in A : 0\cdot x = 0$
+    \end{enumerate}
+    it then follows that $r\cdot 0 = r\cdot (0\cdot 0) = (r\ast 0)\cdot 0 = 0\cdot 0 = 0$ and that 
+    such an element $0$ satisfying $2.$ is necessarily unique. We will call the element $0\in A$ the 
+    \textbf{sink} of $A$.
+\end{definition}
+\begin{example}
+    Any pointed monoid can be considered as a pointed act over itself, where the action $\cdot$ is just the multiplication in the monoid. 
+    Given a module $(M,+,-,0,\cdot)$ over a ring $(R,+,-,0,\cdot,1)$ we can view it as a pointed act $(M,\cdot,0)$ over the pointed monoid $(R,\cdot,1,0)$.
+\end{example}
+\begin{example}
+    We can consider any pointed set $(X,x_0)$ (that is $X$ a set and $x_0\in X$) to be pointed $S$-act for any pointed monoid $S$,
+    by letting $s\cdot x = x_0$ for all $x\in X$.
+\end{example}
+\begin{definition}
+    Let $A$ be a pointed $S$-act. A \textbf{subact} of $A$ is a subset $B\subseteq A$ such that $0\in B$ and $B$ is closed under the action of $S$. 
+    A \textbf{homomorphism} of pointed acts $f: A\to B$ is a map, such that $f(0) = 0$ and $f(r\cdot x) = r\cdot f(x)$ for any $r\in S$ and $x\in A$.
+    A \textbf{congruence} on a pointed act $A$ is an equivalence relation $\rho$ on $A$ such that 
+    \[
+        \forall x,y\in A \,\forall r \in S: x\rho y \implies r\cdot x\rho r\cdot y
+    \]
+    A \textbf{factor} of a pointed act $A$ by a congruence $\rho$ is the set of equivalence classes $A/\rho$ with the action defined as $r \cdot [a]_\rho = [r \cdot a]_\rho$ and the zero element $[0]_\rho$. 
+    This construction yields a pointed act.
+\end{definition}
+\begin{example}
+    A kernel congruence of a homomorphism $f: A\to B$ is a congruence on $A$ defined as $\ker{f} = \{(x,y)\in A\times A : f(x) = f(y)\}$.
+\end{example}
+\begin{remark}
+    The category of pointed acts over a pointed monoid $S$, denoted as $\actcat{S}$ consists of pointed acts as objects and their homomorphisms as morphisms.
+    The composition of morphisms and the identity morphisms are defined as in the category of sets, clearly a composition of two homomorphisms yields a homomorphism
+    and the identity is trivially a homomorphism.
+\end{remark}
+\begin{definition}
+    Let $A\in S\mathrm{-Act}_0$ and $B$ a subact of $A$, then we let 
+    \[
+        \rho_B = \Delta_A \cup B\times B
+    \]
+    where $\Delta_A$ is the diagonal congruence on $A$. We call $\rho_B$ a \textbf{Rees congruence on $A$}. 
+\end{definition}
+\begin{proof}
+    We will show, that $\rho_B$ is a congruence. \par 
+    Reflexivity and symmetry of the relation is clear from definition. If $(x,y)\in\rho_B$ and $(y,z)\in\rho_B$, we either have 
+    $x=y=z \implies (x,z)\in\rho_B$ or at least one of the pairs is in $B\times B$, if both are then again $(x,z)\in\rho_B$. If 
+    say, WLOG, that $x=y$ and $y,z\in B$, then also $x\in B$ and therefore again $(x,z)\in\rho_B$, thus the relation is transitive. 
+    If $(x,y)\in\rho_B$ and $r\in S$ we have either $x=y\implies rx=ry$ or $x,y\in B \implies rx,ry\in B$, so $\rho_B$ is a congruence on $A$.
+\end{proof}
+
+\section{Constructions}
+\begin{proposition}
+    Let $f,g: A \to B$ be homomorphisms of pointed acts. Let $\{f=g\} := \{x\in A : f(x) = g(x)\}$, then $\{f=g\}$ is a subact of $A$ and 
+    the canonical inclusion $\iota: \{f=g\} \to A$, $x\mapsto x$ is an equaliser in $\actcat{S}$.
+\end{proposition}
+\begin{proof}
+    We clearly have that $0\in\{f=g\}$ and $x\in\{f=g\}$ implies $f(x)=g(x)$, hence $f(rx)=rf(x)=rg(x)=g(rx) \implies rx\in\{f=g\}$. 
+    Suppose $h: X \to A$ is such that $fh=gh$, then we have that $h(x)\in\{f=g\}$, so we simply let $\overline{h} = h: X\to\{f=g\}$, this
+    map is unique. Say there were two maps $\iota\overline{h_1}=h=\iota\overline{h_2}$, then because $\iota$ is injective (so a monomorphism, 
+    because we are in a concrete category) we have $\overline{h_1}=\overline{h_2}$.
+\end{proof}
+    We will denote the kernel as $\Kernel{f} = \{f=0\}$. 
+\begin{proposition}
+    Suppose $f,g: A\to B$ are homomorphisms, let $\sim$ be the smallest congruence on $B$ such that $\forall x\in A: f(x)\sim g(x)$, then 
+    $B/\sim$ with the canonical projection $\pi: B\to B/\sim$, $x\mapsto [x]_\sim$ is a coequaliser in $\actcat{S}$. 
+\end{proposition}
+\begin{proof}
+    Suppose that $h: B\to X$ is such that $hf=hg$, then we have that $\ker{h}$ is a congruence on $B$, satisfying 
+    $\forall x\in A: (f(x),g(x))\in\ker{h}$, therefore $\sim\subseteq\ker{h}$. We need a morphism $\overline{h}: B/\sim \to X$, which satisfies 
+    $h = \overline{h} \circ\pi$. The uniqueness is clear, if it exists, since then $\overline{h_1}\circ\pi = h = \overline{h_2}\circ\pi$, 
+    which implies $\overline{h_1}=\overline{h_2}$, because $\pi$ is epi. We define $\overline{h}([x]_\sim) = h(x)$, this 
+    is clearly a homomorphism of acts and it is well-defined because
+    \[
+        [x]_\sim = [y]_\sim\iff x\sim y \implies (x,y)\in\ker{h} \implies h(x)=h(y)
+    \] 
+\end{proof}
+    In the case of cokernels, the congruence $\sim$ admits a much nicer description. 
+\begin{proposition}
+    Let $f: A \to B$ be a homomorphism of pointed acts, then the smallest congruence on $B$ such that $\forall x\in A :f(x)\sim 0$ is
+    $\rho_{\Image{f}}$, where $\Image{f} = \{f(x) : x\in A\}$.
+\end{proposition}
+\begin{proof}
+    We have that $(f(x),0)\in\Image{f}$, because $0\in\Image{f}$. If $\sim$ is any other such congruence, then for any $f(x),g(x)\in\Image{f}$
+    it holds that $f(x)\sim 0 \sim g(x) \implies f(x)\sim g(x)$, therefore $\rho_{\Image{f}}=\Image{f}\times\Image{f}\cup\Delta_B\subseteq\sim$.
+\end{proof}
+We will now construct the products and coproducts in $\actcat{S}$. 
+\begin{proposition}
+    Let $I$ be a nonempty set, $(X_i)_{i\in I}$ a collection of pointed acts over a pointed monoid $S$, then we define 
+    \[
+        \prod_{i\in I}X_i = \{f: I \to\bigcup_{i\in I } X_i \mid\forall i\in I :  f(i)\in X_i \}
+    \]
+    then $\prod_{i\in I}X_i$ admits a structure of a pointed act and along with the canonical projections 
+    $\pi_i : \prod_{i\in I }X_i$,$f\mapsto f(i)$ it is the product in the category $\actcat{S}$.
+\end{proposition}
+\begin{proof}
+    We define the action of $S$ on the product componentwise as $(r\cdot f)(i) = r\cdot f(i)$. The zero in the product 
+    is the map $i\mapsto 0$. It is routine to check that such a structure satisfies the 
+    axioms of pointed acts. By definition of the action and zero we see that $\pi_i$ is a homomorphism. Suppose now that 
+    object $U$ along with the maps $\mu_i : U \to X_i$ is a cone in $\actcat{S}$. Define a map $f: U \to\prod_{i\in I} X_i$ 
+    as $f(u) = g$, where $\forall i\in I : g(i) := \mu_i(u)$. We have that 
+    \[
+        f(ru)(i) = \mu_i(ru) = r\mu_i(u) = r\cdot f(u)(i) = (r\cdot f(u))(i)
+    \]  
+    \[
+        f(0)(i) = \mu_i(0) = 0 \implies f(0) = 0
+    \]
+    so it is a homomorphism of pointed acts that satisfies $\mu_i = \pi_i\circ f$. If $f'$ is any other such map we would have that 
+    $\forall i\in I : \pi_i\circ f = \pi_i\circ g$, then fixing $u\in U$ and $i\in I$ we get $g(u)(i) = (\pi_i \circ g)(u) = (\pi_i\circ f)(u) = f(u)(i) \implies g(u)=f(u)$ 
+    and $f=g$.
+\end{proof}
+\begin{proposition}
+    Let $I$ be a nonempty set, $(X_i)_{i\in I}$ a collection of pointed acts over a pointed monoid $S$, then we define 
+    \[
+        \coprod_{i\in I } X_i = \{f\in\prod_{i\in I }X_i \mid \exists j\in I\,\forall i\in I : i\neq j \implies f(i) = 0\}
+    \]
+    then $\coprod_{i\in I} X_i$ is a subact of the product and along with the canonical inclusions $\iota_i : X_i \to \coprod_{i\in I} X_i$, $x\mapsto f$, where 
+    $f(i) = x$ and $f(j)=0$ for $j\neq i$
+    forms the coproduct in $\actcat{S}$.
+\end{proposition}
+\begin{proof}
+    Clearly $0\in\coprod_{i\in I } X_i$ and given any $r\in S$ and $f\in\coprod_{i\in I } X_i$, where 
+    $f(j)=0$ for $j\neq i$, then $r\cdot f(j)=0$, hence $r\cdot f \in\coprod_{i\in I} X_i$. It follows that 
+    $\coprod_{i\in I} X_i$ is a subact of the product.\par 
+    Let $U$ be a pointed act and $\nu_i : X_i \to U$, then let $h: \coprod_{i\in I} X_i \to U$ be defined as follows - 
+    given any $f$ and $i\in I$, such that $f(j)=0$ for all $j\neq i$, define $h(f) = \nu_i(f(i))$ (Note that this is well-defined 
+    even in the case of zero, because $\forall i\in I : \nu_i(0) = 0$). By definition we have that $h\circ \iota_i = \nu_i$. It is 
+    indeed a homomorphism, since $r\cdot h(f) = r\cdot\nu_i(f(i))=\nu_i((r\cdot f)(i)) = h(r\cdot f)$. Let 
+    $\overline{h} : \coprod_{i\in I } X_i \to U$ be any other morphism, such that $\forall i\in I :\overline{h}\circ\iota_i = \nu_i$ we see, given 
+    any $f$, letting $x=f(i)$, where $i\in I$ is such that $\forall j\neq i : f(j)=0$, that 
+    \[
+        h(f) = \nu_i(x) = \overline{h}(\iota_i(x)) = \overline{h}(f) \implies h=\overline{h} 
+    \]
+\end{proof}
+\begin{corollary}
+    The category $\actcat{S}$ is complete and cocomplete.
+\end{corollary}
+    Our category $\actcat{S}$ equipped with the "forgetful" functor $U$, which maps objects to their underlying sets and morphisms 
+    to their underlying set maps is a concrete category.
+\begin{proposition}
+    The monomorphisms in $\actcat{S}$ are precisely the injective homomorphisms and the epimorphisms in $\actcat{S}$ are precisely
+    the surjective homomorphisms.
+\end{proposition}
+\begin{proof}
+    See \cite[Proposition~6.15]{Kilp00}.
+\end{proof}
+
+\begin{proposition}
+    Let $(S,\cdot,0,1)$ be a pointed commutative monoid and 
+    $K\subseteq S$ a submonoid of $S$ such that $0\not\in K$. 
+    We define $K^{-1}S = S\times K/\sim$, where 
+    \[
+        (s_1,k_1)\sim(s_2,k_2)\iff \exists v\in K : s_1k_2v = s_2k_1v 
+    \]
+    then $K^{-1}S$ is well-defined and admits the structure of a pointed commutative monoid.
+\end{proposition}
+\begin{proof}[Proof]
+    Relation $\sim$ is reflexive, since $1\in K$. It is clearly symmetric. 
+    Let $(s_1,k_1)\sim(s_2,k_2)\sim(s_3,k_3)$, so there are $v,w\in K$ such that 
+    $s_1k_2v = s_2k_1v$ and $s_2k_3w = s_3k_2w$, then 
+    \[
+    (s_1k_3)k_2vw = s_1k_2vk_3w = s_2k_1vk_3w = s_2k_3wk_1v = s_3k_2wk_1v = (s_3k_1)k_2vw
+    \]
+    therefore $(s_1,k_1)\sim(s_3,k_3)$. We will denote the equivalence classes as
+    $\frac{s}{k} = [s,k]_{\sim}$. Define 
+    \[
+        \frac{s_1}{k_1}\cdot\frac{s_2}{k_2} = \frac{s_1 s_2}{k_1 k_2}
+    \]
+    to prove well-definedness assume $(s_1,k_1)\sim(d_1,l_1)$ and $(s_2,k_2)\sim(d_2,l_2)$, then 
+    we find $u,v\in K$ such that 
+    $s_1l_1u=d_1k_1u$ and $s_2l_2v = d_2k_2v$, then 
+    \[
+    s_1s_2l_1l_2uv = (s_1l_1u)(s_2l_2)v = d_1k_1ud_2k_2v = d_1d_2k_1k_2uv 
+    \]
+    thus
+    \[
+        \frac{s_1}{k_1}\cdot\frac{s_2}{k_2} = \frac{s_1s_2}{k_1k_2} = \frac{d_1d_2}{l_1l_2} = \frac{d_1}{l_1}\cdot\frac{d_2}{l_2}
+    \]
+    We define the unit $1 = \frac{1}{1}$ and $0 = \frac{0}{1}$. The associativity, commutativity and unit axioms are clearly 
+    satisfied. We have 
+    \[
+        0\cdot\frac{s}{k} = \frac{0}{k} = \frac{0}{1} = 0
+    \]
+    since $(0,k)\sim(0,1)$, because $0\cdot 1 = 0 = 0\cdot k$. 
+\end{proof}
+\begin{definition}
+    We define the \textbf{localisation map} $\Lambda: S \to K^{-1}S$ by $\Lambda(x) = \frac{x}{1}$. It is a 
+    homomorphism of pointed monoids.  
+\end{definition}
+\begin{proposition}
+    Let $K\subseteq S$ be a submonoid of a commutative pointed monoid $S$ such that $0\not\in S$ and $A$ an $S$ act. We define 
+    $K^{-1}A = A\times K/\sim$, where 
+    \[
+        (a_1,k_1)\sim(a_2,k_2) \iff \exists u\in K : uk_1 a_2 = uk_2 a_1
+    \]
+    then $K^{-1}A$ admits the structure of a pointed $K^{-1} S$ act.
+\end{proposition}
+\begin{proof}[Proof]
+    The relation is clearly a reflexive and symmetric relation. Assume 
+    that $(k_1,a_1)\sim(k_2,a_2)\sim(k_3,a_3)$, so 
+    $uk_1a_2 = uk_2a_1$ and $vk_2a_3 = vk_3a_2$ for some $u,v\in K$, then 
+    \[
+        uvk_2(k_1a_3) = uk_1vk_2a_3 = uk_1vk_3a_2 = vk_3uk_1a_2 = vk_3uk_2a_1 = uvk_2(k_3a_1)
+    \] 
+    thus the relation is an equivalence. Denote the equivalence classes as $\frac{a}{k} = [a,k]_\sim$. 
+    Define the action of $K^{-1}S$ on $K^{-1}A$ by 
+    \[
+        \frac{s_1}{k_1}\cdot\frac{a}{k} = \frac{s_1 a}{k_1 k}
+    \]
+    to show well-definedness assume $\frac{s_1}{k_1}=\frac{s_2}{k_2}$ and $\frac{a_1}{l_1}=\frac{a_2}{l_2}$, then 
+    we find $u,v\in K$ such that $s_1k_2u = s_2k_1u$ and $vl_1a_2 = vl_2a_1$, then we have 
+    \[
+        uvk_2l_2s_1a_1 = s_1k_2uvl_2a_1 = s_2k_1uvl_1a_2 = uvk_1l_1s_2a_2 \implies \frac{s_1a_1}{k_1l_1} = \frac{s_2a_2}{k_2l_2}
+    \]
+    so 
+    \[
+        \frac{s_1}{k_1}\cdot\frac{a_1}{l_1} = \frac{s_1a_1}{k_1l_1} = \frac{s_2a_2}{k_2l_2} = \frac{s_2}{k_2}\cdot\frac{a_2}{l_2}
+    \]
+    which proves that the map is well defined. We have to show that it is an action. 
+    The associativity and unit axiom is trivial. Define $0 = \frac{0}{1}$, then 
+    \[
+        0\cdot\frac{a}{k} = \frac{0}{1}\cdot \frac{a}{k} = \frac{0}{k} = \frac{0}{1} = 0
+    \]
+    since $k\cdot 0 = 1\cdot 0$. Hence it is really a pointed act over $K^{-1}S$. 
+\end{proof}
+\begin{proposition}
+    Let $f: A\to B$ be an act homomorphism, then we have an induced 
+    map $K^{-1}f : K^{-1}A \to K^{-1}B$ defined as 
+    \[
+        K^{-1}f\left(\frac{a}{k}\right) = \frac{f(a)}{k}
+    \] 
+    it is a well-defined homomorphism of acts.
+\end{proposition}
+\begin{proof}[Proof]
+    Assume $\frac{a_1}{k_1}=\frac{a_2}{k_2}$, so we find $u\in K$ such that 
+    $uk_2a_1= uk_1a_2$, then 
+    \[
+        uk_2f(a_1) = f(uk_2a_1) = f(uk_1a_2) = uk_1f(a_2)\] 
+        \[ \implies K^{-1}f\left(\frac{a_1}{k_1}\right)=\frac{f(a_1)}{k_1}=\frac{f(a_2)}{k_2} = K^{-1}f\left(\frac{a_2}{k_2}\right)
+    \]
+    and 
+    \[
+    \frac{s_1}{k_1}\cdot K^{-1}f\left(\frac{a}{k}\right) = \frac{s_1f(a)}{k_1k} = \frac{f(s_1a)}{k_1k} = 
+    K^{-1}f\left(\frac{s_1a}{k_1k}\right) = K^{-1}f\left(\frac{s_1}{k_1}\cdot\frac{a}{k}\right)
+    \]
+\end{proof}
+\begin{proposition}
+    We have a localisation functor $K^{-1}:\actcat{S}\to\actcat{K^{-1}S}$.
+\end{proposition}
+\begin{proof}[Proof]
+    Choose $\frac{a}{k}$, then
+    \[
+    K^{-1}(g\circ f)\left(\frac{a}{k}\right) = \frac{g(f(a))}{k} = K^{-1}g\left(\frac{f(a)}{k}\right) =\] \[=(K^{-1}g\circ K^{-1}f)(\frac{a}{k}) \implies K^{-1}(g\circ f) = K^{-1}g\circ K^{-1}f
+    \]
+    and 
+    \[
+        K^{-1}1_A\left(\frac{a}{k}\right) = \frac{a}{k} = 1_{K^{-1}A}(\frac{a}{k}) \implies K^{-1}1_A = 1_{K^{-1}A}
+    \]
+\end{proof}
+\begin{remark}
+    The localisation map $\Lambda$ induces a functor (by restriction of scalars) from $\actcat{K^{-1}S}$ to $\actcat{S}$, where given any 
+    $A$ a $K^{-1}S$ act we define the action of $S$ on $A$ by $s\cdot a = \Lambda(s)\cdot a$. The functor maps the 
+    homomorphisms to themselves. This way we can consider the 
+    localisation to be an endofunctor by considering the functor $\Lambda\circ K^{-1}$ instead. 
+\end{remark}
+\section{Regularity and exactness}
+\begin{definition}
+    Let $A$ and $B$ be pointed acts over a pointed monoid $\mathcal{S}$, we say that 
+    $f: A\to B$ is \textbf{Rees regular}, if 
+    \[
+        \rho_{\Kernel{f}} = \ker{f}
+    \]
+    In diagrams we will denote the fact that $f$ is Rees regular as 
+    \[\begin{tikzcd}
+	A & B
+	\arrow["f", "\circ"{marking}, from=1-1, to=1-2]
+\end{tikzcd}\]
+\end{definition}
+\begin{remark}
+    Note that we always have $\rho_\Kernel{f}\subseteq\ker{f}$, since $x=y\lor f(x)=0=f(y)\implies f(x)=f(y)$.
+\end{remark}
+\begin{proposition}
+    Let $f: A\to B$ be a homomorphism of pointed acts over a pointed monoid $\mathcal{S}$, then the following are equivalent
+    \begin{enumerate}
+        \item $\rho_{A'} = \ker{f}$ for some subact $A'\subseteq A$.
+        \item $f$ is Rees regular.
+        \item $f: A \to\Image{f}$ is a conormal epimorphism.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    $1.\implies 2.$ Let $x\in A'$, then $(x,0)\in\ker{f} \implies f(x)=0 \implies x \in\Kernel{f}$. If $f(x)=0$, then 
+    $(x,0)\in\rho_A' \implies x\in A'$. \par
+    $2.\implies 3.$ Assume $\rho_{\Kernel{f}} = \ker{f}$ and let $g: A\to X$ be a homomorphism such that $g\circ\iota = 0$, where
+    $\iota: \Kernel{f}\to A$ is the canonical inclusion. We need to show that there exists a unique homomorphism $\phi: \Image{f}\to X$ such that
+    the following diagram commutes 
+    \[\begin{tikzcd}
+        && X \\
+        {\Kernel{f}} & A && {\Image{f}}
+        \arrow["\iota", hook, from=2-1, to=2-2]
+        \arrow["g", from=2-2, to=1-3]
+        \arrow["f", from=2-2, to=2-4]
+        \arrow["{\exists ! \phi}"', dashed, from=2-4, to=1-3]
+    \end{tikzcd}\]
+    Define $\phi(y) = g(x)$, where $x\in A$ is such that $f(x)=y$. This map is well-defined, because if $f(x)=y=f(x')$, then
+    either $x=x'$ or $f(x)=0=f(x') \implies g(x)=0=g(x')$, since $g\circ\iota = 0$.  
+\end{proof}
+% \begin{definition}
+%     We say that a pointed act $P$ is projective, if for every epimorphism $A\to B$ and a homomorphism $P\to B$, there is a
+%     homomorphism $P\to A$, such that the following diagram commutes 
+%     \[\begin{tikzcd}
+%         & P \\
+%         A & B
+%         \arrow["\exists"', dashed, from=1-2, to=2-1]
+%         \arrow[from=1-2, to=2-2]
+%         \arrow[two heads, from=2-1, to=2-2]
+%     \end{tikzcd}\]
+%     Similarly a pointed act $I$ is injective, if for every monomorphism $A\to B$ and a homomorphism $A \to I$ there exists a 
+%     homomorphism $B\to I$ such that the following commutes
+%     \[\begin{tikzcd}
+% 	I \\
+% 	A & B
+% 	\arrow[from=2-1, to=1-1]
+% 	\arrow[hook, from=2-1, to=2-2]
+% 	\arrow["\exists"', dashed, from=2-2, to=1-1]
+% \end{tikzcd}\]
+% \end{definition}
