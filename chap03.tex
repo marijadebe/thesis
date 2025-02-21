@@ -69,7 +69,10 @@
     $x = \beta(x'_0)$ we would have $\beta'(y)=\beta'(x)=0$ and similarly if $y=\beta(y'_0)$. Otherwise we have $g'(x)=0=g'(y)$, but we have already resolved this case above. This completes the proof.
 \end{proof}
 The idea behind the lemmata above is to use them for larger diagrams to show Rees regularity whenever necessary and then using
-proposition $\ref{regularityProp}$ we can just do a somewhat normal diagram chase to verify Rees exactness.
+proposition $\ref{regularityProp}$ we can do a regular diagram chase to verify Rees exactness.\par 
+The following three results, i.e. the four lemma, five lemma and splitting lemma for acts already appear in \cite{Jafari19}. 
+The splitting lemma in particular is first stated in \cite{Chen02}. We give more concise
+proofs that utilize the characterization in proposition $\ref{regularityProp}$.
 \begin{lemma}[Four lemma]
     Consider the following commutative diagram, whose rows are Rees exact
     \[\begin{tikzcd}
@@ -160,7 +163,7 @@ proposition $\ref{regularityProp}$ we can just do a somewhat normal diagram chas
         \item We can either use $1.$ and $2.$ or apply the five lemma.
     \end{enumerate}
 \end{proof}
-The following proposition already appears in \cite{Chen02}. We will give a different proof using the lemma above.
+
 \begin{proposition}[Splitting sequences]
     Let 
     \[\begin{tikzcd}
@@ -174,12 +177,12 @@ The following proposition already appears in \cite{Chen02}. We will give a diffe
     \begin{enumerate}
         \item $g$ is a split epimorphism
         \item $f$ is a split monomorphism and $(B\setminus\Image{f})\cup\{0\}$ is a subact of $B$.
-        \item There is an isomorphism $\phi: B\to  A\oplus C$ such that $\phi\circ f=\iota_A$ and 
+        \item There is an isomorphism $\phi: B\to  A\coprod C$ such that $\phi\circ f=\iota_A$ and 
         $g\circ\phi^{-1}=\lambda_C$.
     \end{enumerate}
 \end{proposition}
 \begin{proof}[Proof]
-    Assume that there is a $g':C \to B$ such that $g\circ g' = 1_C$. We define a map $\psi: A\oplus C \to B$ as 
+    Assume that there is a $g':C \to B$ such that $g\circ g' = 1_C$. We define a map $\psi: A\coprod C \to B$ as 
     $\psi(a,0) = f(a)$ and $\psi(0,c) = g'(c)$. This is a homomorphism of acts, because $g'$ and $f$ are. We have that 
     \[
         (\psi\circ \iota_A)(a) = \psi(a,0) = f(a) \implies \psi\circ\iota_A = f
@@ -189,7 +192,7 @@ The following proposition already appears in \cite{Chen02}. We will give a diffe
     \]
     therefore this diagram with short exact rows commutes
     \[\begin{tikzcd}
-	0 & A & {A\oplus C} & C & 0 \\
+	0 & A & {A\coprod C} & C & 0 \\
 	0 & A & B & C & 0
 	\arrow[from=1-1, to=1-2]
 	\arrow["{\iota_A}", from=1-2, to=1-3]
@@ -206,7 +209,7 @@ The following proposition already appears in \cite{Chen02}. We will give a diffe
 \end{tikzcd}\]
     by the short five lemma $\psi$ is an isomorphism. Then we have that $\iota_A = \psi^{-1}\circ f$ and $g = \lambda_C\circ\psi^{-1}$ 
     by the commutativity of the squares above.\par 
-    Assume now that there is an $f': B \to A$ such that $f'\circ f = 1_A$. We define a map $\phi: B \to A\oplus C$ as
+    Assume now that there is an $f': B \to A$ such that $f'\circ f = 1_A$. We define a map $\phi: B \to A\coprod C$ as
     \[
         \phi(b) = \begin{cases}
             (f'(b),0) & \text{if } b\in\Image{f} \\
@@ -226,10 +229,10 @@ The following proposition already appears in \cite{Chen02}. We will give a diffe
     \[
         \phi(rb) = (0,g(rb)) = r\cdot(0,g(b)) = r\phi(b)
     \]
-    therefore it is well defined. We will again verify the commutativity of the following diagram and apply the short five lemma
+    therefore it is well-defined. We will again verify the commutativity of the following diagram and apply the short five lemma
     \[\begin{tikzcd}
         0 & A & B & C & 0 \\
-        0 & A & {A\oplus C} & C & 0
+        0 & A & {A\coprod C} & C & 0
         \arrow[from=1-1, to=1-2]
         \arrow["f", shift left, from=1-2, to=1-3]
         \arrow[equal, from=1-2, to=2-2]
@@ -254,8 +257,8 @@ The following proposition already appears in \cite{Chen02}. We will give a diffe
     \[
         (\lambda_C\circ\phi)(b) = \lambda_C(0,g(b)) = g(b)
     \]
-    therefore the right triangle commutes and by the short five lemma we get that $\phi$ is an isomorphism and we are done.\par 
-    We will show that if the third condition holds, then both the first and the second hold. Let $\phi: B \to A\oplus C$ be 
+    therefore the right triangle commutes, by the short five lemma we get that $\phi$ is an isomorphism, and we are done.\par 
+    We will show that if the third condition holds, then both the first and the second hold. Let $\phi: B \to A\coprod C$ be 
     an isomorphism, such that $g\circ\phi^{-1}=\lambda_C$ and $\phi\circ f = \iota_A$.
     We have that 
     \[
@@ -285,7 +288,7 @@ The following proposition already appears in \cite{Chen02}. We will give a diffe
         \arrow["\gamma", from=2-2, to=2-3]
         \arrow["\delta", from=2-3, to=2-4]
     \end{tikzcd}\]
-    then we have a Rees exact sequence
+    such that $g$ is Rees regular, then we have a Rees exact sequence
     \[\begin{tikzcd}[sep=small]
         {\Kernel{f}} & {\Kernel{g}} & {\Kernel{h}} & {\Cokernel{f}} & {\Cokernel{g}} & {\Cokernel{h}}
         \arrow["{\hat{\alpha}}", from=1-1, to=1-2]
@@ -426,7 +429,7 @@ The following proposition already appears in \cite{Chen02}. We will give a diffe
     \end{tikzcd}\]
     Indeed, define $\overline{a_n}([x]) = a_n(x)$ (similarly $\overline{b_n}$ and $\overline{c_n}$). This is well-defined, since
     $[x]=[y] \implies (x,y)\in\im(a_{n+1})\subseteq\ker{a_n} \implies a_n(x)=a_n(y)$. The images of the induced 
-    maps land in .Since $b_n$ is Rees regular, then clearly,
+    maps land in the respective kernels. Since $b_n$ is Rees regular, we have
     $b_n(x)=\overline{b_n}([x])=\overline{b_n}([y])=b_n(y) \implies b_n(x)=0=b_n(y) \lor x=y$, therefore $[x]=[y] \lor \overline{b_n}([x])=\overline{b_n}([y])$
     and $\overline{b_n}$ is Rees regular. The commutativity of the diagram follows directly from the commutativity of the diagram
     we started with.\par 
@@ -448,7 +451,7 @@ The following proposition already appears in \cite{Chen02}. We will give a diffe
 \end{corollary}
 \begin{proof}[Proof]
     The only thing of note is that if $(B,b)$ is Rees regular, then so are $(A,a)$ and $(C,c)$ by proposition \ref{regprop}. and 
-    if $(A,a)$ and $(C,c)$ are Rees regular, then so is $(B,b)$ by lemma \ref{reglemma1}. Then the proof is exactly the same as 
+    if $(A,a)$ and $(C,c)$ are Rees regular, then so is $(B,b)$ by lemma \ref{reglemma2}. Then the proof is exactly the same as 
     for modules.
 \end{proof}
 \begin{corollary}[3x3 lemma]
@@ -487,7 +490,7 @@ The following proposition already appears in \cite{Chen02}. We will give a diffe
     \begin{enumerate}
         \item If the first and the second columns are Rees exact, then so is the third.
         \item If the second and the third columns are Rees exact, then so is the first.
-        \item If the first and the third columns are Rees exact and additionaly $s_2\circ r_2=0$, then so is the second.
+        \item If the first and the third columns are Rees exact and additionally $s_2\circ r_2=0$, then so is the second.
     \end{enumerate}
 \end{corollary}
 \begin{proof}[Proof]

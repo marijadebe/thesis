@@ -35,7 +35,7 @@
     Let $S$ be a pointed monoid. A (left) pointed $S$-act is a $3$-tuple $(A,\cdot, 0)$, where $0\in A$ and $\cdot: S\times A \to A$ 
     a map, that satisfies the following
     \begin{enumerate}
-        \item $\forall r,s\in S\, \forall x\in A : (r\ast s)\cdot x = r\ast(s\cdot x)$
+        \item $\forall r,s\in S\, \forall x\in A : (r\ast s)\cdot x = r\cdot(s\cdot x)$
         \item $\forall x\in A : 1\cdot x = x$
         \item $\forall x\in A : 0\cdot x = 0$
     \end{enumerate}
@@ -56,13 +56,13 @@
     A \textbf{homomorphism} of pointed acts $f: A\to B$ is a map, such that $f(0) = 0$ and $f(r\cdot x) = r\cdot f(x)$ for any $r\in S$ and $x\in A$.
     A \textbf{congruence} on a pointed act $A$ is an equivalence relation $\rho$ on $A$ such that 
     \[
-        \forall x,y\in A \,\forall r \in S: x\rho y \implies r\cdot x\rho r\cdot y
+        \forall x,y\in A \,\forall r \in S: (x,y)\in\rho \implies (r\cdot x, r\cdot y)\in\rho
     \]
     A \textbf{factor} of a pointed act $A$ by a congruence $\rho$ is the set of equivalence classes $A/\rho$ with the action defined as $r \cdot [a]_\rho = [r \cdot a]_\rho$ and the zero element $[0]_\rho$. 
     This construction yields a pointed act.
 \end{definition}
 \begin{example}
-    A kernel congruence of a homomorphism $f: A\to B$ is a congruence on $A$ defined as $\ker{f} = \{(x,y)\in A\times A : f(x) = f(y)\}$.
+    A kernel congruence of a homomorphism $f: A\to B$ is a congruence on $A$ defined as $\ker{f} = \{(x,y)\in A\times A \mid f(x) = f(y)\}$.
 \end{example}
 \begin{remark}
     The category of pointed acts over a pointed monoid $S$, denoted as $\actcat{S}$ consists of pointed acts as objects and their homomorphisms as morphisms.
@@ -83,10 +83,13 @@
     say, WLOG, that $x=y$ and $y,z\in B$, then also $x\in B$ and therefore again $(x,z)\in\rho_B$, thus the relation is transitive. 
     If $(x,y)\in\rho_B$ and $r\in S$ we have either $x=y\implies rx=ry$ or $x,y\in B \implies rx,ry\in B$, so $\rho_B$ is a congruence on $A$.
 \end{proof}
+\begin{remark}
+    For $B$ a subact of $A$ we will often denote the factor $A/\rho_B$ as $A/B$. 
+\end{remark}
 
 \section{Constructions}
 \begin{proposition}
-    Let $f,g: A \to B$ be homomorphisms of pointed acts. Let $\{f=g\} := \{x\in A : f(x) = g(x)\}$, then $\{f=g\}$ is a subact of $A$ and 
+    Let $f,g: A \to B$ be homomorphisms of pointed acts. Let $\{f=g\} := \{x\in A \mid f(x) = g(x)\}$, then $\{f=g\}$ is a subact of $A$ and 
     the canonical inclusion $\iota: \{f=g\} \to A$, $x\mapsto x$ is an equaliser in $\actcat{S}$.
 \end{proposition}
 \begin{proof}
@@ -113,7 +116,7 @@
     In the case of cokernels, the congruence $\sim$ admits a much nicer description. 
 \begin{proposition}
     Let $f: A \to B$ be a homomorphism of pointed acts, then the smallest congruence on $B$ such that $\forall x\in A :f(x)\sim 0$ is
-    $\rho_{\Image{f}}$, where $\Image{f} = \{f(x) : x\in A\}$.
+    $\im(f):=\rho_{\Image{f}}$, where $\Image{f} = \{f(x) \mid x\in A\}$.
 \end{proposition}
 \begin{proof}
     We have that $(f(x),0)\in\Image{f}$, because $0\in\Image{f}$. If $\sim$ is any other such congruence, then for any $f(x),g(x)\in\Image{f}$
@@ -231,7 +234,7 @@ We will now construct the products and coproducts in $\actcat{S}$.
     then $K^{-1}A$ admits the structure of a pointed $K^{-1} S$ act.
 \end{proposition}
 \begin{proof}[Proof]
-    The relation is clearly a reflexive and symmetric relation. Assume 
+    The relation is clearly reflexive and symmetric. Assume 
     that $(k_1,a_1)\sim(k_2,a_2)\sim(k_3,a_3)$, so 
     $uk_1a_2 = uk_2a_1$ and $vk_2a_3 = vk_3a_2$ for some $u,v\in K$, then 
     \[
@@ -299,6 +302,26 @@ We will now construct the products and coproducts in $\actcat{S}$.
     localisation to be an endofunctor by considering the functor $\Lambda\circ K^{-1}$ instead. 
 \end{remark}
 \section{Regularity and exactness}
+    For the remaining chapters we fix the following notation, for a homomorphism $f$ by $\im(f)$ we mean the 
+    Rees congruence $\rho_{\Image{f}}$. To remind the reader by $\ker{f}$ we mean the kernel congruence $\ker{f} = \{(x,y) \mid f(x)=f(y)\}$
+    and $\Kernel{f} = \{x \mid f(x) = 0\}$, $\Image{f} = \{ y \mid \exists x : f(x) =y \}$.
+\begin{proposition}
+    In the category of pointed acts, every monomorphism is normal (i.e. a kernel of its cokernel). 
+\end{proposition}
+\begin{proof}[Proof]
+    Let $f: K \to A$ be a monomorphism and $\pi : A \to A/\Image{f}$ be the canonical projection. We clearly have that 
+    $\pi\circ f = 0$. Let $\hat{f} : S \to A$ be any other homomorphism, such that $\pi\circ\hat{f} = 0$, then 
+    given $x\in S$ we have $[\hat{f}(x)]=0$ or equivalently that $\hat{f}(x)\in\Image{f}$, therefore there is a unique 
+    $x'\in K$ so that $f(x')=\hat{f}(x)$. Define $\phi(x)=x'$ to be the map from $S$ to $K$. By definition we have 
+    $f\circ\phi = \hat{f}$ and this relation defines the map uniquely, because for every element in the image of $\hat{f}$ there 
+    is precisely one element in $K$ that can map onto it. It remains to show that $\phi$ is really a homomorphism, fixing the 
+    notation as above, let $\phi(rx)=z'$ and $\phi(x)=z_0'$, then we have 
+    \[
+        f(\phi(rx))=f(z')=\hat{f}(rx)=r\hat{f}(x)=rf(z_0')=f(rz_0')=f(r\phi(x))
+    \]
+    thus $\phi(rx)=r\phi(x)$, since $f$ is a mono, which concludes the proof.
+\end{proof}
+
 \begin{definition}
     Let $A$ and $B$ be pointed acts over a pointed monoid $\mathcal{S}$, we say that 
     $f: A\to B$ is \textbf{Rees regular}, if 
@@ -312,7 +335,7 @@ We will now construct the products and coproducts in $\actcat{S}$.
 \end{tikzcd}\]
 \end{definition}
 \begin{remark}
-    Note that we always have $\rho_\Kernel{f}\subseteq\ker{f}$, since $x=y\lor f(x)=0=f(y)\implies f(x)=f(y)$.
+    Note that we always have $\rho_{\Kernel{f}}\subseteq\ker{f}$, since $x=y\lor f(x)=0=f(y)\implies f(x)=f(y)$.
 \end{remark}
 \begin{proposition}
     Let $f: A\to B$ be a homomorphism of pointed acts over a pointed monoid $\mathcal{S}$, then the following are equivalent
@@ -337,25 +360,335 @@ We will now construct the products and coproducts in $\actcat{S}$.
         \arrow["{\exists ! \phi}"', dashed, from=2-4, to=1-3]
     \end{tikzcd}\]
     Define $\phi(y) = g(x)$, where $x\in A$ is such that $f(x)=y$. This map is well-defined, because if $f(x)=y=f(x')$, then
-    either $x=x'$ or $f(x)=0=f(x') \implies g(x)=0=g(x')$, since $g\circ\iota = 0$.  
+    either $x=x'$ or $f(x)=0=f(x') \implies g(x)=0=g(x')$, since $g\circ\iota = 0$. Clearly $\phi\circ f = g$ by definition.
+    It remains to verify uniqueness. Suppose that $\phi': \Image{f}\to X$ is another such map, then for any $y\in\Image{f}$ we 
+    find a $x\in A$ so that $f(x) = y$, then $\phi'(y) = \phi'(f(x)) = g(x) = \phi(f(x)) = \phi(y)$. \par
+    $3. \implies 1.$ Consider the canonical projection $\pi : A \to A/\Kernel{f}$, then $\pi\circ\iota = 0$, therefore 
+    there exists a unique map $\phi: \Image{f}\to X$, such that $\phi\circ f = \pi$, then if $f(x)=f(y)$ we have 
+    $\phi(f(x))=\phi(f(y)) \implies [x]_\Kernel{f}=[y]_\Kernel{f}$, hence $x=y \lor x,y\in\Kernel{f}$, so 
+    $\ker{f}=\rho_{\Kernel{f}}$. In particular $1.$ holds.
 \end{proof}
-% \begin{definition}
-%     We say that a pointed act $P$ is projective, if for every epimorphism $A\to B$ and a homomorphism $P\to B$, there is a
-%     homomorphism $P\to A$, such that the following diagram commutes 
-%     \[\begin{tikzcd}
-%         & P \\
-%         A & B
-%         \arrow["\exists"', dashed, from=1-2, to=2-1]
-%         \arrow[from=1-2, to=2-2]
-%         \arrow[two heads, from=2-1, to=2-2]
-%     \end{tikzcd}\]
-%     Similarly a pointed act $I$ is injective, if for every monomorphism $A\to B$ and a homomorphism $A \to I$ there exists a 
-%     homomorphism $B\to I$ such that the following commutes
-%     \[\begin{tikzcd}
-% 	I \\
-% 	A & B
-% 	\arrow[from=2-1, to=1-1]
-% 	\arrow[hook, from=2-1, to=2-2]
-% 	\arrow["\exists"', dashed, from=2-2, to=1-1]
-% \end{tikzcd}\]
-% \end{definition}
+\begin{remark}
+    Note that $3.$ in the above characterisation is the definition of admissible morphism in $\actcat{S}$, 
+    which appears in \cite{Flores15}.
+\end{remark}
+\begin{proposition}
+    Assume $f:A \to B$ is Rees regular and $\sim$ a congruence on $A$, the following holds
+    \begin{enumerate}
+        \item $f$ is a monomorphism, if and only if $\Kernel{f} = \{0\}$.
+        \item If $K$ is a multiplicative subset of $\mathcal{S}$, then $K^{-1}f$ is Rees regular.
+        \item If $g: B \to C$ is Rees regular, then $g\circ f$ is.
+        \item The canonical projection $\pi : A \to A/\sim$, $x\mapsto [x]$ is Rees regular, if and only if 
+        $\sim$ is a Rees congruence.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}[Proof]
+    Let $f(x)=f(y)$, then $(x,y)\in\rho_{\Kernel{f}} \implies x=y \lor f(x)=0=f(y) \implies x=y \lor x=0=y$.\par 
+    Assume that 
+    \[
+        K^{-1}f\left(\frac{a}{k_1}\right) = K^{-1}f\left(\frac{b}{k_2}\right)
+    \]
+    then $f(kk_2a)=kk_2f(a) = kk_1f(b)=f(kk_1b)$ for some $k\in K$, so $(kk_2 a,kk_1b)\in\rho_{\Kernel{f}}$, which implies 
+    \[
+        \frac{a}{k_1}=\frac{b}{k_2} \lor K^{-1}f\left(\frac{a}{k_1}\right)= \frac{f(a)}{k_1} = 0 = \frac{f(b)}{k_2} = K^{-1}f\left(\frac{b}{k_2}\right) 
+    \]
+    Assume that $g: B\to C$ is Rees regular and $g(f(x))=g(f(y))$, since $g$ is Rees regular we have 
+    \[
+        f(x)=f(y) \lor g(f(x))=0=g(f(y)) \implies 
+        \]
+        \[\implies x=y \lor f(x)=0=f(y) \lor g(f(x))=0=g(f(y)) \implies
+    \]
+    \[
+        \implies x=y \lor g(f(x))=0=g(f(y))
+    \]
+    hence $\ker{g\circ f} = \rho_{\Kernel{g\circ f}}$.\par
+    Suppose the canonical projection is Rees regular, if $x\sim y$, then $[x]=[y]$, hence by regularity 
+    $x=y \lor [x]=[0]=[y]$ or equivalently $x=y\lor x,y\in [0]$. Note that $[0]\leq A$, since $x\sim 0 \implies rx\sim r0 = 0$ 
+    therefore it is a subact of $A$. If $\sim$ is a Rees congruence we have $[x]=[y] \implies x=y \lor x,y\in A'$ for some $A'\leq A$,
+    which means precisely that $x=y \lor [x]=[0]=[y]$, because $0\in A'$. 
+\end{proof}
+\begin{definition}
+    A \textbf{chain complex} $(A_n,a_{n} : A_n\to A_{n-1})_{n\in\mathbb{Z}}$ is a sequence of acts and act morphisms
+    \[\begin{tikzcd}
+        \cdots & {A_{n+1}} & {A_n} & {A_{n-1}} & \cdots
+        \arrow[from=1-1, to=1-2]
+        \arrow["{a_{n+1}}", from=1-2, to=1-3]
+        \arrow["{a_n}", from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    such that for all $n\in\mathbb{Z}$ we have $\im(a_{n+1})\subseteq\ker{a_n}$. Chain complex is \textbf{Rees exact
+    at $A_n$}, if $\im(a_{n+1})=\ker{a_n}$. Chain complex is \textbf{Rees exact}, if it is Rees exact at $A_n$ for each $n\in\mathbb{Z}$. 
+    We say that a chain complex is \textbf{Rees regular}, if all $a_n$ are Rees regular homomorphisms.
+\end{definition}
+We will often write $(A,a)$ for short to mean the chain complex $(A_n,a_{n} : A_n\to A_{n-1})_{n\in\mathbb{Z}}$. \par
+Given any finite sequence of acts $\begin{tikzcd}
+	{A_0} & \cdots & {A_n}
+	\arrow["{f_0}", from=1-1, to=1-2]
+	\arrow["{f_{n-1}}", from=1-2, to=1-3]
+\end{tikzcd}$ we say that the sequence is Rees exact, if $\forall n\in\{1,\dots,n-1\} : \ker{d_n} = \im(d_{n-1})$.
+\begin{remark} 
+    A sequence $(A_n,a_{n} : A_n\to A_{n-1})_{n\in\mathbb{Z}}$ of pointed acts and their morphisms is a chain complex, if and only if $a_{n+1}\circ a_n = 0$. If $(A,a)$ is a chain complex 
+    we always have that $\Image{a_{n+1}}\subseteq\Kernel{a_n} \forall n\in\mathbb{Z}$.
+\end{remark}
+\begin{proof}[Proof]
+    Choose $n\in\mathbb{Z}$. 
+    If $\im(a_{n+1})\subseteq\ker{a_n}$ we have for $x\in A_{n+1}$ that
+    $(a_{n+1}(x),0)\in\im(a_{n+1})\subseteq\ker{a_n}$, so $(a_n\circ a_{n+1})(x) = 0$. Now assume that $a_{n+1}\circ a_n = 0$, then 
+    if $(x,y)\in\im(a_{n+1})$ we either have $x=y$, which trivially implies that $a_n(x)=a_n(y)$ or 
+    $\exists x_0,y_0\in A_{n+1}$ such that $a_{n+1}(x_0)=x\land a_{n+1}(y_0)=y$, which implies 
+    \[
+        a_n(x) = a_n(a_{n+1}(x_0)) = 0 = a_n(a_{n+1}(y_0)) = a_n(y)
+    \]
+    so $(x,y)\in\ker{a_n}$.\par
+    If $y\in A_n$ is such that $a_{n+1}(y_0)=y$ for some $y_0\in A_{n+1}$ we 
+    have $a_n(y) = a_n(a_{n+1}(y_0)) = 0 \implies y\in\Kernel{a_n}$.
+\end{proof}
+\begin{definition}
+    Let $(A,a)$ be a chain complex and $n\in\mathbb{Z}$ we define the $n$-th homology act $H_n(A)$ as 
+    \[
+        H_n(A) = \Kernel{a_n}/\im(a_{n+1})
+    \]
+\end{definition}
+\begin{proposition}\label{regularityProp}
+    Given a sequence of pointed acts 
+    \[\begin{tikzcd}
+        \cdots & {A_{n+1}} & {A_n} & {A_{n-1}} & \cdots
+        \arrow[from=1-1, to=1-2]
+        \arrow["{a_{n+1}}", from=1-2, to=1-3]
+        \arrow["{a_n}", from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    the following are equivalent for each $n\in\mathbb{Z}$
+    \begin{enumerate}
+        \item $\ker{a_n}=\im(a_{n+1})$
+        \item $\Image{a_{n+1}}=\Kernel{a_n}$ and $a_n$ is Rees regular.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}[Proof]
+    Assume exactness at $A_n$ and let $a_n(x)=0$, then $(x,0)\in\im(a_{n+1})$, if 
+    $x=0$, then trivially $a_{n+1}(0)=x$, else we find $x_0\in A_{n+1},x_0\neq 0$ such that $a_{n+1}(x_0)=x$, thus
+    $\Kernel{a_n}=\Image{a_{n+1}}$ by the previous remark. Let $a_n(x)=a_n(y)$,$x\neq y$, then $(x,y)\in\ker{a_n}=\im(a_{n+1})$, 
+    so $a_{n+1}(x_0)=x$ and $a_{n+1}(y_0)=y$ for some $x_0,y_0\in A_{n+1}$, therefore 
+    \[
+        a_n(x)= a_n(a_{n+1}(x_0)) = 0 = a_n(a_{n+1}(y_0)) = a_n(y) \implies (x,y)\in\rho_\Kernel{a_n}
+    \]
+    Assume that the second condition holds. We have $\ker{a_n} = \rho_{\Kernel{a_n}} = \rho_{\Image{a_{n+1}}} = \im(a_{n+1})$, 
+    which concludes the proof.
+\end{proof}
+\begin{remark}
+    For a Rees regular chain complex $(A,a)$ we have that $(A,a)$ is Rees exact at $A_n$, if and only if $H_n(A)=0$.
+\end{remark}
+\begin{definition}
+    Let $(A,a)$ and $(B,b)$ be two chain complexes. A \textbf{chain map} $f:(A,a)\to(B,b)$ is a sequence of act morphisms $(f_n: A_n\to B_n)$ 
+    such that $\forall n\in\mathbb{Z}$ the following square diagram commutes
+    \[\begin{tikzcd}
+        {A_n} && {B_n} \\
+        \\
+        {A_{n-1}} && {B_{n-1}}
+        \arrow["{f_n}"{description}, from=1-1, to=1-3]
+        \arrow["{a_n}", from=1-1, to=3-1]
+        \arrow["{b_n}", from=1-3, to=3-3]
+        \arrow["{f_{n-1}}"{description}, from=3-1, to=3-3]
+    \end{tikzcd}\]
+\end{definition}
+\begin{proposition}
+    Chain complexes of acts along with chain maps form a category $\mathrm{Ch}(\actcat{S})$.
+\end{proposition}
+\begin{proposition}
+    Let $f: (A,a) \to (B,b)$ be a chain map and $n\in\mathbb{Z}$, then we have an induced map $H_n(f) : H_n(A) \to H_n(B)$
+    defined as $H_n(f)([x]) = [f_n(x)]$. This makes $H_n(A)$ into a functor from $\mathrm{Ch}(\actcat{S})$ to $\actcat{S}$.
+\end{proposition}
+\begin{proof}[Proof]
+    We need to show well-definedness. Assume that $[x]=[y]$, if $x=y$ we are done, otherwise $x,y\in\Image{a_{n+1}}$ so we 
+    find $x_0,y_0\in A_{n+1}$ such that $a_{n+1}(x_0) = x$,$a_{n+1}(y_0)=y$. By commutativity $f_n(x)=f_n(a_{n+1}(x_0))=b_{n+1}(f_{n+1}(x_0))$
+    and $f_n(y) = f_n(a_{n+1}(y_0))=b_{n+1}(f_{n+1}(y_0))$, thus $[f_n(x)]=[0]=[f_n(y)]$. The fact that $H_n(f)$ is a homomorphism 
+    is clear from the definition.\par 
+    Next we compute
+    \[
+        H_n(1_{(A,a)})([x]) = [1_{A_n}(x)] = [x] \implies H_n(1_{(A,a)}) = 1_{H_n(A)}
+    \]
+    \[
+        H_n(g\circ f)([x]) = [g_n(f_n(x))] = H_n(g)([f_n(x)]) =
+    \]
+    \[
+         =(H_n(g)\circ H_n(f))([x]) \implies H_n(g\circ f) = H_n(g)\circ H_n(f)
+    \]
+\end{proof}
+\begin{lemma}
+    If $f: (A,a)\to (B,b)$ is a chain map and $f_n$ is Rees regular, then $H_n(f)$ is Rees regular.
+\end{lemma}
+\begin{proof}[Proof]
+    Assume $[f_n(x)]=H_n(f)([x])=H_n(f)([y])=[f_n(y)]$, then $f_n(x)=f_n(y) \implies x=y \lor f_n(x)=0=f_n(y)$ or 
+    $f_n(x),f_n(y)\in\Image{b_{n+1}}$. In either case we have $[x]=[y]$ or $H_n(f)([x])=[f_n(x)]=0=[f_n(y)]=H_n(f)([y])$.
+\end{proof}
+\begin{definition}
+    We say that a chain complex $(A,a)$ of pointed acts is \textbf{bounded above}, if there is some $n\in\mathbb{Z}$ such that 
+    $A_m=0$ for all $m\geq n$. Similarly we say that $(A,a)$ is \textbf{bounded below}, if there exists $n\in\mathbb{Z}$ such that 
+    $A_m=0$ for all $m\leq n$. Chain complex $(A,a)$ is \textbf{bounded}, if it is bounded above and below.
+\end{definition}
+\begin{definition}
+    A \textbf{Rees short exact sequence} is a bounded Rees exact chain complex of the form
+    \[\begin{tikzcd}
+        0 & A & B & C & 0
+        \arrow[from=1-1, to=1-2]
+        \arrow["f", from=1-2, to=1-3]
+        \arrow["g", from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+\end{definition}
+\begin{remark}
+    By definition of exactness it follows that $\ker{f} = \{(0,0)\}\cup\Delta_A \land \im(g)= C\times C$, therefore 
+    $f$ is injective and $g$ is surjective. Similarly injectivity of $f$ and surjecivity of $g$ imply exactness at $A$ 
+    and $C$ respectively.
+\end{remark}
+\begin{example}
+    Let $A$ and $B$ be acts, then we have the following Rees short exact sequence
+    \[\begin{tikzcd}
+        0 & A & {A\coprod B} & B & 0
+        \arrow[from=1-1, to=1-2]
+        \arrow["\iota", from=1-2, to=1-3]
+        \arrow["\lambda", from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    where $\iota: x \mapsto (x,0)$ and 
+    \[
+        \lambda(x,y) = 
+        \begin{cases}
+            y, & \text{if } x=0 \\
+            0, & \text{otherwise}
+        \end{cases}
+    \]
+    the exactness at $A$ and $B$ is easily seen. We will show exactness 
+    at $A\coprod B$.\par
+    Choose $((x_1,y_1),(x_2,y_2))\in\im(\iota)$, if $x_1=x_2$ and $y_1=y_2$ we are done, 
+    otherwise we have $y_1=0=y_2$, therefore 
+    \[
+        \lambda(x_1,y_1)=0=\lambda(x_2,y_2)
+    \]
+    which implies $\im(\iota)\subseteq\ker{\lambda}$.
+    Let $((x_1,y_1),(x_2,y_2))\in\ker{\lambda}$, if $x_1=x_2$ and $y_1=y_2$
+    we are done, therefore assume that $x_1\neq x_2$ or $y_1\neq y_2$.\par
+    Suppose $x_1=0$, then $x_2\neq 0$ (else $y_1=y_2$), this implies
+    that $y_2=0$ and $y_1=\lambda(x_1,y_1)=\lambda(x_2,y_2)=0$
+    so $(x_1,y_1)=(0,0)$ and $y_2=0$, then 
+    $\iota(x_2)=(x_2,y_2)$ and $\iota(0)=(x_1,y_1)$.\par
+    Suppose now that $x_1\neq 0$, then $y_1=0$ and 
+    $\lambda(x_2,y_2)=\lambda(x_1,y_1)=0$, which means either 
+    $(x_2,y_2)=(0,0)$ or that $x_2\neq 0$, in either case $y_2=0$,
+    hence $\iota(x_1)=(x_1,y_1)$ and $\iota(x_2)=(x_2,y_2)$.
+    In conclusion $\ker{\lambda}=\im(\iota)$ as required.
+\end{example}
+\begin{example}
+    If $B$ is a subact of $A$, then the following sequence is Rees short exact 
+    \[\begin{tikzcd}
+        0 & B & A & {A/B} & 0
+        \arrow[from=1-1, to=1-2]
+        \arrow["\iota", from=1-2, to=1-3]
+        \arrow["\pi", from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    where $\iota$ is the set inclusion map and $\pi$ is the canonical projection. 
+    The exactness at $A$ and $A/B$ is trivial. Choose $x\in B$, then we have 
+    $\pi(\iota(x)) = \pi(x) = [x] = [0] \implies \im(\iota)\subseteq\ker{\pi}$. Choose 
+    $(x,y)\in\ker{\pi}$, so $[x]=[y]$, if $x=y$, then it is trivially in $\im(\iota)$, else 
+    we necessarily have $[x]=[0]=[y]$, so $x,y\in B$ as required.
+\end{example}
+\begin{definition}
+    A sequence of chain complexes 
+\[\begin{tikzcd}
+	0 & {(A,a)} & {(B,b)} & {(C,c)} & 0
+	\arrow[from=1-1, to=1-2]
+	\arrow["f", from=1-2, to=1-3]
+	\arrow["g", from=1-3, to=1-4]
+	\arrow[from=1-4, to=1-5]
+\end{tikzcd}\]
+    (where by $0$ we mean $\cdots\to 0\to0\to0\to\cdots$) is exact 
+    if for each $n\in\mathbb{Z}$ we have that 
+    \[\begin{tikzcd}
+	0 & {A_n} & {B_n} & {C_n} & 0
+        \arrow[from=1-1, to=1-2]
+        \arrow["{f_n}", from=1-2, to=1-3]
+        \arrow["{g_n}", from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    is a Rees short exact sequence.
+\end{definition}
+\begin{proposition}
+    Assume that $\mathcal{S}$ is a commutative, pointed monoid and $K\subseteq S$ is a submonoid of $S$ such that $0\not\in K$, then
+    given a Rees short exact sequence 
+    \[\begin{tikzcd}
+        0 & A & B & C & 0
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    the following sequence is Rees short exact
+    \[\begin{tikzcd}
+        0 & {K^{-1}A} & {K^{-1}B} & {K^{-1}C} & 0
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+\end{proposition}
+\begin{proof}[Proof]
+    Let $\frac{a}{k}\in K^{-1}A$, then 
+    \[
+    (K^{-1}g\circ fK^{-1}f)\left(\frac{a}{k}\right) = \frac{g(f(a))}{k} = \frac{0}{k} =\frac{0}{1}=0 \implies \im(K^{-1}f)\subseteq\ker{K^{-1}g}
+    \]
+    Assume that $\frac{g(b_1)}{k_1}=\frac{g(b_2)}{k_2}$, so we find $u\in K$ such that 
+    $g(uk_1b_2)=uk_1g(b_2)=uk_2g(b_1)=g(uk_2b_1)$, therefore 
+    $(uk_1b_2,uk_2b_1)\in\im(f)$. If $uk_1b_2=uk_2b_1$ we are done, otherwise 
+    we find $z_1,z_2\in A$ such that $f(z_1) = uk_1b_2$ and $f(z_2)=uk_2b_1$.
+    then 
+    \[
+        K^{-1}f\left(\frac{z_1}{uk_1k_2}\right) = \frac{uk_1b_2}{uk_1k_2} = \frac{b_2}{k_2}
+    \] 
+    \[
+        K^{-1}f\left(\frac{z_2}{uk_2k_1}\right) = \frac{uk_2b_1}{uk_2k_1} = \frac{b_1}{k_1}
+    \]
+    which proves exactness at $K^{-1}B$, we have to show that $K^{-1}$ preserves injections and surjections.
+    Suppose $\frac{f(a_1)}{k_1}=\frac{f(a_2)}{k_2}$, then find $u\in K^{-1}$ such that 
+    \[
+        uk_1f(a_2) = uk_2f(a_1)\implies f(uk_1a_2)=f(uk_2a_1) \implies
+    \] 
+    \[
+        \implies uk_1a_2=uk_2a_1 \implies\frac{a_1}{k_1}=\frac{a_2}{k_2}
+    \]
+    To prove surjectivity choose $\frac{z}{k}\in K^{-1}C$, we find $y\in B$ such that $g(y)=z$, then 
+    \[
+        K^{-1}g\left(\frac{y}{k}\right) = \frac{g(y)}{k} = \frac{z}{k}
+    \]
+    which completes the proof.
+\end{proof}
+\begin{corollary}
+    Let $B$ be a subact of $A$, then $K^{-1}B$ is a subact of $K^{-1}A$ and  
+    \[
+        K^{-1}\left(\frac{A}{B}\right) \simeq \frac{K^{-1}A}{K^{-1}B}
+    \]
+\end{corollary}
+\begin{proof}[Proof]
+    Consider the Rees short exact sequence 
+    \[\begin{tikzcd}
+        0 & {K^{-1}B} & {K^{-1}A} & {K^{-1}(A/B)} & 0
+        \arrow[from=1-1, to=1-2]
+        \arrow["{K^{-1}\iota}", from=1-2, to=1-3]
+        \arrow["{K^{-1}\pi}", from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    $K^{-1}B$ is clearly a subset of $K^{-1}A$, it contains zero, since $B$ contains zero and 
+    it is closed under the monoidal action, because $B$ is.
+    First we need to show that $\im K^{-1}\iota = \rho_{K^{-1}B}$, we have 
+    \[
+    \left(\frac{b_1}{k_1},\frac{b_2}{k_2}\right)\in\im(S^{-1}\iota) \iff \frac{b_1}{k_1}=\frac{b_2}{k_2}\lor\exists\,\frac{a_1}{l_1},\frac{a_2}{l_1}\in K^{-1}B :
+    \frac{a_1}{l_1}=\frac{b_1}{k_1}\land\frac{a_2}{l_2}=\frac{b_2}{k_2}
+    \]
+    \[
+        \iff \frac{b_1}{k_1}=\frac{b_2}{k_2}\lor \frac{b_1}{k_1},\frac{b_2}{k_2}\in K^{-1}B \iff \left(\frac{a_1}{k_1},\frac{a_2}{k_2}\right)\in\rho_{K^{-1}B}
+    \]
+    then by the first isomorphism theorem for universal algebras we have 
+    \[
+    K^{-1}(A/B)\simeq K^{-1}(A)/\ker{K^{-1}\pi} = K^{-1}(A)/\im(K^{-1}\iota) = K^{-1}A/K^{-1}B
+    \]
+\end{proof}
