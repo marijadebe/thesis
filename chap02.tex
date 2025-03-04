@@ -40,7 +40,7 @@
         \item $\forall x\in A : 0\cdot x = 0$
     \end{enumerate}
     it then follows that $r\cdot 0 = r\cdot (0\cdot 0) = (r\ast 0)\cdot 0 = 0\cdot 0 = 0$ and that 
-    such an element $0$ satisfying $2.$ is necessarily unique. We will call the element $0\in A$ the 
+    such an element $0$ satisfying $3.$ is necessarily unique. We will call the element $0\in A$ the 
     \textbf{sink} of $A$.
 \end{definition}
 \begin{example}
@@ -49,11 +49,11 @@
 \end{example}
 \begin{example}
     We can consider any pointed set $(X,x_0)$ (that is $X$ a set and $x_0\in X$) to be pointed $S$-act for any pointed monoid $S$,
-    by letting $s\cdot x = x_0$ for all $x\in X$.
+    by letting $s\cdot x = x$ for $s\neq 0$ and $s\cdot x = x_0$ for $s=0$.
 \end{example}
 \begin{definition}
     Let $A$ be a pointed $S$-act. A \textbf{subact} of $A$ is a subset $B\subseteq A$ such that $0\in B$ and $B$ is closed under the action of $S$. 
-    A \textbf{homomorphism} of pointed acts $f: A\to B$ is a map, such that $f(0) = 0$ and $f(r\cdot x) = r\cdot f(x)$ for any $r\in S$ and $x\in A$.
+    A \textbf{homomorphism} of pointed acts $f: A\to B$ is a map, such that $f(0) = 0$ and $f(r\cdot x) = r\cdot f(x)$ for all $r\in S$ and $x\in A$.
     A \textbf{congruence} on a pointed act $A$ is an equivalence relation $\rho$ on $A$ such that 
     \[
         \forall x,y\in A \,\forall r \in S: (x,y)\in\rho \implies (r\cdot x, r\cdot y)\in\rho
@@ -62,7 +62,7 @@
     This construction yields a pointed act.
 \end{definition}
 \begin{example}
-    A kernel congruence of a homomorphism $f: A\to B$ is a congruence on $A$ defined as $\ker{f} = \{(x,y)\in A\times A \mid f(x) = f(y)\}$.
+    The kernel congruence of a homomorphism $f: A\to B$ is a congruence on $A$ defined as $\ker{f} = \{(x,y)\in A\times A \mid f(x) = f(y)\}$.
 \end{example}
 \begin{remark}
     The category of pointed acts over a pointed monoid $S$, denoted as $\actcat{S}$ consists of pointed acts as objects and their homomorphisms as morphisms.
@@ -74,7 +74,7 @@
     \[
         \rho_B = \Delta_A \cup B\times B
     \]
-    where $\Delta_A$ is the diagonal congruence on $A$. We call $\rho_B$ a \textbf{Rees congruence on $A$}. 
+    where $\Delta_A= \{(x,x): x\in A \}$ is the diagonal relation on $A$. We call $\rho_B$ a \textbf{Rees congruence on $A$}. 
 \end{definition}
 \begin{proof}
     We will show, that $\rho_B$ is a congruence. \par 
@@ -89,7 +89,7 @@
 
 \section{Constructions}
 \begin{proposition}
-    Let $f,g: A \to B$ be homomorphisms of pointed acts. Let $\{f=g\} := \{x\in A \mid f(x) = g(x)\}$, then $\{f=g\}$ is a subact of $A$ and 
+    Let $f,g: A \to B$ be homomorphisms of pointed acts. Let $\{f=g\} = \{x\in A \mid f(x) = g(x)\}$, then $\{f=g\}$ is a subact of $A$ and 
     the canonical inclusion $\iota: \{f=g\} \to A$, $x\mapsto x$ is an equaliser in $\actcat{S}$.
 \end{proposition}
 \begin{proof}
@@ -98,7 +98,7 @@
     map is unique. Say there were two maps $\iota\overline{h_1}=h=\iota\overline{h_2}$, then because $\iota$ is injective (so a monomorphism, 
     because we are in a concrete category) we have $\overline{h_1}=\overline{h_2}$.
 \end{proof}
-    We will denote the kernel as $\Kernel{f} = \{f=0\}$. 
+    We will denote the equalizer $\{f=0\}$ as $\Kernel{f}$. 
 \begin{proposition}
     Suppose $f,g: A\to B$ are homomorphisms, let $\sim$ be the smallest congruence on $B$ such that $\forall x\in A: f(x)\sim g(x)$, then 
     $B/\sim$ with the canonical projection $\pi: B\to B/\sim$, $x\mapsto [x]_\sim$ is a coequaliser in $\actcat{S}$. 
@@ -116,7 +116,7 @@
     In the case of cokernels, the congruence $\sim$ admits a much nicer description. 
 \begin{proposition}
     Let $f: A \to B$ be a homomorphism of pointed acts, then the smallest congruence on $B$ such that $\forall x\in A :f(x)\sim 0$ is
-    $\im(f):=\rho_{\Image{f}}$, where $\Image{f} = \{f(x) \mid x\in A\}$.
+    $\im(f)=\rho_{\Image{f}}$, where $\Image{f} = \{f(x) \mid x\in A\}$.
 \end{proposition}
 \begin{proof}
     We have that $(f(x),0)\in\Image{f}$, because $0\in\Image{f}$. If $\sim$ is any other such congruence, then for any $f(x),g(x)\in\Image{f}$
@@ -136,7 +136,7 @@ We will now construct the products and coproducts in $\actcat{S}$.
     is the map $i\mapsto 0$. It is routine to check that such a structure satisfies the 
     axioms of pointed acts. By definition of the action and zero we see that $\pi_i$ is a homomorphism. Suppose now that 
     object $U$ along with the maps $\mu_i : U \to X_i$ is a cone in $\actcat{S}$. Define a map $f: U \to\prod_{i\in I} X_i$ 
-    as $f(u) = g$, where $\forall i\in I : g(i) := \mu_i(u)$. We have that 
+    as $f(u) = g$, where $\forall i\in I : g(i) = \mu_i(u)$. We have that 
     \[
         f(ru)(i) = \mu_i(ru) = r\mu_i(u) = r\cdot f(u)(i) = (r\cdot f(u))(i)
     \]  
@@ -145,10 +145,10 @@ We will now construct the products and coproducts in $\actcat{S}$.
     \]
     so it is a homomorphism of pointed acts that satisfies $\mu_i = \pi_i\circ f$. If $f'$ is any other such map we would have that 
     $\forall i\in I : \pi_i\circ f = \pi_i\circ g$, then fixing $u\in U$ and $i\in I$ we get $g(u)(i) = (\pi_i \circ g)(u) = (\pi_i\circ f)(u) = f(u)(i) \implies g(u)=f(u)$ 
-    and $f=g$.
+    thus $f=g$.
 \end{proof}
 \begin{proposition}
-    Let $I$ be a nonempty set, $(X_i)_{i\in I}$ a collection of pointed acts over a pointed monoid $S$, then we define 
+    Let $I$ be a nonempty set, $(X_i)_{i\in I}$ a collection of pointed acts over a pointed monoid $S$, we define 
     \[
         \coprod_{i\in I } X_i = \{f\in\prod_{i\in I }X_i \mid \exists j\in I\,\forall i\in I : i\neq j \implies f(i) = 0\}
     \]
@@ -460,7 +460,7 @@ Given any finite sequence of acts $\begin{tikzcd}
     \end{tikzcd}\]
     the following are equivalent for each $n\in\mathbb{Z}$
     \begin{enumerate}
-        \item $\ker{a_n}=\im(a_{n+1})$
+        \item $\im(a_{n+1})=\ker{a_n}$
         \item $\Image{a_{n+1}}=\Kernel{a_n}$ and $a_n$ is Rees regular.
     \end{enumerate}
 \end{proposition}
@@ -494,6 +494,12 @@ Given any finite sequence of acts $\begin{tikzcd}
 \begin{proposition}
     Chain complexes of acts along with chain maps form a category $\mathrm{Ch}(\actcat{S})$.
 \end{proposition}
+\begin{proof}
+    Indeed, for $f:(A,a)\to (B,b)$ and $g:(B,b)\to (C,c)$ define $g\circ f$ componentwise as 
+    $(g\circ f)_n = g_n \circ f_n$. For a chain complex $(A,a)$ we let the identity $1_{(A,a)}$ 
+    be defined as $(1_{(A,a)})_n = 1_{A_n}$. The composition is associative, because it is associative 
+    componentwise and the identity acts as the identity on components.
+\end{proof}
 \begin{proposition}
     Let $f: (A,a) \to (B,b)$ be a chain map and $n\in\mathbb{Z}$, then we have an induced map $H_n(f) : H_n(A) \to H_n(B)$
     defined as $H_n(f)([x]) = [f_n(x)]$. This makes $H_n(A)$ into a functor from $\mathrm{Ch}(\actcat{S})$ to $\actcat{S}$.

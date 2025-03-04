@@ -37,7 +37,7 @@
     $x_0=y_0\implies x=y$ or that $\alpha(x_0)=0=\alpha(y_0)$, which would again imply that $\beta(x)=0=\beta(y)$.
 \end{proof}
 \begin{lemma}\label{reglemma2}
-    Consider the following commutative diagram whose second row and third column are exact
+    Consider the following commutative diagram whose second row and third column are Rees exact
     \[\begin{tikzcd}
         & B & C \\
         {A'} & {B'} & {C'} \\
@@ -68,7 +68,7 @@
     $g'(x) = \gamma(g(x'_0))= g'(\beta(x'_0))$ and $g'(y)=\gamma(g(y'_0))=g'(\beta(y'_0))$. If, say 
     $x = \beta(x'_0)$ we would have $\beta'(y)=\beta'(x)=0$ and similarly if $y=\beta(y'_0)$. Otherwise we have $g'(x)=0=g'(y)$, but we have already resolved this case above. This completes the proof.
 \end{proof}
-The idea behind the lemmata above is to use them for larger diagrams to show Rees regularity whenever necessary and then using
+The idea behind the lemmata above is to use them for larger diagrams to show Rees regularity wherever necessary and then using
 proposition $\ref{regularityProp}$ we can do a regular diagram chase to verify Rees exactness.\par 
 The following three results, i.e. the four lemma, five lemma and splitting lemma for acts already appear in \cite{Jafari19}. 
 The splitting lemma in particular is first stated in \cite{Chen02}. We give more concise
@@ -450,9 +450,9 @@ proofs that utilize the characterization in proposition $\ref{regularityProp}$.
     Rees exact, then so is the third.
 \end{corollary}
 \begin{proof}[Proof]
-    The only thing of note is that if $(B,b)$ is Rees regular, then so are $(A,a)$ and $(C,c)$ by proposition \ref{regprop}. and 
-    if $(A,a)$ and $(C,c)$ are Rees regular, then so is $(B,b)$ by lemma \ref{reglemma2}. Then the proof is exactly the same as 
-    for modules.
+    The only thing of note is that if $(B,b)$ is Rees regular, then so are $(A,a)$ and $(C,c)$ by proposition \ref{regprop}. 
+    If $(A,a)$ and $(C,c)$ are Rees regular, then so is $(B,b)$ by lemma \ref{reglemma2}. Then the proof follows easily from the 
+    proposition above and the fact that homology of a Rees regular chain complex is zero, iff Rees exactness holds.
 \end{proof}
 \begin{corollary}[3x3 lemma]
     Consider the following commutative diagram, whose rows are Rees exact
@@ -488,9 +488,9 @@ proofs that utilize the characterization in proposition $\ref{regularityProp}$.
         \arrow[from=4-4, to=5-4]
     \end{tikzcd}\]
     \begin{enumerate}
-        \item If the first and the second columns are Rees exact, then so is the third.
-        \item If the second and the third columns are Rees exact, then so is the first.
-        \item If the first and the third columns are Rees exact and additionally $s_2\circ r_2=0$, then so is the second.
+        \item If the first and second columns are Rees exact, then so is the third.
+        \item If the second and third columns are Rees exact, then so is the first.
+        \item If the first and third columns are Rees exact and additionally $s_2\circ r_2=0$, then so is the second.
     \end{enumerate}
 \end{corollary}
 \begin{proof}[Proof]
@@ -509,7 +509,7 @@ proofs that utilize the characterization in proposition $\ref{regularityProp}$.
     \[
         s_1\circ r_1\circ g_3 = s_1\circ g_2\circ r_2 = g_1\circ s_2\circ s_1 = g_1 \circ 0 = 0 = 0\circ g_3 \implies s_1\circ r_1 = 0
     \]
-    Now applying the previous proposition to the evident chain complex yields the statement.\par
+    Now applying the previous proposition to the chain complex above yields the statement.\par
     Assume now that the second and the third columns are Rees exact. We again only have to show that 
     $s_3\circ r_3 = 0$. We have 
     \[
