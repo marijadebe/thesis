@@ -84,6 +84,38 @@
       \field{type}{phdthesis}
       \field{year}{2015}
     \endentry
+    \entry{Chen02}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=ff38b98d2dc65002f66d028a85b9d58d}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Y.},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=4cc0ee5813fcf1419a9fffff3d56c9f4}{%
+           family={Shum},
+           familyi={S\bibinitperiod},
+           given={K.P.},
+           giveni={K\bibinitperiod}}}%
+      }
+      \strng{namehash}{1be98253f08c7ad2701ce13d5a498374}
+      \strng{fullhash}{1be98253f08c7ad2701ce13d5a498374}
+      \strng{fullhashraw}{1be98253f08c7ad2701ce13d5a498374}
+      \strng{bibnamehash}{1be98253f08c7ad2701ce13d5a498374}
+      \strng{authorbibnamehash}{1be98253f08c7ad2701ce13d5a498374}
+      \strng{authornamehash}{1be98253f08c7ad2701ce13d5a498374}
+      \strng{authorfullhash}{1be98253f08c7ad2701ce13d5a498374}
+      \strng{authorfullhashraw}{1be98253f08c7ad2701ce13d5a498374}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Semigroup Forum}
+      \field{title}{Rees short exact sequences of S-systems.}
+      \field{volume}{65}
+      \field{year}{2002}
+      \field{pages}{141\bibrangedash 148}
+      \range{pages}{8}
+    \endentry
     \entry{Jafari19}{article}{}{}
       \name{author}{3}{}{%
         {{hash=a3ec058a74f26e8d5cb9eb83e8e1ac72}{%
@@ -110,8 +142,8 @@
       \strng{authornamehash}{c31b16b4cd9dac3ba32a741c386b36ee}
       \strng{authorfullhash}{2b47566c6e262213925e920fca632800}
       \strng{authorfullhashraw}{2b47566c6e262213925e920fca632800}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Semigroup Forum}
@@ -120,38 +152,6 @@
       \field{year}{2019}
       \field{pages}{32\bibrangedash 46}
       \range{pages}{15}
-    \endentry
-    \entry{Chen02}{article}{}{}
-      \name{author}{2}{}{%
-        {{hash=ff38b98d2dc65002f66d028a85b9d58d}{%
-           family={Chen},
-           familyi={C\bibinitperiod},
-           given={Y.},
-           giveni={Y\bibinitperiod}}}%
-        {{hash=4cc0ee5813fcf1419a9fffff3d56c9f4}{%
-           family={Shum},
-           familyi={S\bibinitperiod},
-           given={K.P.},
-           giveni={K\bibinitperiod}}}%
-      }
-      \strng{namehash}{1be98253f08c7ad2701ce13d5a498374}
-      \strng{fullhash}{1be98253f08c7ad2701ce13d5a498374}
-      \strng{fullhashraw}{1be98253f08c7ad2701ce13d5a498374}
-      \strng{bibnamehash}{1be98253f08c7ad2701ce13d5a498374}
-      \strng{authorbibnamehash}{1be98253f08c7ad2701ce13d5a498374}
-      \strng{authornamehash}{1be98253f08c7ad2701ce13d5a498374}
-      \strng{authorfullhash}{1be98253f08c7ad2701ce13d5a498374}
-      \strng{authorfullhashraw}{1be98253f08c7ad2701ce13d5a498374}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Semigroup Forum}
-      \field{title}{Rees short exact sequences of S-systems.}
-      \field{volume}{65}
-      \field{year}{2002}
-      \field{pages}{141\bibrangedash 148}
-      \range{pages}{8}
     \endentry
   \enddatalist
 \endrefsection

@@ -301,6 +301,27 @@ We will now construct the products and coproducts in $\actcat{S}$.
     homomorphisms to themselves. This way we can consider the 
     localisation to be an endofunctor by considering the functor $\Lambda\circ K^{-1}$ instead. 
 \end{remark}
+\begin{remark}
+    If $B\subseteq A$ is a subact of $A$, then $K^{-1} B = \{ x/k : x\in B \}$ is a subact of $K^{-1} A$. Indeed, $0\in K^{-1} B$ and if 
+    $x/k\in K^{-1} B$, then for any $r/s\in K^{-1} S$ we have $(rx)/(sk)\in K^{-1} B$, because $rx\in B$.
+\end{remark}
+\begin{definition}
+    If $A$ is a pointed act over a pointed monoid $S$ and there exists a subset $\{x_1,\dots,x_n\}\subseteq A$ such that 
+    $\forall x\in A \exists i\in\{1,\dots,n\} \exists r\in S : x = r\cdot x_i$ we say that $A$ is \textbf{finitely generated} 
+    and that the set $\{x_1,\dots,x_n\}$ is a \textbf{generating set} of $A$.
+\end{definition}
+\begin{proposition}
+    Let $S$ be a commutative, pointed monoid and $K\subseteq S$ is a submonoid of $S$ such that $0\not\in K$.
+    If $A$ is a finitely generated pointed act over $S$, then $K^{-1} A$ is.
+\end{proposition}
+\begin{proof}
+    Let $\{x_1,\dots,x_n\}$ be a generating set of $A$. Let $\frac{y}{k}\in K^{-1} A$. We have $y=r\cdot x_i$ for some $i\in\{1,\dots, n\}$,
+    then $\frac{y}{k} = \frac{r}{k}\cdot\frac{x_i}{1}$, therefore 
+    \[
+        \left\{\frac{x_1}{1},\dots,\frac{x_n}{1}\right\}
+    \]
+    is a generating set of $K^{-1} A$ a finitely generated over $K^{-1}S$.
+\end{proof}
 \section{Regularity and exactness}
     For the remaining chapters we fix the following notation, for a homomorphism $f$ by $\im(f)$ we mean the 
     Rees congruence $\rho_{\Image{f}}$. To remind the reader by $\ker{f}$ we mean the kernel congruence $\ker{f} = \{(x,y) \mid f(x)=f(y)\}$
@@ -323,7 +344,7 @@ We will now construct the products and coproducts in $\actcat{S}$.
 \end{proof}
 
 \begin{definition}
-    Let $A$ and $B$ be pointed acts over a pointed monoid $\mathcal{S}$, we say that 
+    Let $A$ and $B$ be pointed acts over a pointed monoid $S$, we say that 
     $f: A\to B$ is \textbf{Rees regular}, if 
     \[
         \rho_{\Kernel{f}} = \ker{f}
@@ -337,8 +358,8 @@ We will now construct the products and coproducts in $\actcat{S}$.
 \begin{remark}
     Note that we always have $\rho_{\Kernel{f}}\subseteq\ker{f}$, since $x=y\lor f(x)=0=f(y)\implies f(x)=f(y)$.
 \end{remark}
-\begin{proposition}
-    Let $f: A\to B$ be a homomorphism of pointed acts over a pointed monoid $\mathcal{S}$, then the following are equivalent
+\begin{proposition}\label{regChar}
+    Let $f: A\to B$ be a homomorphism of pointed acts over a pointed monoid $S$, then the following are equivalent
     \begin{enumerate}
         \item $\rho_{A'} = \ker{f}$ for some subact $A'\subseteq A$.
         \item $f$ is Rees regular.
@@ -372,11 +393,11 @@ We will now construct the products and coproducts in $\actcat{S}$.
     Note that $3.$ in the above characterisation is the definition of admissible morphism in $\actcat{S}$, 
     which appears in \cite{Flores15}.
 \end{remark}
-\begin{proposition}
+\begin{proposition}\label{regPropChar}
     Assume $f:A \to B$ is Rees regular and $\sim$ a congruence on $A$, the following holds
     \begin{enumerate}
         \item $f$ is a monomorphism, if and only if $\Kernel{f} = \{0\}$.
-        \item If $K$ is a multiplicative subset of $\mathcal{S}$, then $K^{-1}f$ is Rees regular.
+        \item If $K$ is a multiplicative subset of $S$, then $K^{-1}f$ is Rees regular.
         \item If $g: B \to C$ is Rees regular, then $g\circ f$ is.
         \item The canonical projection $\pi : A \to A/\sim$, $x\mapsto [x]$ is Rees regular, if and only if 
         $\sim$ is a Rees congruence.
@@ -556,14 +577,7 @@ Given any finite sequence of acts $\begin{tikzcd}
         \arrow["\lambda", from=1-3, to=1-4]
         \arrow[from=1-4, to=1-5]
     \end{tikzcd}\]
-    where $\iota: x \mapsto (x,0)$ and 
-    \[
-        \lambda(x,y) = 
-        \begin{cases}
-            y, & \text{if } x=0 \\
-            0, & \text{otherwise}
-        \end{cases}
-    \]
+    where $\iota: x \mapsto (x,0)$ and $\lambda(x,y) = y$.
     the exactness at $A$ and $B$ is easily seen. We will show exactness 
     at $A\coprod B$.\par
     Choose $((x_1,y_1),(x_2,y_2))\in\im(\iota)$, if $x_1=x_2$ and $y_1=y_2$ we are done, 
@@ -599,6 +613,56 @@ Given any finite sequence of acts $\begin{tikzcd}
     $(x,y)\in\ker{\pi}$, so $[x]=[y]$, if $x=y$, then it is trivially in $\im(\iota)$, else 
     we necessarily have $[x]=[0]=[y]$, so $x,y\in B$ as required.
 \end{example}
+In contrast with the category of modules, the 
+internal hom functor isn't left exact. We give a counterexample, a different 
+counterexample already appeas in \cite{Chen02}.
+\begin{example}
+    Recall that we can consider pointed sets to be $S$ acts over any pointed monoid $S$. Consider a 
+    short exact sequence of pointed sets (where we consider $0$ to be the base point of our pointed sets and by $\mathbb{Z}_n$ we mean the set $\{0,\dots,n-1\})$
+    \[\begin{tikzcd}
+        0 & {\mathbb{Z}_2} & {\mathbb{Z}_3} & {\mathbb{Z}_3/\mathbb{Z}_2} & 0
+        \arrow[from=1-1, to=1-2]
+        \arrow["\iota", hook, from=1-2, to=1-3]
+        \arrow["\pi", two heads, from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    where $\iota$ is the inclusion map and $\pi$ is the canonical projection.
+    We will show that the following sequence isn't exact at $\text{Hom}(\mathbb{Z}_3,\mathbb{Z}_3)$
+    \[\begin{tikzcd}
+        0 & {\text{Hom}(\mathbb{Z}_3,\mathbb{Z}_2)} & {\text{Hom}(\mathbb{Z}_3,\mathbb{Z}_3)} & {\text{Hom}(\mathbb{Z}_3,\mathbb{Z}_3/\mathbb{Z}_2)}
+        \arrow[from=1-1, to=1-2]
+        \arrow["{\iota_*}", from=1-2, to=1-3]
+        \arrow["{\pi_*}", from=1-3, to=1-4]
+    \end{tikzcd}\]
+    Note that $\left|\text{Hom}(\mathbb{Z}_3,\mathbb{Z}_2)\right| = 2^{3-1}$, since $0\mapsto 0$, similarly we have 
+    $\left|\text{Hom}(\mathbb{Z}_3,\mathbb{Z}_3) \right| =9$ and $\left|\text{Hom}(\mathbb{Z}_3,\mathbb{Z}_3/\mathbb{Z}_2)\right| = 4$.
+    Clearly we then have $\left|\Image{\iota_*}\right|\leq 4$. If $\pi_*$ were to be Rees regular, then necessarily 
+    $\left|\Kernel{\pi_*}\right| \geq 6$, so we cannot have that $\Image{\iota_*}=\Kernel{\pi_*}$.
+\end{example}
+\begin{proposition}
+    Consider the following Rees short exact sequence
+    \[\begin{tikzcd}
+        0 & A & B & C & 0
+        \arrow[from=1-1, to=1-2]
+        \arrow[from=1-2, to=1-3]
+        \arrow[from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    then if $A$ and $C$ are finitely generated, then so is $B$, and if $B$ is finitely generated, then so is $C$.
+\end{proposition}
+\begin{proof}
+    Assume that $\{x_1,\dots,x_n\}$ generates $A$ and $\{z_1,\dots,z_m\}$ generated $C$. By surjectivity of $g$ we find 
+    for each $i\in\{1,\dots,m\}$ an element $y_i\in B$ such that $g(y_i)=z_i$. We will show that the set 
+    \[
+        \{f(x_1),\dots,f(x_n),y_1,\dots,y_m\}
+    \]
+    generates $B$. Choose any $y\in B$, then if $y\in\Kernel{g}$ we find $x\in A$ such that $f(x)=y$, but then 
+    $x=r\cdot x_i$ for some $r\in S$ and $i\in\{1,\dots,n\}$, which implies that $y=r\cdot f(x_i)$. Assume now that $y\not\in\Kernel{g}$,
+    then $f(y) = r\cdot z_i = r\cdot f(y_i) = f(r\cdot y_i)$ for some $i\in\{1,\dots,m\}$, hence $y=r\cdot y_i$, since $g$ is Rees regular, therefore 
+    injective up to Kernel. This proves that the set $\{f(x_1),\dots,f(x_n),y_1,\dots,y_m\}$ generates B. \par 
+    Suppose that $\{y_1,\dots,y_n\}$ generates $B$. Choose $z\in C$, then we find some $y\in B$ such that $g(y)=z$, then 
+    $y=r\cdot y_i$ for some $i\in\{1,\dots,n\}$, which implies $z=r\cdot g(y_i)$, therefore $\{g(y_1),\dots,g(y_m)\}$ generates $C$.
+\end{proof}
 \begin{definition}
     A sequence of chain complexes 
 \[\begin{tikzcd}
@@ -620,7 +684,7 @@ Given any finite sequence of acts $\begin{tikzcd}
     is a Rees short exact sequence.
 \end{definition}
 \begin{proposition}
-    Assume that $\mathcal{S}$ is a commutative, pointed monoid and $K\subseteq S$ is a submonoid of $S$ such that $0\not\in K$, then
+    Assume that $S$ is a commutative, pointed monoid and $K\subseteq S$ is a submonoid of $S$ such that $0\not\in K$, then
     given a Rees short exact sequence 
     \[\begin{tikzcd}
         0 & A & B & C & 0
@@ -641,7 +705,7 @@ Given any finite sequence of acts $\begin{tikzcd}
 \begin{proof}[Proof]
     Let $\frac{a}{k}\in K^{-1}A$, then 
     \[
-    (K^{-1}g\circ fK^{-1}f)\left(\frac{a}{k}\right) = \frac{g(f(a))}{k} = \frac{0}{k} =\frac{0}{1}=0 \implies \im(K^{-1}f)\subseteq\ker{K^{-1}g}
+    (K^{-1}g\circ K^{-1}f)\left(\frac{a}{k}\right) = \frac{g(f(a))}{k} = \frac{0}{k} =\frac{0}{1}=0 \implies \im(K^{-1}f)\subseteq\ker{K^{-1}g}
     \]
     Assume that $\frac{g(b_1)}{k_1}=\frac{g(b_2)}{k_2}$, so we find $u\in K$ such that 
     $g(uk_1b_2)=uk_1g(b_2)=uk_2g(b_1)=g(uk_2b_1)$, therefore 
@@ -693,8 +757,61 @@ Given any finite sequence of acts $\begin{tikzcd}
     \[
         \iff \frac{b_1}{k_1}=\frac{b_2}{k_2}\lor \frac{b_1}{k_1},\frac{b_2}{k_2}\in K^{-1}B \iff \left(\frac{a_1}{k_1},\frac{a_2}{k_2}\right)\in\rho_{K^{-1}B}
     \]
-    then by the first isomorphism theorem for universal algebras we have 
+    then by the first isomorphism theorem for acts/universal algebras \cite[Theorem~4.21]{Kilp00} we have 
     \[
     K^{-1}(A/B)\simeq K^{-1}(A)/\ker{K^{-1}\pi} = K^{-1}(A)/\im(K^{-1}\iota) = K^{-1}A/K^{-1}B
     \]
+\end{proof}
+\section{Rees simple acts}
+\begin{definition}
+    Let $S$ be a pointed monoid and $A$ be a pointed act over $S$, then we call $A$
+    \textbf{Rees simple}, if every congruence in $A$ is Rees (i.e. of the form $\rho_B$ for some $B\subseteq A$ a subact of $A$).
+\end{definition}
+\begin{example}
+    Let $(\mathbb{N}_0, +, 0, \infty)$ be a pointed monoid. We can consider it as an act over itself. For $n\in\mathbb{N}_0$ let 
+    $n_> = \{x\in\mathbb{N}_0 \mid x > n\}$, then $n_>$ is a subact of $\mathbb{N}_0$, indeed $\infty\in n_>$ and if $a > n$, then 
+    surely $r+a > n$ for any $r \geq 0$, then $\mathbb{N}_0/n_>$ is a pointed act over $\mathbb{N}_0$. Let $\sim$ be a congruence on 
+    $\mathbb{N}_0/n_>$, suppose it isn't the diagonal congruence, which is trivially Rees, then there is $m\in\mathbb{N}_0$ and $k>0$ such that 
+    $m\sim k+m$, but then, since $\rho$ is a congruence we have that $m\sim k+m\sim 2k+m \sim\dots \sim lk+m \sim \infty$, where $l$
+    is large enough, such that $lk+m > n$, hence $x\sim y \iff x=y \lor x,y > n$ and any congruence is Rees. 
+\end{example}
+\begin{proposition}
+    Let $A$ be a pointed act over a pointed monoid $S$, then TFAE
+    \begin{enumerate}
+        \item Every morphism $f: A \to X$ for all $X\in\actcat{S}$ is Rees regular.
+        \item $A$ is Rees simple.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}[Proof]
+    $1. \implies 2.$\par 
+    Let $\kappa$ be a congruence in $A$, then $\kappa=\ker{\pi}$, where $\pi: A \to A/\kappa$ is the canonical projection, by 
+    assumption $\pi$ si Rees regular, it follows that $\kappa$ is a Rees congruence by proposition \ref{regPropChar}. \par 
+    $2. \implies 1.$\par 
+    Let $f: A\to X$ be a homomorphism, then $\ker{f}$ is a Rees congruence, since $A$ is Rees simple, hence by proposition \ref{regChar} 
+    we have that $f$ is Rees regular.
+\end{proof}
+\begin{proposition}
+    Consider a Rees short exact sequence 
+    \[
+        \begin{tikzcd}
+            0 & A & B & C & 0
+            \arrow[from=1-1, to=1-2]
+            \arrow["f", from=1-2, to=1-3]
+            \arrow["g", from=1-3, to=1-4]
+            \arrow[from=1-4, to=1-5]
+        \end{tikzcd}
+    \]
+    if $B$ is Rees simple, then so are $A$ and $C$.
+\end{proposition}
+\begin{proof}
+    Let $\kappa$ be a congruence on $A$, then we define a congruence $\rho$ on $B$ as $(x,y)\in\rho \iff x=y \lor (x=f(x_0), y=f(y_0) \land (x_0,y_0)\in\kappa)$. 
+    It is easy to see, that it is indeed a congruence relation, hence there is some $B'\subseteq B$ such that $\rho = \rho_{B'}$, then 
+    $f^{-1}(B')$ is a subact of $A$, since $f(0)=0\in B'$ and if $f(x)\in B'$, then $rf(x)=f(rx)\in B'$. We want to show that 
+    $\kappa = \rho_{f^{-1}(B')}$. If $(x,y)\in\kappa$ and $x\neq y$, then $f(x)\neq f(y)$ by injectivity of $f$, hence 
+    $(f(x),f(y))\in\rho$, which implies that $x,y\in f^{-1}(B')$. Suppose otherwise, that $f(x),f(y)\in B'$, then $(f(x),f(y))\in\rho$, 
+    which either implies $f(x)=f(y) \implies x=y$ or that $(x,y)\in\kappa$, which concludes the proof.\par
+    Let $\kappa$ be a congruence on $C$, then $g^{-1}(\kappa) := \{(x,y) : (g(x),g(y))\in\kappa\}$ is clearly a congruence on 
+    $B$, so we find $B'\subseteq B$ such that $g^{-1}(\kappa)=\rho_{B'}$. We will show that $\kappa=\rho_{g(B')}$. Let $(x,y)\in\kappa$ be such that $x\neq y$, then we find $x_0,y_0\in B$, where 
+    $g(x_0)=x$ and $g(y_0)=y$, then $x_0\neq y_0$ and $(x_0,y_0)\in g^{-1}(\kappa)=\rho_{B'}$, therefore $x_0,y_0\in B' \implies x,y\in g(B')$. Let $(x,y)\in\rho_g(B')$ and $x\neq y$,
+    we find $x_0,y_0\in B'$ so that $g(x_0)=x$ and $g(y_0)=y$. We now have have that $(x_0,y_0)\in g^{-1}(\kappa)$, hence $(x,y)\in\kappa$.
 \end{proof}
