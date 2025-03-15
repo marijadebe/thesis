@@ -70,6 +70,11 @@
     and the identity is trivially a homomorphism.
 \end{remark}
 \begin{definition}
+    If $A$ is a pointed act over a pointed monoid $S$ and there exists a subset $\{x_1,\dots,x_n\}\subseteq A$ such that 
+    $\forall x\in A \exists i\in\{1,\dots,n\} \exists r\in S : x = r\cdot x_i$ we say that $A$ is \textbf{finitely generated} 
+    and that the set $\{x_1,\dots,x_n\}$ is a \textbf{generating set} of $A$.
+\end{definition}
+\begin{definition}
     Let $A\in S\mathrm{-Act}_0$ and $B$ a subact of $A$, then we let 
     \[
         \rho_B = \Delta_A \cup B\times B
@@ -120,7 +125,7 @@
 \end{proposition}
 \begin{proof}
     We have that $(f(x),0)\in\Image{f}$, because $0\in\Image{f}$. If $\sim$ is any other such congruence, then for any $f(x),g(x)\in\Image{f}$
-    it holds that $f(x)\sim 0 \sim g(x) \implies f(x)\sim g(x)$, therefore $\rho_{\Image{f}}=\Image{f}\times\Image{f}\cup\Delta_B\subseteq\sim$.
+    it holds that $f(x)\sim 0 \sim g(x) \implies f(x)\sim g(x)$, therefore $\rho_{\Image{f}}=\Image{f}\times\Image{f}\cup\Delta_B$ is contained in $\sim$.
 \end{proof}
 We will now construct the products and coproducts in $\actcat{S}$. 
 \begin{proposition}
@@ -182,7 +187,6 @@ We will now construct the products and coproducts in $\actcat{S}$.
 \begin{proof}
     See \cite[Proposition~6.15]{Kilp00}.
 \end{proof}
-
 \begin{proposition}
     Let $(S,\cdot,0,1)$ be a pointed commutative monoid and 
     $K\subseteq S$ a submonoid of $S$ such that $0\not\in K$. 
@@ -226,7 +230,7 @@ We will now construct the products and coproducts in $\actcat{S}$.
     homomorphism of pointed monoids.  
 \end{definition}
 \begin{proposition}
-    Let $K\subseteq S$ be a submonoid of a commutative pointed monoid $S$ such that $0\not\in S$ and $A$ an $S$ act. We define 
+    Let $K\subseteq S$ be a submonoid of a commutative pointed monoid $S$ such that $0\not\in K$ and $A$ an $S$ act. We define 
     $K^{-1}A = A\times K/\sim$, where 
     \[
         (a_1,k_1)\sim(a_2,k_2) \iff \exists u\in K : uk_1 a_2 = uk_2 a_1
@@ -302,20 +306,26 @@ We will now construct the products and coproducts in $\actcat{S}$.
     localisation to be an endofunctor by considering the functor $\Lambda\circ K^{-1}$ instead. 
 \end{remark}
 \begin{proposition}
-    Let $A$ be a pointed over a commutative pointed monoid $S$ and $K\subseteq S$ a submonoid $S$ such that $0\not\in K$, then 
-    if $B\subseteq A$ is a subact, then $K^{-1}B = \{\frac{x}{k}: x \in B\}\subseteq K^{-1}A$ is a subact of $K^{-1}A$ and any subact of $K^{-1}A$ is of the form
-    $K^{-1} B$ for some $B$ a subact of $A$.
+    Let $A$ be a pointed act over a commutative pointed monoid $S$ and $K\subseteq S$ a submonoid $S$ such that $0\not\in K$, then 
+    if $B\subseteq A$ is a subact of $A$, $K^{-1}B = \{\frac{x}{k}: x \in B\}\subseteq K^{-1}A$ is a subact of $K^{-1}A$ and any subact of $K^{-1}A$ is of the form
+    $K^{-1} B$ for some $B$ a subact of $A$. Furthermore this correspondence is one-to-one.
 \end{proposition}
 \begin{proof}
-    
+    First we show, that $K^{-1}B$ is a subact of $K^{-1}A$, we have $0\in K^{-1}B$, since $0\in B$. If $\frac{a}{k}\in K^{-1}B$, 
+    then $\frac{r}{s}\cdot \frac{a}{k}\in K^{-1}B$, since $ra\in B$. \par 
+    Suppose now that $X\subseteq K^{-1}A$ is a subact of $K^{-1}A$, then let \[B=\{x\in A \mid \exists k \in K : \frac{x}{k}\in X \}\]
+    then $B$ is a subact of $A$, indeed $0\in B$ and if $x\in B$ and $r\in S$ we find $k\in K$ such that $\frac{x}{k}\in X$, then 
+    $\frac{rx}{k}\in X$, thus $rx\in B$.\par 
+    We will now verify that $K^{-1}B = X$. Clearly, if $\frac{a}{k}\in X$, then $a\in B$, so $\frac{a}{k}\in K^{-1}B$. To verify 
+    the opposite inclusion, choose $\frac{x}{k}\in K^{-1}B$, then since $x\in B$, we find $l\in K$ such that $\frac{x}{l}\in X$, thus
+    $\frac{x}{k} = \frac{l}{k}\frac{x}{l}\in X$, therefore $K^{-1}B = X$. \par 
+    To show that this correspondence is one-to-one just note that if $K^{-1}B=K^{-1}C$, then 
+    \[
+        x\in B \iff \frac{x}{1}\in K^{-1}B \iff \frac{x}{1} \in K^{-1} C \iff x\in C
+    \]
 \end{proof}
-\begin{definition}
-    If $A$ is a pointed act over a pointed monoid $S$ and there exists a subset $\{x_1,\dots,x_n\}\subseteq A$ such that 
-    $\forall x\in A \exists i\in\{1,\dots,n\} \exists r\in S : x = r\cdot x_i$ we say that $A$ is \textbf{finitely generated} 
-    and that the set $\{x_1,\dots,x_n\}$ is a \textbf{generating set} of $A$.
-\end{definition}
 \begin{proposition}
-    Let $S$ be a commutative, pointed monoid and $K\subseteq S$ is a submonoid of $S$ such that $0\not\in K$.
+    Let $S$ be a commutative pointed monoid and $K\subseteq S$ is a submonoid of $S$ such that $0\not\in K$.
     If $A$ is a finitely generated pointed act over $S$, then $K^{-1} A$ is.
 \end{proposition}
 \begin{proof}
@@ -371,7 +381,7 @@ We will now construct the products and coproducts in $\actcat{S}$.
     \end{enumerate}
 \end{proposition}
 \begin{proof}
-    $1.\implies 2.$ Let $x\in A'$, then $(x,0)\in\ker{f} \implies f(x)=0 \implies x \in\Kernel{f}$. If $f(x)=0$, then 
+    $1.\implies 2.$ We will show that $A'=\Kernel{f}$. Let $x\in A'$, then $(x,0)\in\ker{f} \implies f(x)=0 \implies x \in\Kernel{f}$. If $f(x)=0$, then 
     $(x,0)\in\rho_A' \implies x\in A'$. \par
     $2.\implies 3.$ Assume $\rho_{\Kernel{f}} = \ker{f}$ and let $g: A\to X$ be a homomorphism such that $g\circ\iota = 0$, where
     $\iota: \Kernel{f}\to A$ is the canonical inclusion. We need to show that there exists a unique homomorphism $\phi: \Image{f}\to X$ such that
@@ -390,7 +400,7 @@ We will now construct the products and coproducts in $\actcat{S}$.
     find a $x\in A$ so that $f(x) = y$, then $\phi'(y) = \phi'(f(x)) = g(x) = \phi(f(x)) = \phi(y)$. \par
     $3. \implies 1.$ Consider the canonical projection $\pi : A \to A/\Kernel{f}$, then $\pi\circ\iota = 0$, therefore 
     there exists a unique map $\phi: \Image{f}\to X$, such that $\phi\circ f = \pi$, then if $f(x)=f(y)$ we have 
-    $\phi(f(x))=\phi(f(y)) \implies [x]_\Kernel{f}=[y]_\Kernel{f}$, hence $x=y \lor x,y\in\Kernel{f}$, so 
+    $\phi(f(x))=\phi(f(y)) \implies [x]_{\Kernel{f}}=[y]_{\Kernel{f}}$, hence $x=y \lor x,y\in\Kernel{f}$, so 
     $\ker{f}=\rho_{\Kernel{f}}$. In particular $1.$ holds.
 \end{proof}
 \begin{remark}
@@ -619,7 +629,7 @@ Given any finite sequence of acts $\begin{tikzcd}
 \end{example}
 In contrast with the category of modules, the 
 internal hom functor isn't left exact. We give a counterexample, a different 
-counterexample already appeas in \cite{Chen02}.
+counterexample already appears in \cite{Chen02}.
 \begin{example}
     Recall that we can consider pointed sets to be $S$ acts over any pointed monoid $S$. Consider a 
     short exact sequence of pointed sets (where we consider $0$ to be the base point of our pointed sets and by $\mathbb{Z}_n$ we mean the set $\{0,\dots,n-1\})$

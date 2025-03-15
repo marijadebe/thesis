@@ -19,6 +19,130 @@
 
 \refsection{0}
   \datalist[entry]{none/global//global/global/global}
+    \entry{Chen02}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=ff38b98d2dc65002f66d028a85b9d58d}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Y.},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=4cc0ee5813fcf1419a9fffff3d56c9f4}{%
+           family={Shum},
+           familyi={S\bibinitperiod},
+           given={K.P.},
+           giveni={K\bibinitperiod}}}%
+      }
+      \strng{namehash}{1be98253f08c7ad2701ce13d5a498374}
+      \strng{fullhash}{1be98253f08c7ad2701ce13d5a498374}
+      \strng{fullhashraw}{1be98253f08c7ad2701ce13d5a498374}
+      \strng{bibnamehash}{1be98253f08c7ad2701ce13d5a498374}
+      \strng{authorbibnamehash}{1be98253f08c7ad2701ce13d5a498374}
+      \strng{authornamehash}{1be98253f08c7ad2701ce13d5a498374}
+      \strng{authorfullhash}{1be98253f08c7ad2701ce13d5a498374}
+      \strng{authorfullhashraw}{1be98253f08c7ad2701ce13d5a498374}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Semigroup Forum}
+      \field{title}{Rees short exact sequences of S-systems.}
+      \field{volume}{65}
+      \field{year}{2002}
+      \field{pages}{141\bibrangedash 148}
+      \range{pages}{8}
+    \endentry
+    \entry{Flores15}{thesis}{}{}
+      \name{author}{1}{}{%
+        {{hash=90079121fe66adcd0f60a18137b46fb3}{%
+           family={Flores},
+           familyi={F\bibinitperiod},
+           given={Jaret},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Rutgers, The State University of New Jersey}%
+      }
+      \strng{namehash}{90079121fe66adcd0f60a18137b46fb3}
+      \strng{fullhash}{90079121fe66adcd0f60a18137b46fb3}
+      \strng{fullhashraw}{90079121fe66adcd0f60a18137b46fb3}
+      \strng{bibnamehash}{90079121fe66adcd0f60a18137b46fb3}
+      \strng{authorbibnamehash}{90079121fe66adcd0f60a18137b46fb3}
+      \strng{authornamehash}{90079121fe66adcd0f60a18137b46fb3}
+      \strng{authorfullhash}{90079121fe66adcd0f60a18137b46fb3}
+      \strng{authorfullhashraw}{90079121fe66adcd0f60a18137b46fb3}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Homological Algebra for Commutative Monoids}
+      \field{type}{phdthesis}
+      \field{year}{2015}
+    \endentry
+    \entry{Jafari19}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=a3ec058a74f26e8d5cb9eb83e8e1ac72}{%
+           family={Jafari},
+           familyi={J\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+        {{hash=de26f78e5b3a58179c12e7cc09f460e9}{%
+           family={Golchin},
+           familyi={G\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+        {{hash=60fe8ba2f3a92abf6c33121a87e4c90d}{%
+           family={Mohammadzadeh\bibnamedelima Saany},
+           familyi={M\bibinitperiod\bibinitdelim S\bibinitperiod},
+           given={H.},
+           giveni={H\bibinitperiod}}}%
+      }
+      \strng{namehash}{c31b16b4cd9dac3ba32a741c386b36ee}
+      \strng{fullhash}{2b47566c6e262213925e920fca632800}
+      \strng{fullhashraw}{2b47566c6e262213925e920fca632800}
+      \strng{bibnamehash}{2b47566c6e262213925e920fca632800}
+      \strng{authorbibnamehash}{2b47566c6e262213925e920fca632800}
+      \strng{authornamehash}{c31b16b4cd9dac3ba32a741c386b36ee}
+      \strng{authorfullhash}{2b47566c6e262213925e920fca632800}
+      \strng{authorfullhashraw}{2b47566c6e262213925e920fca632800}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Semigroup Forum}
+      \field{title}{Rees short exact sequence and flatness properties}
+      \field{volume}{99}
+      \field{year}{2019}
+      \field{pages}{32\bibrangedash 46}
+      \range{pages}{15}
+    \endentry
+    \entry{Leinster14}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=9bf1c244b43d8dffba171771ed8b9f51}{%
+           family={Leinster},
+           familyi={L\bibinitperiod},
+           given={T.},
+           giveni={T\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Cambridge University Press}%
+      }
+      \strng{namehash}{9bf1c244b43d8dffba171771ed8b9f51}
+      \strng{fullhash}{9bf1c244b43d8dffba171771ed8b9f51}
+      \strng{fullhashraw}{9bf1c244b43d8dffba171771ed8b9f51}
+      \strng{bibnamehash}{9bf1c244b43d8dffba171771ed8b9f51}
+      \strng{authorbibnamehash}{9bf1c244b43d8dffba171771ed8b9f51}
+      \strng{authornamehash}{9bf1c244b43d8dffba171771ed8b9f51}
+      \strng{authorfullhash}{9bf1c244b43d8dffba171771ed8b9f51}
+      \strng{authorfullhashraw}{9bf1c244b43d8dffba171771ed8b9f51}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-1-107-04424-1}
+      \field{series}{Cambridge Studies in Advanced Mathematics}
+      \field{title}{Basic Category Theory}
+      \field{year}{2014}
+    \endentry
     \entry{Kilp00}{book}{}{}
       \name{author}{3}{}{%
         {{hash=b5242650a534b7f5a4d629f2d2c5ddd1}{%
@@ -48,110 +172,14 @@
       \strng{authornamehash}{2742a969142390be2f451c72c4f87ab8}
       \strng{authorfullhash}{9325914fa84b2a83ef4704e2f27cc78c}
       \strng{authorfullhashraw}{9325914fa84b2a83ef4704e2f27cc78c}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{isbn}{3-11-015248-7}
       \field{series}{De Gruyter Expositions in Mathematics}
       \field{title}{Monoids, Acts and Categories: With Applications to Wreath Products and Graphs. A Handbook for Students and Researchers}
       \field{year}{2000}
-    \endentry
-    \entry{Flores15}{thesis}{}{}
-      \name{author}{1}{}{%
-        {{hash=90079121fe66adcd0f60a18137b46fb3}{%
-           family={Flores},
-           familyi={F\bibinitperiod},
-           given={Jaret},
-           giveni={J\bibinitperiod}}}%
-      }
-      \list{institution}{1}{%
-        {Rutgers, The State University of New Jersey}%
-      }
-      \strng{namehash}{90079121fe66adcd0f60a18137b46fb3}
-      \strng{fullhash}{90079121fe66adcd0f60a18137b46fb3}
-      \strng{fullhashraw}{90079121fe66adcd0f60a18137b46fb3}
-      \strng{bibnamehash}{90079121fe66adcd0f60a18137b46fb3}
-      \strng{authorbibnamehash}{90079121fe66adcd0f60a18137b46fb3}
-      \strng{authornamehash}{90079121fe66adcd0f60a18137b46fb3}
-      \strng{authorfullhash}{90079121fe66adcd0f60a18137b46fb3}
-      \strng{authorfullhashraw}{90079121fe66adcd0f60a18137b46fb3}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{Homological Algebra for Commutative Monoids}
-      \field{type}{phdthesis}
-      \field{year}{2015}
-    \endentry
-    \entry{Chen02}{article}{}{}
-      \name{author}{2}{}{%
-        {{hash=ff38b98d2dc65002f66d028a85b9d58d}{%
-           family={Chen},
-           familyi={C\bibinitperiod},
-           given={Y.},
-           giveni={Y\bibinitperiod}}}%
-        {{hash=4cc0ee5813fcf1419a9fffff3d56c9f4}{%
-           family={Shum},
-           familyi={S\bibinitperiod},
-           given={K.P.},
-           giveni={K\bibinitperiod}}}%
-      }
-      \strng{namehash}{1be98253f08c7ad2701ce13d5a498374}
-      \strng{fullhash}{1be98253f08c7ad2701ce13d5a498374}
-      \strng{fullhashraw}{1be98253f08c7ad2701ce13d5a498374}
-      \strng{bibnamehash}{1be98253f08c7ad2701ce13d5a498374}
-      \strng{authorbibnamehash}{1be98253f08c7ad2701ce13d5a498374}
-      \strng{authornamehash}{1be98253f08c7ad2701ce13d5a498374}
-      \strng{authorfullhash}{1be98253f08c7ad2701ce13d5a498374}
-      \strng{authorfullhashraw}{1be98253f08c7ad2701ce13d5a498374}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Semigroup Forum}
-      \field{title}{Rees short exact sequences of S-systems.}
-      \field{volume}{65}
-      \field{year}{2002}
-      \field{pages}{141\bibrangedash 148}
-      \range{pages}{8}
-    \endentry
-    \entry{Jafari19}{article}{}{}
-      \name{author}{3}{}{%
-        {{hash=a3ec058a74f26e8d5cb9eb83e8e1ac72}{%
-           family={Jafari},
-           familyi={J\bibinitperiod},
-           given={M.},
-           giveni={M\bibinitperiod}}}%
-        {{hash=de26f78e5b3a58179c12e7cc09f460e9}{%
-           family={Golchin},
-           familyi={G\bibinitperiod},
-           given={A.},
-           giveni={A\bibinitperiod}}}%
-        {{hash=60fe8ba2f3a92abf6c33121a87e4c90d}{%
-           family={Mohammadzadeh\bibnamedelima Saany},
-           familyi={M\bibinitperiod\bibinitdelim S\bibinitperiod},
-           given={H.},
-           giveni={H\bibinitperiod}}}%
-      }
-      \strng{namehash}{c31b16b4cd9dac3ba32a741c386b36ee}
-      \strng{fullhash}{2b47566c6e262213925e920fca632800}
-      \strng{fullhashraw}{2b47566c6e262213925e920fca632800}
-      \strng{bibnamehash}{2b47566c6e262213925e920fca632800}
-      \strng{authorbibnamehash}{2b47566c6e262213925e920fca632800}
-      \strng{authornamehash}{c31b16b4cd9dac3ba32a741c386b36ee}
-      \strng{authorfullhash}{2b47566c6e262213925e920fca632800}
-      \strng{authorfullhashraw}{2b47566c6e262213925e920fca632800}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Semigroup Forum}
-      \field{title}{Rees short exact sequence and flatness properties}
-      \field{volume}{99}
-      \field{year}{2019}
-      \field{pages}{32\bibrangedash 46}
-      \range{pages}{15}
     \endentry
   \enddatalist
 \endrefsection

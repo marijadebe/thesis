@@ -1,4 +1,5 @@
 \chapter{Preliminaries}
+    We recall some basic category theory. This chapters exposition will loosely follow \cite{Leinster14}.
 \begin{definition}
     A \textbf{category} $\catc$ consists of
     \begin{enumerate}
@@ -52,7 +53,7 @@ A & B
     such that it preserves composition $F(g\circ f) = F(g)\circ F(f)$ and the identity $F(1_A) = 1_{F(A)}$.\par
     Given a functor $F: \catc\to\catd$ we define the \textbf{opposite functor} $F^{op}: \opp{\catc}\to\opp{\catd}$ as 
     $F^{op}(A) = F(A)$ for $A\in\ob{\opp{\catc}}$ and $F^{op}(f)=F(f)$ for a morphism $f$.\par
-    A functor $F: \catc\to\catd$ is \textbf{faithful}, if it is injective on hom-sets. 
+    A functor $F:\catc\to\catd$ is \textbf{faithful}, if it is injective on hom-sets.
     More precisely for all $A,B\in\ob{\catc}$ and each pair of morphisms $\begin{tikzcd}
         A & B
         \arrow["g"', shift right, from=1-1, to=1-2]
@@ -110,6 +111,9 @@ A & B
 \begin{theorem}
     A category is (co)complete, if and only if it has all (co)equalisers and (co)products.
 \end{theorem}
+\begin{proof}
+    See \cite[Proposition 5.1.26]{Leinster14}.
+\end{proof}
 \begin{definition}
     If $f$ is a morphism in a pointed category, we will call the \textbf{(co)kernel of $f$} the (co)equaliser of $f$ and the zero morphism, if it exists.
 \end{definition}
