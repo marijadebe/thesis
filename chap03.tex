@@ -56,7 +56,7 @@
     If $g$ is an epimorphism, $\alpha'$, $f''$ are Rees regular and $\beta'\circ\beta = 0$, then $\beta'$ is Rees regular.
 \end{lemma}
 \begin{proof}[Proof]
-    Suppose $\beta'(x)=\beta'(y)$,$x\neq y$, then $\gamma'(g'(x))=g''(\beta'(x))=g''(\beta'(y)) = \gamma'(g'(y))$ by 
+    Suppose $\beta'(x)=\beta'(y)$, $x\neq y$, then $\gamma'(g'(x))=g''(\beta'(x))=g''(\beta'(y)) = \gamma'(g'(y))$ by 
     regularity we either have $g'(x)=g'(y)$ or $g'(x),g'(y)\in\Kernel{\gamma'}$. We will consider both cases separately. \par 
     In the first case, because of Rees exactness 
     we find $x_0,y_0\in A'$ such that $f'(x_0)=x$ and $g'(y_0)=y$, which implies 
@@ -181,7 +181,7 @@ proofs that utilize the characterization in proposition $\ref{regularityProp}$.
         $g\circ\phi^{-1}=\lambda_C$.
     \end{enumerate}
 \end{proposition}
-\begin{proof}[Proof]
+\begin{proof}[Proof]First we verify, that $1.$ implies $3.$
     Assume that there is a $g':C \to B$ such that $g\circ g' = 1_C$. We define a map $\psi: A\coprod C \to B$ as 
     $\psi(a,0) = f(a)$ and $\psi(0,c) = g'(c)$. This is a homomorphism of acts, because $g'$ and $f$ are. We have that 
     \[
@@ -209,7 +209,7 @@ proofs that utilize the characterization in proposition $\ref{regularityProp}$.
 \end{tikzcd}\]
     by the short five lemma $\psi$ is an isomorphism. Then we have that $\iota_A = \psi^{-1}\circ f$ and $g = \lambda_C\circ\psi^{-1}$ 
     by the commutativity of the squares above.\par 
-    Assume now that there is an $f': B \to A$ such that $f'\circ f = 1_A$. We define a map $\phi: B \to A\coprod C$ as
+    Now we verify that $2.$ implies $3.$ Assume that there is an $f': B \to A$ such that $f'\circ f = 1_A$. We define a map $\phi: B \to A\coprod C$ as
     \[
         \phi(b) = \begin{cases}
             (f'(b),0) & \text{if } b\in\Image{f} \\
@@ -324,9 +324,10 @@ proofs that utilize the characterization in proposition $\ref{regularityProp}$.
         $\hat{\gamma}([z])=[x]$ and we are done.
         \item Construction of $\partial$.\par 
         Let $x\in\Kernel{h}$, then we find $x_0\in B$ such that $\beta(x_0)=x$, since $\delta(g(x_0))=0$ we find 
-        necessarily unique $x_0'\in A'$ so that $g(x_0)=\gamma(x_0')$. Let $\partial(x) = [x_0']$.
+        necessarily unique $x_0'\in A'$ so that $g(x_0)=\gamma(x_0')$. Let $\partial(x) = [x_0']$. We will fix this notation of the 
+        construction of $\partial$ for the rest of the proof.
         \item Well-definedness of $\partial$. \par
-        We will verify that $\forall x,y : x=y \implies \partial(x)=\partial(y)$.\par
+        We will verify that $[x_0']$ does not depend on the choice of $x_0$.\par
         Let $x,y\in\Kernel{h},x=y$ we find $x_0,y_0\in B$ such that $\beta(x_0)=x=y=\beta(y_0)$. By regularity of $\beta$ 
         we either have $x_0=y_0 \implies \partial(x)=\partial(y)$ or $\beta(x_0)=0=\beta(y_0)$. In the second case
         by Rees exactness we find $\hat{x_0},\hat{y_0}\in A$ such that $\alpha(\hat{x_0})=x_0$ and $\alpha(\hat{y_0})=y_0$. 

@@ -370,7 +370,7 @@ We will now construct the products and coproducts in $\actcat{S}$.
 \end{tikzcd}\]
 \end{definition}
 \begin{remark}
-    Note that we always have $\rho_{\Kernel{f}}\subseteq\ker{f}$, since $x=y\lor f(x)=0=f(y)\implies f(x)=f(y)$.
+    Note that we always have $\rho_{\Kernel{f}}\subseteq\ker{f}$, since $x=y$ or $f(x)=0=f(y)$, which implies $f(x)=f(y)$.
 \end{remark}
 \begin{proposition}\label{regChar}
     Let $f: A\to B$ be a homomorphism of pointed acts over a pointed monoid $S$, then the following are equivalent
@@ -400,7 +400,7 @@ We will now construct the products and coproducts in $\actcat{S}$.
     find a $x\in A$ so that $f(x) = y$, then $\phi'(y) = \phi'(f(x)) = g(x) = \phi(f(x)) = \phi(y)$. \par
     $3. \implies 1.$ Consider the canonical projection $\pi : A \to A/\Kernel{f}$, then $\pi\circ\iota = 0$, therefore 
     there exists a unique map $\phi: \Image{f}\to X$, such that $\phi\circ f = \pi$, then if $f(x)=f(y)$ we have 
-    $\phi(f(x))=\phi(f(y)) \implies [x]_{\Kernel{f}}=[y]_{\Kernel{f}}$, hence $x=y \lor x,y\in\Kernel{f}$, so 
+    $\phi(f(x))=\phi(f(y)) \implies [x]_{\Kernel{f}}=[y]_{\Kernel{f}}$, hence $x=y$ or $x,y\in\Kernel{f}$, so 
     $\ker{f}=\rho_{\Kernel{f}}$. In particular $1.$ holds.
 \end{proof}
 \begin{remark}
@@ -418,7 +418,7 @@ We will now construct the products and coproducts in $\actcat{S}$.
     \end{enumerate}
 \end{proposition}
 \begin{proof}[Proof]
-    Let $f(x)=f(y)$, then $(x,y)\in\rho_{\Kernel{f}} \implies x=y \lor f(x)=0=f(y) \implies x=y \lor x=0=y$.\par 
+    Let $f(x)=f(y)$, then $(x,y)\in\rho_{\Kernel{f}}$, hence $x=y$ or $f(x)=0=f(y)$, implying $x=y$ or $x=0=y$.\par 
     Assume that 
     \[
         K^{-1}f\left(\frac{a}{k_1}\right) = K^{-1}f\left(\frac{b}{k_2}\right)
@@ -440,7 +440,7 @@ We will now construct the products and coproducts in $\actcat{S}$.
     Suppose the canonical projection is Rees regular, if $x\sim y$, then $[x]=[y]$, hence by regularity 
     $x=y \lor [x]=[0]=[y]$ or equivalently $x=y\lor x,y\in [0]$. Note that $[0]\leq A$, since $x\sim 0 \implies rx\sim r0 = 0$ 
     therefore it is a subact of $A$. If $\sim$ is a Rees congruence we have $[x]=[y] \implies x=y \lor x,y\in A'$ for some $A'\leq A$,
-    which means precisely that $x=y \lor [x]=[0]=[y]$, because $0\in A'$. 
+    which means precisely that $x=y$ or $[x]=[0]=[y]$, because $0\in A'$. 
 \end{proof}
 \begin{definition}
     A \textbf{chain complex} $(A_n,a_{n} : A_n\to A_{n-1})_{n\in\mathbb{Z}}$ is a sequence of acts and act morphisms
@@ -461,10 +461,10 @@ Given any finite sequence of acts $\begin{tikzcd}
 	\arrow["{f_0}", from=1-1, to=1-2]
 	\arrow["{f_{n-1}}", from=1-2, to=1-3]
 \end{tikzcd}$ we say that the sequence is Rees exact, if $\forall n\in\{1,\dots,n-1\} : \ker{d_n} = \im(d_{n-1})$.
-\begin{remark} 
+\begin{lemma} 
     A sequence $(A_n,a_{n} : A_n\to A_{n-1})_{n\in\mathbb{Z}}$ of pointed acts and their morphisms is a chain complex, if and only if $a_{n+1}\circ a_n = 0$. If $(A,a)$ is a chain complex 
     we always have that $\Image{a_{n+1}}\subseteq\Kernel{a_n} \forall n\in\mathbb{Z}$.
-\end{remark}
+\end{lemma}
 \begin{proof}[Proof]
     Choose $n\in\mathbb{Z}$. 
     If $\im(a_{n+1})\subseteq\ker{a_n}$ we have for $x\in A_{n+1}$ that
@@ -537,7 +537,7 @@ Given any finite sequence of acts $\begin{tikzcd}
 \end{proof}
 \begin{proposition}
     Let $f: (A,a) \to (B,b)$ be a chain map and $n\in\mathbb{Z}$, then we have an induced map $H_n(f) : H_n(A) \to H_n(B)$
-    defined as $H_n(f)([x]) = [f_n(x)]$. This makes $H_n(A)$ into a functor from $\mathrm{Ch}(\actcat{S})$ to $\actcat{S}$.
+    defined as $H_n(f)([x]) = [f_n(x)]$. This makes $H_n(\bullet)$ into a functor from $\mathrm{Ch}(\actcat{S})$ to $\actcat{S}$.
 \end{proposition}
 \begin{proof}[Proof]
     We need to show well-definedness. Assume that $[x]=[y]$, if $x=y$ we are done, otherwise $x,y\in\Image{a_{n+1}}$ so we 
@@ -559,7 +559,7 @@ Given any finite sequence of acts $\begin{tikzcd}
     If $f: (A,a)\to (B,b)$ is a chain map and $f_n$ is Rees regular, then $H_n(f)$ is Rees regular.
 \end{lemma}
 \begin{proof}[Proof]
-    Assume $[f_n(x)]=H_n(f)([x])=H_n(f)([y])=[f_n(y)]$, then $f_n(x)=f_n(y) \implies x=y \lor f_n(x)=0=f_n(y)$ or 
+    Assume $[f_n(x)]=H_n(f)([x])=H_n(f)([y])=[f_n(y)]$, then $f_n(x)=f_n(y) \implies x=y$ or $f_n(x)=0=f_n(y)$ or 
     $f_n(x),f_n(y)\in\Image{b_{n+1}}$. In either case we have $[x]=[y]$ or $H_n(f)([x])=[f_n(x)]=0=[f_n(y)]=H_n(f)([y])$.
 \end{proof}
 \begin{definition}
@@ -787,7 +787,7 @@ counterexample already appears in \cite{Chen02}.
     surely $r+a > n$ for any $r \geq 0$, then $\mathbb{N}_0/n_>$ is a pointed act over $\mathbb{N}_0$. Let $\sim$ be a congruence on 
     $\mathbb{N}_0/n_>$, suppose it isn't the diagonal congruence, which is trivially Rees, then there is $m\in\mathbb{N}_0$ and $k>0$ such that 
     $m\sim k+m$, but then, since $\rho$ is a congruence we have that $m\sim k+m\sim 2k+m \sim\dots \sim lk+m \sim \infty$, where $l$
-    is large enough, such that $lk+m > n$, hence $x\sim y \iff x=y \lor x,y > n$ and any congruence is Rees. 
+    is large enough, such that $lk+m > n$, hence $x\sim y \iff x=y$ or $x,y > n$. It follows that any congruence is Rees. 
 \end{example}
 \begin{proposition}
     Let $A$ be a pointed act over a pointed monoid $S$, then TFAE
