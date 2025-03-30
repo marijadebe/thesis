@@ -1,0 +1,9 @@
+# Fdb version 4
+["pdflatex"] 0 "c:/Users/eltom/Documents/thesis/thesis.tex" "thesis.pdf" "thesis" 0 -1
+  "c:/Users/eltom/Documents/thesis/thesis.tex" 0 -1 0 ""
+  "tmp/thesis.aux" 0 -1 0 "pdflatex"
+  (generated)
+  "thesis.pdf"
+  "tmp/thesis.aux"
+  "tmp/thesis.log"
+  (rewritten before read)
