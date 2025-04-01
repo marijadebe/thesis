@@ -94,7 +94,8 @@
 \end{remark}
 
 \section{Constructions}
-    We prove that the category of pointed acts is complete and cocomplete, a fact, which can be found in \cite{Kilp00}, though the proof is omitted. 
+    We prove that the category of pointed acts is complete and cocomplete and the monomorphisms/epimorphisms are precisely injective/surjective homomorphisms, a fact, which can be found in \cite{Kilp00}, though the proof there is omitted. Then we look 
+    at localisation of pointed acts, a construction, which to our knowledge isn't yet a part of the literature on the topic.
 \begin{proposition}
     Let $f,g: A \to B$ be homomorphisms of pointed acts. Let $\{f=g\} = \{x\in A \mid f(x) = g(x)\}$, then $\{f=g\}$ is a subact of $A$ and 
     the canonical inclusion $\iota: \{f=g\} \to A$, $x\mapsto x$ is an equaliser in $\actcat{S}$.
@@ -187,7 +188,20 @@ We will now construct the products and coproducts in $\actcat{S}$.
     the surjective homomorphisms.
 \end{proposition}
 \begin{proof}
-    See \cite[Proposition~6.15]{Kilp00}.
+    If $f: A \to B$ is injective, and $h_1,h_2:X \to A$ are such that $f\circ h_1=f\circ h_2$ we have for all $x\in X$ that 
+    \[
+        f(h_1(x))=f(h_2(x)) \implies h_1(x)=h_2(x)
+    \] 
+    so $h_1=h_2$ and $f$ is a mono.\par
+    Suppose that $f: A \to B$ is surjective and $h_1,h_2: B \to Y$ are such that $h_1\circ f = h_2\circ f$, then 
+    for each $b\in B$ there is an $a\in A$ so that $f(a)=b$, hence $h_1(b)=h_1(f(a))=h_2(f(a))=h_2(b)$.\par 
+    Assume now $f: A \to B$ is a monomorphism and $x,y\in A$ are such that $f(x)=f(y)$. Let $h_1: S \to A$ and $h_2: S \to A$ be defined 
+    as $h_1(s) = sx$ and $h_2(s)=sy$, then $h_1$ and $h_2$ are homomorphisms, since $r h_1(s) = r(sx) = (rs)x = h_1(rs)$ and analogously for $h_2$. 
+    Notice that $f(x)=f(y)$ implies that $f\circ h_1 = f\circ h_2$, since $f(h_1(s)) = f(sx) = s f(x) = s f(y) = f(sy) = f(h_2(s))$. Since $f$ is a 
+    mono we get $h_1=h_2$, so $x=h_1(1)=h_2(1) = y$. \par 
+    Finally suppose that $f: A \to B$ is an epimorphism. Then we can consider two homomorphisms $\pi : B \to B/\im{f}$ and $0: B \to B/\im{f}$, where 
+    $\pi$ is the canonical projection and $0$ is the zero morphism. We have that $0 f = 0 = \pi f$, hence $\pi=0$, since $f$ is an epimorphism. 
+    This means that $\forall b\in B : [b]=[0]$ or that $b\in\Image{f}$, so $f$ is surjective.
 \end{proof}
 \begin{proposition}
     Let $(S,\cdot,0,1)$ be a pointed commutative monoid and 
@@ -339,6 +353,8 @@ We will now construct the products and coproducts in $\actcat{S}$.
     is a generating set of $K^{-1} A$ a finitely generated over $K^{-1}S$.
 \end{proof}
 \section{Regularity and exactness}
+    In this section we define Rees regular morphisms and Rees short exact sequences, these definitions appear in \cite{Flores15} and \cite{Chen02} respectively. 
+    A different formulation of proposition \ref{regChar} appears as a remark without proof in \cite{Flores15}. Rest of the section is original work. \par
     For the remaining chapters we fix the following notation, for a homomorphism $f$ by $\im(f)$ we mean the 
     Rees congruence $\rho_{\Image{f}}$. To remind the reader by $\ker{f}$ we mean the kernel congruence $\ker{f} = \{(x,y) \mid f(x)=f(y)\}$
     and $\Kernel{f} = \{x \mid f(x) = 0\}$, $\Image{f} = \{ y \mid \exists x : f(x) =y \}$.
@@ -407,7 +423,7 @@ We will now construct the products and coproducts in $\actcat{S}$.
 \end{proof}
 \begin{remark}
     Note that $3.$ in the above characterisation is the definition of admissible morphism in $\actcat{S}$, 
-    which appears in \cite{Flores15}.
+    which appears in \cite{Flores15}, though we will continue to refer to them as Rees regular morphism.
 \end{remark}
 \begin{proposition}\label{regPropChar}
     Assume $f:A \to B$ is Rees regular and $\sim$ a congruence on $A$, the following holds
@@ -779,6 +795,10 @@ counterexample already appears in \cite{Chen02}.
     \]
 \end{proof}
 \section{Rees simple acts}
+    In this section we define and prove some properties of a class of pointed acts, which we will call Rees simple acts. Motivation for this 
+    definition are Dedekind groups, i.e. groups whose every subgroup is normal. It can be shown, that Dedekind groups are precisely objects of $\mathbf{Grp}$
+    such that every monomorphism into them is normal. As we will see the property of being Rees simple, is dual. It is precisely those pointed acts, such that 
+    every epimorphism from them is conormal.
 \begin{definition}
     Let $S$ be a pointed monoid and $A$ be a pointed act over $S$, then we call $A$
     \textbf{Rees simple}, if every congruence in $A$ is Rees (i.e. of the form $\rho_B$ for some $B\subseteq A$ a subact of $A$).
@@ -794,7 +814,7 @@ counterexample already appears in \cite{Chen02}.
 \begin{proposition}
     Let $A$ be a pointed act over a pointed monoid $S$, then TFAE
     \begin{enumerate}
-        \item Every morphism $f: A \to X$ for all $X\in\actcat{S}$ is Rees regular.
+        \item Every morphism $f: A \to X$ for all $X\in\actcat{S}$ is Rees regular (a conormal epimorphism onto its image).
         \item $A$ is Rees simple.
     \end{enumerate}
 \end{proposition}
