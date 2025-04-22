@@ -2,7 +2,7 @@
 \section{Basic notions}
     In this section we state and prove some basic facts about pointed acts, following \cite{Kilp00}. We refer the reader to \cite{Kilp00} for a more thorough treatment of pointed acts and their categorical properties.
 \begin{definition}
-    A pointed monoid is a $4$-tuple $(S,\ast,1,0)$, where $0,1\in S$ and $\ast: S\times S \to S$ a map, that satisfies the following
+    A pointed monoid is a $4$-tuple $(S,\ast,1,0)$, where $0,1\in S$ and $\ast: S\times S \to S$ is a map, that satisfies the following
     \begin{enumerate}
         \item $\forall x,y,z\in S: (x\ast y)\ast z = x\ast(y\ast z)$
         \item $\forall x\in S: x\ast 1 = x = 1\ast x$
@@ -17,7 +17,7 @@
     we can also forget some of the structure and get a pointed monoid $(R,\cdot,1,0)$.  
 \end{example}
 \begin{example}
-    In general given any monoid $(M,\cdot,1)$, we can consider the disjoint union $\{\bullet\}\times\{0\}\cup M\times\{1\}$ with any one element set
+    In general, given any monoid $(M,\cdot,1)$, we can consider the disjoint union $\{\bullet\}\times\{0\}\cup M\times\{1\}$ with any one element set
     $\{\bullet\}$ and extend the operation $\cdot$ as
     \[
         (m,1)\cdot(n,1) = (m\cdot n,1)
@@ -34,7 +34,7 @@
 
 \begin{definition}
     Let $S$ be a pointed monoid. A (left) pointed $S$-act is a $3$-tuple $(A,\cdot, 0)$, where $0\in A$ and $\cdot: S\times A \to A$ 
-    a map, that satisfies the following
+    is a map, that satisfies the following
     \begin{enumerate}
         \item $\forall r,s\in S\, \forall x\in A : (r\ast s)\cdot x = r\cdot(s\cdot x)$
         \item $\forall x\in A : 1\cdot x = x$
@@ -49,8 +49,8 @@
     Given a module $(M,+,-,0,\cdot)$ over a ring $(R,+,-,0,\cdot,1)$ we can view it as a pointed act $(M,\cdot,0)$ over the pointed monoid $(R,\cdot,1,0)$.
 \end{example}
 \begin{example}
-    We can consider any pointed set $(X,x_0)$ (that is $X$ a set and $x_0\in X$) to be pointed $S$-act for any pointed monoid $S$,
-    by letting $s\cdot x = x$ for $s\neq 0$ and $s\cdot x = x_0$ for $s=0$.
+    We can consider any pointed set $(X,x_0)$ (that is $X$ a set and $x_0\in X$) to be pointed $\mathbb{Z}_2$-act for the pointed monoid $(\mathbb{Z}_2,\cdot,1,0)$,
+    by letting $1\cdot x = x$ and $0\cdot x = x_0$.
 \end{example}
 \begin{definition}
     Let $A$ be a pointed $S$-act. A \textbf{subact} of $A$ is a subset $B\subseteq A$ such that $0\in B$ and $B$ is closed under the action of $S$. 
@@ -71,8 +71,8 @@
     and the identity is trivially a homomorphism.
 \end{remark}
 \begin{definition}
-    If $A$ is a pointed act over a pointed monoid $S$ and there exists a subset $\{x_1,\dots,x_n\}\subseteq A$ such that 
-    $\forall x\in A \exists i\in\{1,\dots,n\} \exists r\in S : x = r\cdot x_i$ we say that $A$ is \textbf{finitely generated} 
+    If $A$ is a pointed act over a pointed monoid $S$ and there is a subset $\{x_1,\dots,x_n\}\subseteq A$ such that 
+    for each $x\in A$ there is an $i\in\{1,\dots,n\}$ and $r\in S$ so that $x = r\cdot x_i$, then we say that $A$ is \textbf{finitely generated} 
     and that the set $\{x_1,\dots,x_n\}$ is a \textbf{generating set} of $A$.
 \end{definition}
 \begin{definition}
@@ -109,7 +109,7 @@
     We will denote the equalizer $\{f=0\}$ as $\Kernel{f}$. 
 \begin{proposition}
     Suppose $f,g: A\to B$ are homomorphisms, let $\sim$ be the smallest congruence on $B$ such that $\forall x\in A: f(x)\sim g(x)$, then 
-    $B/\sim$ with the canonical projection $\pi: B\to B/\sim$, $x\mapsto [x]_\sim$ is a coequaliser in $\actcat{S}$. 
+    $B/\sim$ with the canonical projection $\pi: B\to B/\sim$, $x\mapsto [x]_\sim$ is a coequaliser of $f$ and $g$ in $\actcat{S}$. 
 \end{proposition}
 \begin{proof}
     Suppose that $h: B\to X$ is such that $hf=hg$, then we have that $\ker{h}$ is a congruence on $B$, satisfying 
@@ -166,9 +166,9 @@ We will now construct the products and coproducts in $\actcat{S}$.
 \end{proposition}
 \begin{proof}
     Clearly $0\in\coprod_{i\in I } X_i$ and given any $r\in S$ and $f\in\coprod_{i\in I } X_i$, where 
-    $f(j)=0$ for $j\neq i$, then $r\cdot f(j)=0$, hence $r\cdot f \in\coprod_{i\in I} X_i$. It follows that 
+    $f(j)=0$ for each $j\neq i$, then $r\cdot f(j)=0$, hence $r\cdot f \in\coprod_{i\in I} X_i$. It follows that 
     $\coprod_{i\in I} X_i$ is a subact of the product.\par 
-    Let $U$ be a pointed act and $\nu_i : X_i \to U$, then let $h: \coprod_{i\in I} X_i \to U$ be defined as follows - 
+    Let $U$ be a pointed act and let $\nu_i : X_i \to U$ be a homomorphism for each $i\in I$, then let $h: \coprod_{i\in I} X_i \to U$ be defined as follows - 
     given any $f$ and $i\in I$, such that $f(j)=0$ for all $j\neq i$, define $h(f) = \nu_i(f(i))$ (Note that this is well-defined 
     even in the case of zero, because $\forall i\in I : \nu_i(0) = 0$). By definition we have that $h\circ \iota_i = \nu_i$. It is 
     indeed a homomorphism, since $r\cdot h(f) = r\cdot\nu_i(f(i))=\nu_i((r\cdot f)(i)) = h(r\cdot f)$. Let 
@@ -182,7 +182,9 @@ We will now construct the products and coproducts in $\actcat{S}$.
     The category $\actcat{S}$ is complete and cocomplete.
 \end{corollary}
     Our category $\actcat{S}$ equipped with the "forgetful" functor $U$, which maps objects to their underlying sets and morphisms 
-    to their underlying set maps is a concrete category.
+    to their underlying set maps is a concrete category. Thus it makes sense, to talk about injective and surjective homomorphisms, 
+    the following proposition, which we will use time and time again, without any further reference, shows that they coincide with 
+    monomorphisms and epimorphisms in $\actcat{S}$.
 \begin{proposition}
     The monomorphisms in $\actcat{S}$ are precisely the injective homomorphisms and the epimorphisms in $\actcat{S}$ are precisely
     the surjective homomorphisms.
@@ -203,8 +205,20 @@ We will now construct the products and coproducts in $\actcat{S}$.
     $\pi$ is the canonical projection and $0$ is the zero morphism. We have that $0 f = 0 = \pi f$, hence $\pi=0$, since $f$ is an epimorphism. 
     This means that $\forall b\in B : [b]=[0]$ or that $b\in\Image{f}$, so $f$ is surjective.
 \end{proof}
+\begin{corollary}
+    The category $\actcat{S}$ is balanced.
+\end{corollary}
+\begin{proof}
+    Indeed, if $f: A \to B$ is a homomorphism of pointed acts that is both a monomorphism and epimorphism, then by the above proposition 
+    $f$ is bijective, let $f^{-1}: B \to A$ be its inverse in $\mathbf{Set}$, then for and $y\in B$ we find a unique $x\in A$ such that 
+    $f(x)=y$ and we then have for any $r\in S$ that 
+    \[
+        f^{-1}(ry) = f^{-1}(f(rx))= rx = rf^{-1}(y)
+    \]
+    hence $f^{-1}$ is a homomorphism of acts and $f$ is an isomorphism.
+\end{proof}
 \begin{proposition}
-    Let $(S,\cdot,0,1)$ be a pointed commutative monoid and 
+    Let $(S,\cdot,1,0)$ be a commutative pointed monoid and 
     $K\subseteq S$ a submonoid of $S$ such that $0\not\in K$. 
     We define $K^{-1}S = S\times K/\sim$, where 
     \[
@@ -242,7 +256,7 @@ We will now construct the products and coproducts in $\actcat{S}$.
     since $(0,k)\sim(0,1)$, because $0\cdot 1 = 0 = 0\cdot k$. 
 \end{proof}
 \begin{definition}
-    We define the \textbf{localisation map} $\Lambda: S \to K^{-1}S$ by $\Lambda(x) = \frac{x}{1}$. It is a 
+    If $S$ is a commutative pointed monoid and $K\subseteq S$ a submonoid of $S$, such that $0\not\in K$, then we define the \textbf{localisation map} $\Lambda: S \to K^{-1}S$ by $\Lambda(x) = \frac{x}{1}$. It is a 
     homomorphism of pointed monoids.  
 \end{definition}
 \begin{proposition}
@@ -270,7 +284,7 @@ We will now construct the products and coproducts in $\actcat{S}$.
     \[
         uvk_2l_2s_1a_1 = s_1k_2uvl_2a_1 = s_2k_1uvl_1a_2 = uvk_1l_1s_2a_2 \implies \frac{s_1a_1}{k_1l_1} = \frac{s_2a_2}{k_2l_2}
     \]
-    so 
+    so
     \[
         \frac{s_1}{k_1}\cdot\frac{a_1}{l_1} = \frac{s_1a_1}{k_1l_1} = \frac{s_2a_2}{k_2l_2} = \frac{s_2}{k_2}\cdot\frac{a_2}{l_2}
     \]
@@ -282,7 +296,7 @@ We will now construct the products and coproducts in $\actcat{S}$.
     since $k\cdot 0 = 1\cdot 0$. Hence it is really a pointed act over $K^{-1}S$. 
 \end{proof}
 \begin{proposition}
-    Let $f: A\to B$ be an act homomorphism, then we have an induced 
+    Suppose that $S$ is a commutative pointed monoid and $K\subseteq S$ a submonoid of $S$, such that $0\not\in K$ and let $f: A\to B$ be an act homomorphism, then we have an induced 
     map $K^{-1}f : K^{-1}A \to K^{-1}B$ defined as 
     \[
         K^{-1}f\left(\frac{a}{k}\right) = \frac{f(a)}{k}
@@ -413,7 +427,8 @@ We will now construct the products and coproducts in $\actcat{S}$.
         \arrow["{\exists ! \phi}"', dashed, from=2-4, to=1-3]
     \end{tikzcd}\]
     Define $\phi(y) = g(x)$, where $x\in A$ is such that $f(x)=y$. This map is well-defined, because if $f(x)=y=f(x')$, then
-    either $x=x'$ or $f(x)=0=f(x') \implies g(x)=0=g(x')$, since $g\circ\iota = 0$. Clearly $\phi\circ f = g$ by definition.
+    either $x=x'$ or $f(x)=0=f(x') \implies g(x)=0=g(x')$, since $g\circ\iota = 0$. Clearly $\phi\circ f = g$ by definition and $\phi$ 
+    is a homomorphism of acts, since $g$ is.
     It remains to verify uniqueness. Suppose that $\phi': \Image{f}\to X$ is another such map, then for any $y\in\Image{f}$ we 
     find a $x\in A$ so that $f(x) = y$, then $\phi'(y) = \phi'(f(x)) = g(x) = \phi(f(x)) = \phi(y)$. \par
     $3. \implies 1.$ Consider the canonical projection $\pi : A \to A/\Kernel{f}$, then $\pi\circ\iota = 0$, therefore 
@@ -429,7 +444,7 @@ We will now construct the products and coproducts in $\actcat{S}$.
     Assume $f:A \to B$ is Rees regular and $\sim$ a congruence on $A$, the following holds
     \begin{enumerate}
         \item $f$ is a monomorphism, if and only if $\Kernel{f} = \{0\}$.
-        \item If $K$ is a multiplicative subset of $S$, then $K^{-1}f$ is Rees regular.
+        \item If $S$ is a commutative pointed monoid, and $K\subseteq S$ its submonoid, such that $0\not\in K$, then $K^{-1}f$ is Rees regular.
         \item If $g: B \to C$ is Rees regular, then $g\circ f$ is.
         \item The canonical projection $\pi : A \to A/\sim$, $x\mapsto [x]$ is Rees regular, if and only if 
         $\sim$ is a Rees congruence.
@@ -596,7 +611,7 @@ Given any finite sequence of acts $\begin{tikzcd}
     \end{tikzcd}\]
 \end{definition}
 \begin{remark}
-    By definition of exactness it follows that $\ker{f} = \{(0,0)\}\cup\Delta_A \land \im(g)= C\times C$, therefore 
+    By the definition of exactness it follows that $\ker{f} = \{(0,0)\}\cup\Delta_A \land \im(g)= C\times C$, therefore 
     $f$ is injective and $g$ is surjective. Similarly injectivity of $f$ and surjecivity of $g$ imply exactness at $A$ 
     and $C$ respectively.
 \end{remark}
@@ -649,7 +664,7 @@ In contrast with the category of modules, the
 internal hom functor isn't left exact. We give a counterexample, a different 
 counterexample already appears in \cite{Chen02}.
 \begin{example}
-    Recall that we can consider pointed sets to be $S$ acts over any pointed monoid $S$. Consider a 
+    Recall that we can consider pointed sets to be $\mathbb{Z}_2$ acts. Consider a 
     short exact sequence of pointed sets (where we consider $0$ to be the base point of our pointed sets and by $\mathbb{Z}_n$ we mean the set $\{0,\dots,n-1\})$
     \[\begin{tikzcd}
         0 & {\mathbb{Z}_2} & {\mathbb{Z}_3} & {\mathbb{Z}_3/\mathbb{Z}_2} & 0
@@ -808,7 +823,7 @@ counterexample already appears in \cite{Chen02}.
     $n_> = \{x\in\mathbb{N}_0 \mid x > n\}$, then $n_>$ is a subact of $\mathbb{N}_0$, indeed $\infty\in n_>$ and if $a > n$, then 
     surely $r+a > n$ for any $r \geq 0$, then $\mathbb{N}_0/n_>$ is a pointed act over $\mathbb{N}_0$. Let $\sim$ be a congruence on 
     $\mathbb{N}_0/n_>$, suppose it isn't the diagonal congruence, which is trivially Rees, then there is $m\in\mathbb{N}_0$ and $k>0$ such that 
-    $m\sim k+m$, but then, since $\rho$ is a congruence we have that $m\sim k+m\sim 2k+m \sim\dots \sim lk+m \sim \infty$, where $l$
+    $m\sim k+m$, but then, since $\sim$ is a congruence we have that $m\sim k+m\sim 2k+m \sim\dots \sim lk+m \sim \infty$, where $l$
     is large enough, such that $lk+m > n$, hence $x\sim y \iff x=y$ or $x,y > n$. It follows that any congruence is Rees. 
 \end{example}
 \begin{proposition}
