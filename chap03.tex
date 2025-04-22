@@ -61,11 +61,11 @@
 \begin{proof}[Proof]
     Suppose $\beta'(x)=\beta'(y)$, $x\neq y$, then $\gamma'(g'(x))=g''(\beta'(x))=g''(\beta'(y)) = \gamma'(g'(y))$ by 
     regularity we either have $g'(x)=g'(y)$ or $g'(x),g'(y)\in\Kernel{\gamma'}$. We will consider both cases separately. \par 
-    In the first case, because of Rees exactness 
+    In the first case, because of Rees exactness at $B'$,
     we find $x_0,y_0\in A'$ such that $f'(x_0)=x$ and $f'(y_0)=y$, which implies 
-    $f''(\alpha'(x_0))=\beta'(x)=\beta'(y)=f''(\alpha'(y_0))$. If $\alpha'(x_0)=\alpha'(y_0)$, then by regularity 
-    of $\alpha'$ we would have $\alpha'(x_0)=0=\alpha'(y_0) \implies \beta(x)=0=\beta(y)$, since $x_0\neq y_0$.
-    Otherwise we have $\beta'(x)=f''(\alpha'(x_0))=0=f''(\alpha'(y_0))=\beta'(y)$.\par
+    $f''(\alpha'(x_0))=\beta'(x)=\beta'(y)=f''(\alpha'(y_0))$. If $\alpha'(x_0)=\alpha'(y_0)$, then by Rees regularity 
+    of $\alpha'$ we would have $\alpha'(x_0)=0=\alpha'(y_0) \implies \beta'(x)=0=\beta'(y)$, since $x_0\neq y_0$.
+    If $\alpha'(x_0)\neq\alpha'(y_0)$, then by Rees regularity of $f''$ we still have $\beta'(x)=f''(\alpha'(x_0))=0=f''(\alpha'(y_0))=\beta'(y)$.\par
     In the second case, that is if $g'(x),g'(y)\in\Kernel{\gamma'}=\Image{\gamma}$, we find $x',y'\in C$ so that 
     $\gamma(x')=g'(x)$ and $\gamma(y')=g'(y)$. Since $g$ is an epimorphism we find $x'_0,y'_0\in B$ so that 
     $g'(x) = \gamma(g(x'_0))= g'(\beta(x'_0))$ and $g'(y)=\gamma(g(y'_0))=g'(\beta(y'_0))$. If, say 
@@ -181,7 +181,8 @@ proofs that utilize the characterization in proposition $\ref{regularityProp}$.
         \item $g$ is a split epimorphism
         \item $f$ is a split monomorphism and $(B\setminus\Image{f})\cup\{0\}$ is a subact of $B$.
         \item There is an isomorphism $\phi: B\to  A\coprod C$ such that $\phi\circ f=\iota_A$ and 
-        $g\circ\phi^{-1}=\lambda_C$.
+        $g\circ\phi^{-1}=\lambda_C$, where $\iota_A : A \to A\coprod C$, $x\mapsto (x,0)$ and 
+        $\lambda_C : A\coprod C \to C$, $(x,y)\mapsto y$.
     \end{enumerate}
 \end{proposition}
 \begin{proof}[Proof]First we verify, that $1.$ implies $3.$
@@ -311,7 +312,7 @@ proofs that utilize the characterization in proposition $\ref{regularityProp}$.
         $g(x)=0$ we have $0=\delta(g(x))=h(\beta(x)) \implies \beta(x)\in\Kernel{h}$. The Rees regularity at $\hat{\beta}$ is clear 
         because $\beta(x)=\hat{\beta}(x)=\hat{\beta}(y)=\beta(y)\implies x=y \lor \beta(x)=0=\beta(y)$. Let $\hat{\beta}(x)=0$, then
         we find $x'\in A$ such that $\alpha(x')=x$, then $\gamma(f(x'))=g(\alpha(x'))=g(x)=0$, since $x\in\Kernel{g}$, which implies
-        $f(x')=0$,so $x\in\Image{\hat{\alpha}}$, since we have $\hat{\beta}\circ\hat{\alpha}=\beta\circ\alpha = 0$ the Rees exactness at $\Kernel{g}$ follows.
+        $f(x')=0$, so $x\in\Image{\hat{\alpha}}$, since we have $\hat{\beta}\circ\hat{\alpha}=\beta\circ\alpha = 0$ the Rees exactness at $\Kernel{g}$ follows.
         \item The well-definedness of $\hat{\gamma},\hat{\delta}$ and Rees exactness at $\Cokernel{g}$.\par
         Let $\hat{\gamma}([x])=[\gamma(x)]$ and $\hat{\delta}([x])=[\delta(x)]$. We will show that $\hat{\gamma}$ is well-defined. 
         Let $[x]=[y]$, if $x=y$ we are done, otherwise there are $x_0,y_0\in A$ such that $f(x_0)=x$ and $f(y_0)=y$, then 
@@ -352,7 +353,7 @@ proofs that utilize the characterization in proposition $\ref{regularityProp}$.
         but then $\partial(x)=0=\partial(y)$.
         \item Rees exactness at $\Kernel{h}$.\par
         Let $[x_0']=\partial(x)=[0]$, that means that $x_0'\in\Image{f}$. Let $f(z)=x_0'$, then we have $g(x_0)=g(\alpha(z))$.
-        If $x_0=\alpha(z)$ we have $x=\beta(x_0)=\beta(\alpha(z))=0$ and then clearly $x\in\Image{\hat{\beta}}$,since $\hat{\beta}(0)=x$.
+        If $x_0=\alpha(z)$ we have $x=\beta(x_0)=\beta(\alpha(z))=0$ and then clearly $x\in\Image{\hat{\beta}}$, since $\hat{\beta}(0)=x$.
         Otherwise by Rees regularity of $g$ we have $g(x_0)=0$, so $x_0\in\Kernel{g}$ and $\hat{\beta}(x_0)=\beta(x_0)=x$.
         It remains to show that $\partial\circ\hat{\beta}=0$. Choose $x\in\Kernel{g}$, we find $x_0\in B$ such that 
         $\beta(x_0)=\beta(x)$. If $x_0=x$ we have $\gamma(x_0')=g(x_0')=g(x)=0 \implies \partial(\hat{\beta}(x))=0$, else by Rees regularity
@@ -372,6 +373,26 @@ proofs that utilize the characterization in proposition $\ref{regularityProp}$.
         
     \end{enumerate}
 \end{proof}
+\begin{definition}
+    A sequence of chain complexes 
+\[\begin{tikzcd}
+	0 & {(A,a)} & {(B,b)} & {(C,c)} & 0
+	\arrow[from=1-1, to=1-2]
+	\arrow["f", from=1-2, to=1-3]
+	\arrow["g", from=1-3, to=1-4]
+	\arrow[from=1-4, to=1-5]
+\end{tikzcd}\]
+    (where by $0$ we mean $\cdots\to 0\to0\to0\to\cdots$) is \textbf{Rees short exact} 
+    if for each $n\in\mathbb{Z}$ we have that 
+    \[\begin{tikzcd}
+	0 & {A_n} & {B_n} & {C_n} & 0
+        \arrow[from=1-1, to=1-2]
+        \arrow["{f_n}", from=1-2, to=1-3]
+        \arrow["{g_n}", from=1-3, to=1-4]
+        \arrow[from=1-4, to=1-5]
+    \end{tikzcd}\]
+    is a Rees short exact sequence.
+\end{definition}
 \begin{corollary}
     Let $0 \to (A,a) \to (B,b) \to (C,c) \to 0$ be a Rees short exact sequence of chain complexes and $(B,b)$ Rees regular, then 
     we have a Rees long exact sequence of homology acts 
